@@ -1,2 +1,3 @@
-# notes
-Notes regarding my education with programming and compsci.
+# Notes
+
+This is a public domain repository of notes I have taken regarding various skills, including programming and software development.
