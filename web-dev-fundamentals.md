@@ -82,3 +82,85 @@
     - Web services that conform to the *REST* architectural style, called *RESTful* Web services, provide interoperability between computer systems on the Internet.
     - These requests use the HTML language of GET and POST, and are usually returned in the JSON format.
 * There are services such as *OAuth* which validate applications in order to make sure they are secure by acting as an intermediary between the service and the program.
+
+## Internet Website Process
+
+* Type a URL into the address bar, hit return, what happens?
+* points at a specific resource somewhere on the web
+    - That somewhere is a server that is mapped to that specific IP
+    - Browser sends a GET request to the server
+    - DNS figures out which domain the domain is pointing at
+    - Retrieves all the data and presents it in the browser's viewport.
+    - You can then start interacting the data and elements
+    - Carefully-structured elements are in containers with a visual structure that's created with CSS. Everything is a box within a box.
+    - The browser is JUST an advanced viewer of web documents
+*  Any time a browser is asked to display an HTML document, it creates a document object model or **DOM**, which is a structural representation of the elements in the document and their relationships. 
+    - This document object model can be visualized as a DOM tree, where each element is a leaf or node, and the connections are branches. When you add new elements to an HTML document, you are effectively adding a node to this DOM tree. 
+    - When you target elements using CSS or JavaScript, you ask the browser to follow the branches all the way from the root to the node or nodes in question.
+    + This is called either walking or traversing or navigating the DOM.
+    * When creating a website, it can be helpful to draw out the DOM tree to understand relationships and inheritances between different elements.
+    * This also encourages the reduction of complexity and avoid unnecessary nesting by prioritizing accessibility and logical structure. 
+* **HTML** was created to allow humans to write highly-structured documents which could be interpreted consistently and universally by any rendering engine supporting the language. 
+    - HTML is a declarative markup language, meaning it describes the contents of a document.
+    - However, HTML does not provide instructions about the control flow or processing or interactions with that content. 
+    - This allows the reader, commonly known as a *client*, so a web browser or some other application, to decide how to handle the different types of content which makes HTML incredibly versatile and accessible.
+    -  The DOM tree is the browser representation of every HTML element and their relationships with other elements.
+* Web documents is a document with superpowers, by marking up a document in HTML, it can be viewed by anybody and anywhere they want. It is not proprietary or tied to any specific visuals.
+    - Accessible. Shareable. Linkable.
+    - This superpower is held by anybody with a web browser!
+* When writing for the Internet, you are writing for two audience: Humans and Technology.
+    - In order for technology (the web browser) to understand our documents, we must be explicit with the nature, properties, purpose, and relationships of the content within the data.
+* Every part of the example document below is marked up with a tag describing its function, headings, paragraphs, emphasized and strongly emphasized texts, block quotes and citation, addresses, ordered and unordered lists, links, buttons, the list goes on. 
+    - For each of these elements, the browser generates a corresponding node and places it on the node tree of the document object model. 
+    - Once that tree is populated, a user can instruct the client to fetch any of these elements either through direct interaction or through code.
+
+```html
+<!-- HTML Content and Structure Example -->
+
+<html lang="en-US">
+    <head>
+    </head>
+
+    <body>
+        <!-- This section is required for accessibility.
+             Will automatically skip to the main content of the document. -->
+        <a class="skip-link screen-reader-text" href="#content">Skip to content.</a>
+
+        <header class="masthead clear">
+        </header>
+
+        <div id="showcase" class="promo-area">
+        </div>
+
+        <main id="content" class="main-area">
+            <article class="post-content">
+            </article>
+        </main>
+
+        <footer class="footer">
+        </footer>
+    </body>
+```
+
+* **Web Meta-data** is non-visual data added to a web document to provide further information about purpose and function.
+    - This includes schema, micro-format, ARIA and other tools.
+* Accessibility is one of the most important aspects of a web page document, and should take precedent over aesthetic and interactivity. 
+    - Regardless what tool a user uses, content should be accessible. 
+    - Always start with semantic, compliant HTML.
+    - Run accessibility checks as you add more visual elements.
+    - Audit and maintain the accessibility of your website over time.
+* Test your websites in as many different versions of browsers and different browsers to make sure it works on all of them.
+    -  In addition to the desktop browser, there is the mobile browser, in-app browser, text-only browsers, text-to-speech browsers, console browsers, smart TV browsers, fridge browsers, et cetera.
+* The browser of today will not display the Internet of tomorrow.
+    - Accessibility, progressive features, and universal standards allow for the future-proofing of websites.
+    - The utility of RESTful APIs allow information to be independent from the viewport which allows it to be easily viewed in a multitude of ways.
+* The ability to have our websites work in older browsers should be utilized with CSS and JavaScript as one way to display it. 
+* At it's core, the web runs on three main programming and markup languages. HTML for content, CSS for style and JavaScript for interactivity.
+ * **Events** are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way, if desired.
+    - *Event Handling* is detecting and responding to an event using JavaScript.
+        + Identify a DOM node to monitor
+        + Identify the event you want to respond to
+        + Create a function to run when the event is triggered.
+* To properly test a website in a browser, you need to run a local live server, and most IDEs have a simple `live-server` plug-in to do this.
+    - *BrowserSync* also allows cross-browser testing as well.
+
