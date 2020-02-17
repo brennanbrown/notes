@@ -5,6 +5,7 @@ This is a public domain repository of notes I have taken regarding various skill
 ## List of Topics
 
 **Programming Foundations:**
+- Codecademy Lessons
 - Programming Fundamentals
 - Algorithm Fundamentals
 - Design Patterns
