@@ -1,0 +1,34 @@
+
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+<button onclick="size()">Check Size</button>
+<input type="text" id="number"><br>
+
+<script>
+    function size() {
+      var x, text;
+    
+      // Get the value of the input field with id="number"
+      x = document.getElementById("number").value;
+        
+      // If x is either less than 10, less than 20, or more.
+      if (x > 0 || x < 10) {
+        document.write("That's a small number!")
+      } else {
+            if (x > 10 || x < 20) {
+                document.write("That's a medium number!")
+            } else {
+                document.write("That's a large number!")
+            }
+        }
+      
+
+    }
+</script>
+</body>
+</html>
