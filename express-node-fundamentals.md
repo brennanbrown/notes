@@ -1,4 +1,4 @@
-# Introduction to node.js and express
+# Building a Website with Node.js and Express.js
 
 ## Introduction 
 
@@ -47,7 +47,11 @@
 * Middlewares are defined on the application object and, in general, they use `app.use(callback). 
     - The callback will be executed for this given middleware, and the callback gets a request and a responsive check.
 * Middlewares can also have paths, eg. `app.use(path, callback)`, this means the middleware will then be only executed if the URL matches a specific path.
-* There are also **routing middlewares**, these will use some sort of *http* verbage, eg. `app.[GET / POST / PUT / DELETE](path, callback);
+* There are also **routing middlewares**, these will use some sort of *http* verbage, eg. `app.[GET / POST / PUT / DELETE](path, callback);`
+*  HTTP is stateless, this means that it doesn't recognize a user between requests. 
+    - To persist data for a user from request to request, we need sessions.
+* Cookie sessions store the data we want to persist for a user encrypted on the client.
+    - This needs to be encrypted, because we don't want the user to be able to see and manipulate what we store in that session. The encryption hides it from them.
 
 What can Express middlewares do? 
 
@@ -57,7 +61,6 @@ What can Express middlewares do?
 * They can also end the request-response cycle. 
     - This is mostly true for routing middlewares because in the end, a routing middleware will send something back to the browser and will so end the execution flow and the request. 
 * Finally, they can also call the next middleware in the stack, this means if more middlewares are defined, a middleware can pass on the control flow to the next middleware.
-
 * It's good practice is to group all route definitions into a file or directory structure of its own. 
     - Express Router lets you create SAP applications that listen on specific routes.
 
@@ -109,3 +112,15 @@ app.get(,/speakers/:speakername', handler);
 // Eg. It will then match /speakers, but also /speakers/alice
 app.get(,/speakers/:speakername?', handler);
 ```
+
+### Business Logic
+
+*  Ideally, you want a central place where all the information and all data is stored. 
+    - We need a way to retrieve this information to render into our template. 
+    - In any dynamic website, you will find some kind of *business logic.*
+* As a rule of thumb, a `data` or `database` folder will contain the information that will be stored by the server and have information pulled to the client's view. 
+    - A `services` folder will contain the logic of extracting that data for the front-end accordingly. 
+
+## Professional Templating
+
+> To be continued ...
