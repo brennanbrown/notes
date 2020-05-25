@@ -120,7 +120,53 @@ app.get(,/speakers/:speakername?', handler);
     - In any dynamic website, you will find some kind of *business logic.*
 * As a rule of thumb, a `data` or `database` folder will contain the information that will be stored by the server and have information pulled to the client's view. 
     - A `services` folder will contain the logic of extracting that data for the front-end accordingly. 
-
 ## Professional Templating
 
-> To be continued ...
+### Creating a Site-wide Layout
+
+* Every section within a website is inside a CSS container is specific to a given page. 
+    - The parts around it are the so-called layout. And the content of an individual page should ideally be loaded into this layout. 
+    - Some template engines come with some layered concept out of the box, EJS doesn't. But it's easy to build something similar. 
+* Create a new folder within the `views` directory called `layout`, to specifically contain only the sections that are universal and appear on every page.
+    - This will reduce a lot of redundant html code.
+* When working with external files, Eg. `/js/main.js`, make it absolute.
+    - Remove the dot (previouisly `./js/main.js`) 
+    - This is because the absolute path points to the root of a project when it's delivered via Express and it will work even when we are on a sub-page where the relative path would not point to the right location anymore. 
+* With EJS, to add sections, use for example `<%- include(\`../pages/${template}\`) %>`
+    - Use `<%-` to include the template unescaped.
+    - If you would escape it, the raw html would be visible on the page, and not the parsed html.
+* In the `index.js`, you would change it to `response.render('layout', { pageTitle: 'Example Text', template: 'index' });`
+* Similarly, you can add any JavaScript to `scripts.ejs` as a parital as well.
+
+### Using Paritals with EJS
+
+* As developers, we know that it often helps to move recurring or just large sections of code into large functional units of their own. 
+    - This removes redundancies and increases readability and reusability. 
+* When creating templates, such functional units are often referred to as partials.
+    - Eg. to change the navigation section, you have to scroll around to eventually find and edit it, making
+* Start by creating a new folder in the `layout` directory calledc `partials` called `navigation.ejs`, for example.
+* An important note that, when within a parital, a html file such as `./contact.html`, you would change it to just `/contact`.
+* Similarly, to add the parital to a page, you would add `<%- include('./partials/navigation') %>`
+
+### Template Variables in More Detail
+
+* Template variables are the way to make any dynamic data available to templates and Express knows three different types depending on their *scope*:
+    - First, you can set the variable directly These variables are only available to the particular template for this particular request. 
+    - Second, Express also knows variables that are globally available to any template for a given request. So they are request global template variables, and they are set on the response object. Typically you would set that via middleware. 
+    -  Lastly, there are also variables that are set during start up of the application, and then available for the whole lifecycle. This is done on the application object.
+    - Eg. in `server.js` you would add `app.locals.siteName = 'Business Website';` and then `<%= siteName %>` to the `index.ejs`
+        
+```javascript
+
+// Creating a dynamic template
+app.use(async (request, response, next) => {
+    try {
+        const names = await.speakersService.getNames();
+        response.locals.speakerNames = names;
+        console.log(response.locals);
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+});
+```
