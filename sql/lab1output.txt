@@ -1,0 +1,111 @@
+SQL> 
+SQL> rem Made by Brennan Brown
+SQL> 
+SQL> rem QUESTION 1
+SQL> 
+SQL> select title as "Book Title"
+  2  from books
+  3  order by title;
+
+Book Title                                                                                                                          
+------------------------------                                                                                                      
+BIG BEAR AND LITTLE DOVE                                                                                                            
+BODYBUILD IN 10 MINUTES A DAY                                                                                                       
+BUILDING A CAR WITH TOOTHPICKS                                                                                                      
+COOKING WITH MUSHROOMS                                                                                                              
+DATABASE IMPLEMENTATION                                                                                                             
+E-BUSINESS THE EASY WAY                                                                                                             
+HANDCRANKED COMPUTERS                                                                                                               
+HOLY GRAIL OF ORACLE                                                                                                                
+HOW TO GET FASTER PIZZA                                                                                                             
+HOW TO MANAGE THE MANAGER                                                                                                           
+PAINLESS CHILD-REARING                                                                                                              
+REVENGE OF MICKEY                                                                                                                   
+SHORTEST POEMS                                                                                                                      
+THE WOK WAY TO COOK                                                                                                                 
+
+14 rows selected.
+
+SQL> 
+SQL> rem QUESTION 2
+SQL> 
+SQL> select lastname || ', ' ||
+  2  firstname	     || ', ' ||
+  3  address	     || ', ' ||
+  4  city	     || ', ' ||
+  5  state	     || ', ' ||
+  6  zip
+  7  "Customer Information"
+  8  from customers
+  9  order by lastname, firstname;
+
+Customer Information                                                                                                                
+---------------------------------------------------------------------                                                               
+CRUZ, MESHIA, 82 DIRT ROAD, ALBANY, NY, 12211                                                                                       
+DAUM, MICHELL, 9851231 LONG ROAD, BURBANK, CA, 91508                                                                                
+FALAH, KENNETH, P.O. BOX 335, TRENTON, NJ, 08607                                                                                    
+GIANA, TAMMY, 9153 MAIN STREET, AUSTIN, TX, 78710                                                                                   
+GIRARD, CINDY, P.O. BOX 851, SEATTLE, WA, 98115                                                                                     
+JONES, KENNETH, P.O. BOX 137, CHEYENNE, WY, 82003                                                                                   
+LEE, JASMINE, P.O. BOX 2947, CODY, WY, 82414                                                                                        
+LUCAS, JAKE, 114 EAST SAVANNAH, ATLANTA, GA, 30314                                                                                  
+MCGOVERN, REESE, P.O. BOX 18, CHICAGO, IL, 60606                                                                                    
+MCKENZIE, WILLIAM, P.O. BOX 971, BOSTON, MA, 02110                                                                                  
+MONTIASA, GREG, 1008 GRAND AVENUE, MACON, GA, 31206                                                                                 
+MORALES, BONITA, P.O. BOX 651, EASTPOINT, FL, 32328                                                                                 
+NELSON, BECCA, P.O. BOX 563, KALMAZOO, MI, 49006                                                                                    
+NGUYEN, NICHOLAS, 357 WHITE EAGLE AVE., CLERMONT, FL, 34711                                                                         
+PEREZ, JORGE, P.O. BOX 8564, BURBANK, CA, 91510                                                                                     
+PIERSON, THOMAS, 69821 SOUTH AVENUE, BOISE, ID, 83707                                                                               
+SCHELL, STEVE, P.O. BOX 677, MIAMI, FL, 33111                                                                                       
+SMITH, JENNIFER, P.O. BOX 1151, MORRISTOWN, NJ, 07962                                                                               
+SMITH, LEILA, P.O. BOX 66, TALLAHASSEE, FL, 32306                                                                                   
+THOMPSON, RYAN, P.O. BOX 9835, SANTA MONICA, CA, 90404                                                                              
+
+20 rows selected.
+
+SQL> 
+SQL> rem QUESTION 3
+SQL> 
+SQL> select title, cost, retail,
+  2  (retail-cost)/cost*100 "% Profit"
+  3  from books
+  4  order by "% Profit";
+
+TITLE                                COST     RETAIL   % Profit                                                                     
+------------------------------ ---------- ---------- ----------                                                                     
+HANDCRANKED COMPUTERS                21.8         25 14.6788991                                                                     
+E-BUSINESS THE EASY WAY              37.9       54.5 43.7994723                                                                     
+THE WOK WAY TO COOK                    19      28.75 51.3157895                                                                     
+REVENGE OF MICKEY                    14.2         22 54.9295775                                                                     
+BUILDING A CAR WITH TOOTHPICKS       37.8      59.95 58.5978836                                                                     
+COOKING WITH MUSHROOMS               12.5      19.95       59.6                                                                     
+HOLY GRAIL OF ORACLE                47.25      75.95 60.7407407                                                                     
+BODYBUILD IN 10 MINUTES A DAY       18.75      30.95 65.0666667                                                                     
+HOW TO GET FASTER PIZZA             17.85      29.95 67.7871148                                                                     
+BIG BEAR AND LITTLE DOVE             5.32       8.95 68.2330827                                                                     
+DATABASE IMPLEMENTATION              31.4      55.95 78.1847134                                                                     
+SHORTEST POEMS                      21.85      39.95 82.8375286                                                                     
+PAINLESS CHILD-REARING                 48      89.95 87.3958333                                                                     
+HOW TO MANAGE THE MANAGER            15.4      31.95 107.467532                                                                     
+
+14 rows selected.
+
+SQL> 
+SQL> rem QUESTION 4
+SQL> 
+SQL> select pubid
+  2  as "Publisher ID"
+  3  from publisher
+  4  order by pubid;
+
+Publisher ID                                                                                                                        
+------------                                                                                                                        
+           1                                                                                                                        
+           2                                                                                                                        
+           3                                                                                                                        
+           4                                                                                                                        
+           5                                                                                                                        
+
+SQL> 
+SQL> spool off
