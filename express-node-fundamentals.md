@@ -170,3 +170,114 @@ app.use(async (request, response, next) => {
     }
 });
 ```
+
+### Looping Through Lists in Templates
+
+- Things get easier once the layout has been split into logical parts.
+* First add the template tag `<%`, without an equal sign or a minus, because there is no direct output.
+* For control structure, use bracket percent `{%<`, and add the appropiate elements.
+* Like in Javascript, call a `forEach` on it.
+    - And as it is with a `forEach` function, this takes a callback that gets, for each iteration, the current array item. 
+    - And then I continue as if this would be regular Javascript, by adding curly brackets.
+* The loop will run over the variable, which will, for each iteration, contain another element.
+* Patterns within list and detail pages is very common. 
+* There needs to be a way to let Express know which element it should show on the list/detail page, and this is where parameter routes come into place.
+
+Example of using looping in `/views`:
+
+```javascript
+<% speakerNames.forEach(function (speaker) {%>
+    <a class="dropdown-item" href="/speakers/<%=speaker.shortname%>"><%=speaker.name%></a>
+<%})%>
+```
+
+Example of looping in `server.js`:
+
+```html
+nodule.exports = params => {
+    const { speakersService = params;
+
+    router.get('/', async (request, response) => {
+        const topSpeakers = await speakersService.getList();
+        console.log(topSpeakers);
+        response.render('layout', { pageTitle: 'Welcome', template: 'index', topSpeakers });
+});
+}
+```
+
+* Make sure to add `<%- include(./partials/topSpeakers` to the top of the `index.ejs` in the `/pages` directory.
+
+Associated file, `topSpeakers.ejs`:
+
+```html
+<div class="row">
+  <% topSpeakers.forEach(function(speaker) {%>
+  <div class="col-md text-center">
+    <h4 class="speakerslist-title"><%=speaker.title%></h4>
+    <div class="speakerslist-name">
+      with
+      <a href="/speakers/<%=speaker.shortname%>"><%=speaker.name%></a>
+    </div>
+    <p class="speakerslist-info mt-2">
+      <a href="/speakers/<%=speaker.shortname%>">
+        <img
+          class="speakerslist-img rounded-circle"
+          src="/images/speakers/<%=speaker.shortname%>_tn.jpg"
+          alt="Photo of <%=speaker.name%>"
+        />
+      </a>
+    </p>
+  </div>
+  <%})%>
+</div>
+```
+
+## Error Handling
+
+* Mistakes happen. Be it some syntax problem or a field database call. 
+    - Your application will run into errors and if they aren't handled gracefully, the question isn't if but when some error will take down your website and you get an angry call from a client. 
+    - There're a few patterns and good practices to gracefully deal with errors in Express. 
+* Each middleware function can either send a response which ends the request cycle or call the next middleware in the chain using next. But what happens when an error occurs inside the middleware or route?
+* When something goes wrong, just `throw` an error and Express will show some error message. This is true as long as you aren't in an asynchronous invocation.
+    - An easy way to simulate asynchronicity in Node.js is to use the `setTimeout` function here.
+* Because of this, a general rule is to never throw from your Express routes and middlewares because it can take down your whole application.
+
+Error Handle Example:
+
+```javascript
+app.get('/throw', (request, response, next) => {
+    setTimeout (() => {
+        return next(throw new Error("Something went wrong!"));
+    }, 500)
+});
+```
+
+Proper Error Handle Example:
+
+```javascript
+app.use(async (request, response, next) => {
+    try {
+        const names = await speakersService.getNames();
+        response.locals.speakerNames = names;
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+});
+
+app.use((request, response, next) => {
+    return next(createError(404, "File not found"));
+});
+  
+app.use((err, request, response, next) => {
+    response.locals.message = err.message;
+    const status = err.status || 500;
+    response.locals.status = status;
+    response.status(status);
+    response.render("error");
+});
+```
+
+* By default, the error page looks pretty broken, there are no links back to safer grounds and the user that ends up there will likely leave.
+    - To create your own error page, you must create a middleware that captures the 404 error.
+* In order to make this page dynamic, make sure you add both `<%=status%>` and the respective `<%=message%>` to the page.
