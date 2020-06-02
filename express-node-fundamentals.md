@@ -281,3 +281,54 @@ app.use((err, request, response, next) => {
 * By default, the error page looks pretty broken, there are no links back to safer grounds and the user that ends up there will likely leave.
     - To create your own error page, you must create a middleware that captures the 404 error.
 * In order to make this page dynamic, make sure you add both `<%=status%>` and the respective `<%=message%>` to the page.
+
+## Handling Form Data
+
+* When looping through an item, you can utilize the corresponding JSON attributes and EJS will automatically parse them into the page.
+
+Form Template Example:
+
+```html
+        <div class="feedback-items">
+          <% feedback.forEach(function (item) {%>
+          <div class="feedback-item item-list media-list">
+            <div class="feedback-item media">
+              <div class="feedback-info media-body">
+                <div class="feedback-head">
+                  <div class="feedback-title"><%=item.title%></div>
+                  <small>by <%=item.name%></small>
+                </div>
+                <div class="feedback-message"><%=item.message%></div>
+              </div>
+            </div>
+          </div>
+          <%})%>
+        </div>
+```
+
+### Handling POST Requests
+
+* So far, this has demonstrated how to create a dynamic website that could display content that comes from some JSON file, but may be also stored in the database.
+     - One reason to even create a dynamic website in the first place, though, is that the need to handle user data in the one or the other way.
+* When dealing with forms, `method="POST"` must be an added attribute to make a request.
+    - As well as `action="/feedback"`, which will be the URL the form data needs to be sent to.
+    - If the `<input>` does not have a `name` attribute, that also needs to be added there, for each corresponding JSON attribute.
+* How do we get this form data inside our POST route? 
+    - Express is very modular and, out of the box, quite bare metal. 
+    - To make it pass post bodies, we need another module that provides us with the request middleware called *Body Parser*.
+* Using the developer tools within the browser, you should now be able to see the POST request and form data within the Network tab when at the assoicated URL.
+
+### Validating and Sanitizing User Input
+
+* We can now receive the form date of when a form is posted. 
+    - How can we make sure that this date is complete and also doesn't contain malicious data, like JavaScript malware? 
+    - Regardless of which measures you take in the browser to validate a form, a malicious user can always circumvent that. 
+    - In short, you cannot trust data from the client. 
+* This means that we need to add measures to the service site to make sure that the data the user sent to us is valid. 
+    - And for that we will use the module, *express-validator*.
+* This can be used within the route like so: `cost {check, validationResult } = require("express-validator");`
+    -  This is a routing malware. This means it accepts the same request response and next signature like any other handler function.
+* You have to store the errors on the session object, because to display the feedback page again.
+    - This can be done like so: `return response.redirect("/feedback");
+    - That's, in general, a good practice because every time you send a form, you want to avoid that a user can just hit the reload button to send it again. 
+* All that is left for a working feedback page is calling the respective function to write the user-provided feedback to a file, which can also be done within the `route` file.
