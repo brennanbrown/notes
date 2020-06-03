@@ -1,4 +1,4 @@
-# Building a Website with Node.js and Express.js
+# Node.js and Express Fundamentals
 
 ## Introduction 
 
@@ -332,3 +332,73 @@ Form Template Example:
     - This can be done like so: `return response.redirect("/feedback");
     - That's, in general, a good practice because every time you send a form, you want to avoid that a user can just hit the reload button to send it again. 
 * All that is left for a working feedback page is calling the respective function to write the user-provided feedback to a file, which can also be done within the `route` file.
+
+## Creating APIs
+
+### Introduction to RESTful APIs
+
+* REST stands for Representational State Transfer, and it defines a way for creating web services. 
+    - Today, such RESTful services are the most commonly used pattern for APIs. 
+    - You find courses dedicated to REST with Node.js in the library, yet in times of single-page apps, it's a common use case for Express.
+* For example, you can use client-side JavaScript and the REST API to send feedback directly to a REST endpoint and also to update the webpage without reloading it.
+* To take a step back and review HTTP verbs, `GET` is used when you simply request a page. 
+    - `POST` is most commonly used for forums because it allows to send large amounts of data in the payload.
+    - 'PUT` is nothing the browser uses, but it's part of the HTTP standard.
+    - `DELETE` is also defined in the HTTP standard and not really used by browsers
+    - There are a few more verbs, but these are the most common used ones in REST services.
+*  What REST does is give those HTTP verbs a meaning, or in other words, a semantic. 
+    -  `GET` requests a resource, `POST` creates a resource, `PUT` is usually used for updating a resource, and `DELETE` deletes a resource. 
+    - The main difference between the regular route and the REST route is that the regular route will return you HTML in most cases, but REST returns data, and in most cases, this is formatted as JSON.
+* REST is very commonly used when creating single-page applications. 
+* Simply put, the initial request returns an initial document, this document usually contains a lot of JavaScript which is then used to actually render the HTML or the content into the page. 
+    - All subsequent interactions with the web sets and the data behind it is done by a so-called XHR, sometimes referred to as AJAX, an API built into JavaScript on the browser to do HTTP requests. 
+    - After that initial request, the page isn't reloaded anymore, but sends data to the back end when needed and is updated via JavaScript using the data received from the back end.
+
+### CRUD
+
+* When working with data, three operations are so common that they got their own acronym, it's create, update, and delete, in short, **CRUD**.
+    - eg. If you would want to request all users, you would use something like `HTTP GET http://mysite.com/users`, which would give a JSON containing all users.
+    - If you would want to create a new user, you would use something like `HTTP POST http://mysite.com/users`, which is a post request to this endpoint containing the payload for this user to create it. 
+    - If you want to pull a specific user, you would use something like `HTTP GET http://mysite.com/users/42`, which is a GET request to a parameter route which contains maybe something like the user ID.
+    - If you then wanted to update that user, you would use something like `HTTP PUT http://mysite.com/users/42`, the PUT request is very similar to the POST request, it also contains the payload, but the path now being used contains the user ID, so this will now manipulate the user object in the database, for instance.
+    - Finally, if you wanted to delete a specific user, would you similarly use something like `HTTP DELETE http://mysite.com/users/42`, which would delete the user with that ID.
+
+### Creating and Testing an API Endpoint
+
+* Technically, a rest endpoint is no different from any other route in Express. The only difference is that is won't return an HTML page, but most likely, JSON.
+* To begin, for example, you would add `router.post('/api');` to the end of your `/route` file to allow it to listen to that folder.
+    - The same validation used beforehand can be used here as well, these validations can be moved outside to their own variable to reduce identical code.
+* This will also require `appu.use(bodyParser.json());` within the `server.js` to properly parse the incoming JSON object.
+
+API Example:
+
+```javascript
+// Requires a service like Postman for testing.
+// eg. POST http://localhost:300/feedback/api
+
+router.post('/api', validations, async (request, response, next) => {
+    try {
+        const errors = validationResult(request);
+        // Additional error-handling since this is not within the browser.
+        if (!errors.isEmpty()) {
+            return response.json({errors: errors.array() });
+        }
+        const { name, email, title, message } = request.body;
+        await feedbackService.addEntry(name, email, title, message);
+        // Returns the updated list of feedback entries.
+        const feedback = await feedbackService.getList();
+        return response.json({feedback});
+    } catch(err) {
+        return next(err);
+    }
+});
+```
+
+### Add Client-side JavaScript
+
+* It is important to now leverage those API endpoints that were created to send the form to the server using CHR, and to update the feedback shown on the page.
+* Technically, we will first load the completely random page containing the JavaScript needed for those interactions.
+    - From then, all subsequent requests will use the REST API. 
+    - This combination of initial server-side rendering and client-side updates is very common in so-called Single-Page apps.
+* Perhaps the easiest way to do this without using a framework such as React or Vue would be to use jQuery, a simple, but powerful, library that lets you do XHR requests and also easily lets us update the page via JavaScript.
+
