@@ -5,7 +5,6 @@ This is a public domain repository of notes I have taken regarding various skill
 ## List of Topics
 
 **Programming Foundations:**
-- Codecademy Lessons
 - Programming Fundamentals
 - Algorithm Fundamentals
 - Design Patterns
@@ -13,7 +12,9 @@ This is a public domain repository of notes I have taken regarding various skill
 
 **Full-stack Programming:**
 - Web Development Fundamentals
+- Node.js and Express Fundamentals
 - CSS3 Fundamentals
+- Bootstrap 4 Fundamentals
 
 **Tools:**
 - Git and GitHub Fundamentals
