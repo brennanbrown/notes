@@ -25,7 +25,7 @@
   * [Default Props](#default-props)
   * [PropTypes](#proptypes)
   * [Modularizing Code](#modularizing-code)
-  * [Building Applications](#building-applications)
+  * [Building Applications and Deployment](#building-applications-and-deployment)
 
 ## What is React?
 
@@ -667,7 +667,7 @@ render (
 
 ### Conditional Rendering
 
-*There's already use of conditional rendering in the example app.
+* There's already use of conditional rendering in the example app.
     - You use a ternary if statement to see if `this.state.open` is true. 
     - If so, it will display open. If it's false, it'll display closed. 
 * This same pattern of conditional rendering can also be used with components. You might want to display different components given different conditions
@@ -705,7 +705,8 @@ const Hiring = () =>
         <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
     </div>
 
-const NotHiring = () =><div>
+const NotHiring = () =>
+    <div>
         <p>The library is not hiring. Check back later for more information.</p>
     </div>
 
@@ -809,7 +810,8 @@ const Hiring = () =>
         <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
     </div>
 
-const NotHiring = () =><div>
+const NotHiring = () =>
+    <div>
         <p>The library is not hiring. Check back later for more information.</p>
     </div>
 
@@ -892,3 +894,482 @@ render (
 * Web accessibility is a hugely important task of any developer. We want to make our websites as accessible as possible.
 * `Create-react-app` has been configured with a linting tool call `jsx-a11y`. So if you're ever working in a project that's using it, there are several accessibility features baked in.
     - Eg. Image elements must have an alt prop, either with meaningful text or with an empty string for decorative images.
+* Set the alt text to product.name. This means that if a screen reader is reading through our images and through our content, then this product name will be read versus just having nothing read.
+    - `<img alt={product.name src={product.image} height={100}/>
+* In addition, each child in an array or iterator should have a unique key prompt.
+    - Eg. Add to the parent div: `<div key={product.id}>
+    - More information: https://reactjs.org/docs/accessibility.html
+
+### Forms
+
+* A pretty common question that comes up when dealing with React is how do we handle forms? Let's create a simple form to demonstrate.
+* When you're dealing with a React component, and trying to handle a form, you're going to use state to help parse values that are coming from the DOM.
+* There's a lot of other cool things you can do with React forms, but these are kind of the basics. 
+    - You can use state to setup an initial state for this value, and as new values come in from a form, parse them, and do with them what you want.
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+
+class FavouriteColourForm extends Component {
+    state = { value: "" }
+
+    newColour = e =>
+        this.setState({ value: e.target.value })
+
+    submit = e => {
+        console.log(`New Colour: ${this.state.value}`)
+        // Prevents the behavior of the form in the browser.
+        e.preventDefault()
+    }
+
+    render () {
+        return (
+            <form onSubmit = {this.submit}>
+                <label>Favourite Colour:
+                    <input 
+                        type = "colour"
+                        onChange = {this.newColour}
+                     />
+                </label>
+                <button> Submit! </button>
+            </form>
+            
+            <p>Your favourite colour in hexidecimal is: {this.state.value}</p>
+        )
+    }
+}
+
+render(
+    <FavouriteColourForm />,
+    document.getElementById("root")
+)
+
+```
+
+### Default Props
+
+* At the top of the Library component, right above our state, add a static property called `defaultProps`. 
+* Now what's the point of this? Well, you're adding this so that in the event that there's no value available for books, we're going to use this default value instead. 
+* It's always a good idea to supply these values in case they're not provided for whatever reason. This will allow your UI to still render as expected.
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+
+// Mock Database
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+// Using default argument syntax,
+// in the event that an object is missing properties.
+const Book = ({title = "No Title Provided", author = "No Author Provided", pages = 0, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+
+// New Conditionals for Rendering
+const Hiring = () => 
+    <div>
+        <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
+    </div>
+
+const NotHiring = () =>
+    <div>
+        <p>The library is not hiring. Check back later for more information.</p>
+    </div>
+
+class Library extends Component {
+    // Default Props
+    static defaultProps = {
+        books: [
+            {"title": "Tahoe Tales", "author": "Chet Whitley", "pages": 100}
+        ]
+    }
+
+    state = { 
+        open: true,
+        freeBookmark: true,
+        hiring: false
+        // Fetching Data Example:
+        data: [],
+        loading: false
+    }
+
+    componentDidMount() {
+        this.setState({loading: true)}
+        // Fetching data from a REST API
+        fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
+            .then(data => data.json())
+            .then(data => this.setState({data, loading: false}))
+        console.log("This component has now mounted!")
+    }
+
+    componentDidUpdate() { 
+        console.log("This component has now updated!") 
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            // Using component lifecycle to fetch some remote data and display it:
+            <div class="Advertisement">
+                {this.state.hiring ? <Hiring /> : <NotHiring />}
+                {this.state.loading
+                    ? "Loading..."
+                    : <div>
+                        {this.state.data.map(product => {
+                            return (
+                                <div>
+                                    <h3>Library Product of the Week!</h3>
+                                    <h4>{product.name}</h4>
+                                    <img src={product.image} height={100}/>
+                                </div>
+                        })}
+                    </div>
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+### PropTypes
+
+* You looked at how `defaultProps` can be used to supply values when other values are not provided. Another nice property checking feature that we can include, is `propTypes`.
+    - When set, an error will be thrown if a variable does not match the data type that is set for it.
+    - This is really useful in debugging because it'll help you track down where the problem is.
+
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+// Will have to run `npm install prop-types --save` to install this new package.
+import PropTypes from "prop-types"
+
+// Mock Database
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+// Using default argument syntax,
+// in the event that an object is missing properties.
+const Book = ({title = "No Title Provided", author = "No Author Provided", pages = 0, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+
+// New Conditionals for Rendering
+const Hiring = () => 
+    <div>
+        <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
+    </div>
+
+const NotHiring = () =>
+    <div>
+        <p>The library is not hiring. Check back later for more information.</p>
+    </div>
+
+class Library extends Component {
+    // Default Props
+    static defaultProps = {
+        books: [
+            {"title": "Tahoe Tales", "author": "Chet Whitley", "pages": 100}
+        ]
+    }
+
+    state = { 
+        open: true,
+        freeBookmark: true,
+        hiring: false
+        // Fetching Data Example:
+        data: [],
+        loading: false
+    }
+
+    componentDidMount() {
+        this.setState({loading: true)}
+        // Fetching data from a REST API
+        fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
+            .then(data => data.json())
+            .then(data => this.setState({data, loading: false}))
+        console.log("This component has now mounted!")
+    }
+
+    componentDidUpdate() { 
+        console.log("This component has now updated!") 
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            // Using component lifecycle to fetch some remote data and display it:
+            <div class="Advertisement">
+                {this.state.hiring ? <Hiring /> : <NotHiring />}
+                {this.state.loading
+                    ? "Loading..."
+                    : <div>
+                        {this.state.data.map(product => {
+                            return (
+                                <div>
+                                    <h3>Library Product of the Week!</h3>
+                                    <h4>{product.name}</h4>
+                                    <img src={product.image} height={100}/>
+                                </div>
+                        })}
+                    </div>
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+Library.propTypes = {
+    // If any other value is not supplied, then we should throw an error.
+    books: PropTypes.array
+}
+
+Book.propTypes = {
+    title: PropTypes.string,
+    author: PropTypes.string,
+    pages: PropTypes.number,
+    freeBookmark: PropTypes.bool
+}
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+### Modularizing Code
+
+* As you progress and files become larger, you'll want to break up code and modularize it. 
+    - You'll want to break it down into a list of different components, each in their own files. 
+* For the above example, it might be smart to add `Book.js`, `Hiring.js`, and `Library.js`
+* Note: Anytime you're using JSX, anytime that JSX is in scope, even if you're using just a regular function component, you're going to want to import `react`.
+* As your files get larger, you don't need to modularize too quickly orfiles too quickly.
+    - But anytime you find that maybe you want other people to work on certain files or anytime your files are getting a little bit too long to manage, you can always break them down into component files in order to track everything and make sure you're keeping everything straight.
+
+**Book.js**
+
+```jsx
+import React, { Component } from "react"
+
+export const Book = ({title = "No Title Provided", author = "No Author Provided", pages = 0, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+```
+
+
+**Hiring.js**
+
+```jsx
+import React, { Component } from "react"
+
+export const Hiring = () => 
+    <div>
+        <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
+    </div>
+
+export const NotHiring = () =>
+    <div>
+        <p>The library is not hiring. Check back later for more information.</p>
+    </div>
+```
+**Library.js**
+
+```jsx
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { Book } from "./Book"
+import { Hiring } from "./Hiring"
+import { NotHiring } from "./Hiring"
+
+class Library extends Component {
+    // Default Props
+    static defaultProps = {
+        books: [
+            {"title": "Tahoe Tales", "author": "Chet Whitley", "pages": 100}
+        ]
+    }
+
+    state = { 
+        open: true,
+        freeBookmark: true,
+        hiring: false
+        // Fetching Data Example:
+        data: [],
+        loading: false
+    }
+
+    componentDidMount() {
+        this.setState({loading: true)}
+        // Fetching data from a REST API
+        fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
+            .then(data => data.json())
+            .then(data => this.setState({data, loading: false}))
+        console.log("This component has now mounted!")
+    }
+
+    componentDidUpdate() { 
+        console.log("This component has now updated!") 
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            // Using component lifecycle to fetch some remote data and display it:
+            <div class="Advertisement">
+                {this.state.hiring ? <Hiring /> : <NotHiring />}
+                {this.state.loading
+                    ? "Loading..."
+                    : <div>
+                        {this.state.data.map(product => {
+                            return (
+                                <div>
+                                    <h3>Library Product of the Week!</h3>
+                                    <h4>{product.name}</h4>
+                                    <img src={product.image} height={100}/>
+                                </div>
+                        })}
+                    </div>
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+Library.propTypes = {
+    // If any other value is not supplied, then we should throw an error.
+    books: PropTypes.array
+}
+
+Book.propTypes = {
+    title: PropTypes.string,
+    author: PropTypes.string,
+    pages: PropTypes.number,
+    freeBookmark: PropTypes.bool
+}
+
+export default Library
+```
+
+**Index.js**
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+import Library from "./Library"
+
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+### Building Applications and Deployment
+
+* When you're done putting together your project, you can post it online and you may want to create a production build to do that. 
+    - Now you'll notice that when you run `create-react-app`, it says to create a production build use `npm run build.` 
+    - This is basically going to create an optimized build that's ready to post on something like Netlify or Zite or some other sort of hosting provider.
+    - When this optimizes, it's going to minify everything, it's going to optimize in order to make this as fast as possible!
+* Now, the next step you'll see here is that the build folder is ready to be deployed and you may serve it with a static server. You should see in the new folder created that there are all of these static assets. All these JavaScript files that are in one line
+*  The next thing that we can do though is we can serve it locally with a static server using an npm package called serve. 
+    - Let's make sure that this is installed so we can run `sudo npm install serve -g`. 
+    - Then, type `serve -s build` so we're going to serve the build folder and this is going to run this on `localhost:5000`.
