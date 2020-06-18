@@ -2,20 +2,30 @@
 
 **Table of Contents:**
 
-- [React Fundamentals](#react-fundamentals)
-  * [What is React?](#what-is-react-)
-  * [Introduction to React Elements](#introduction-to-react-elements)
-    + [Creating React Elements](#creating-react-elements)
-    + [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml--jsx-)
-  * [React Components](#react-components)
-    + [React Properties (Props)](#react-properties--props-)
-    + [Further Example w/ Destructuring](#further-example-w--destructuring)
-    + [Create Function Components (Refactoring Example)](#create-function-components--refactoring-example-)
-  * [Props and State](#props-and-state)
-    + [Compose Components](#compose-components)
-    + [Displaying Child Components](#displaying-child-components)
-    + [Introduction of State](#introduction-of-state)
-    + [Using setState (Refactoring Example)](#using-setstate--refactoring-example-)
+- [What is React?](#what-is-react-)
+- [Introduction to React Elements](#introduction-to-react-elements)
+  * [Creating React Elements](#creating-react-elements)
+  * [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml--jsx-)
+- [React Components](#react-components)
+  * [React Properties (Props)](#react-properties--props-)
+  * [Further Example w/ Destructuring](#further-example-w--destructuring)
+  * [Create Function Components (Refactoring Example)](#create-function-components--refactoring-example-)
+- [Props and State](#props-and-state)
+  * [Compose Components](#compose-components)
+  * [Displaying Child Components](#displaying-child-components)
+  * [Introduction of State](#introduction-of-state)
+  * [Using setState (Refactoring Example)](#using-setstate--refactoring-example-)
+  * [Passing State as Props](#passing-state-as-props)
+  * [Conditional Rendering](#conditional-rendering)
+- [Additional Library Features](#additional-library-features)
+  * [Component Life Cycle](#component-life-cycle)
+  * [Fetching Data](#fetching-data)
+  * [Accessibility](#accessibility)
+  * [Forms](#forms)
+  * [Default Props](#default-props)
+  * [PropTypes](#proptypes)
+  * [Modularizing Code](#modularizing-code)
+  * [Building Applications](#building-applications)
 
 ## What is React?
 
@@ -573,3 +583,312 @@ render (
     document.getElementById("root")
 )
 ```
+
+### Passing State as Props
+
+* When working with a React application, it's a good rule of thumb to keep state in the root of the tree. 
+    - In other words, your root component should hold all of the state variables and pass down that information to the children. 
+    - You can read more about the idea of lifting state up or having state at the root in the React documentation: https://reactjs.org/docs/lifting-state-up.html
+* The reason for this is if you have local state in all of your components, it's really easy to lose track of that state, and for some of these variables to be incorrect.
+* Sometimes the state at the root is called the *source of truth*, and you want that source of truth to always be in the same place where you know where to find it.
+* In the example below, whatever is the state value for `freeBookmark`, make that available in the child.
+    - But the way that you access that in the child is going to via props. 
+    - So, you're passing down state as props to the child component.
+* Again, you're passing down state from the parent component. 
+    - You're keeping this as the source of truth in our application, and then, the child component, the `freeBookmark`, is going to display that data from props.
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+
+// Mock Database
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+const Book = ({title, author, pages, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+
+class Library extends Component {
+    // Shorthand for adding a constructor for state
+    state = { 
+        open: true,
+        // New state: 
+        freeBookmark: true
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            <div>
+                // Conditional Rendering Example:
+                // Inline / Ternary Statement
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+### Conditional Rendering
+
+*There's already use of conditional rendering in the example app.
+    - You use a ternary if statement to see if `this.state.open` is true. 
+    - If so, it will display open. If it's false, it'll display closed. 
+* This same pattern of conditional rendering can also be used with components. You might want to display different components given different conditions
+* Just a quick note about the syntax for these function components: With the `Book` component, you're using the arrow function and wrapping all of these JSX elements with a return statement. 
+    - You can always create our function components like that, but sometimes you'll see components created like this: `const Hiring = () => <div>Hiring!</div>` 
+    - In other words, instead of adding the extra curly braces in the return, you can return these directly.
+* This is a very common pattern in React. You can use conditional rendering to decide based on a certain condition what component should render and what should not.
+
+```jsx
+
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+
+// Mock Database
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+const Book = ({title, author, pages, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+
+// New Conditionals for Rendering
+const Hiring = () => 
+    <div>
+        <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
+    </div>
+
+const NotHiring = () =><div>
+        <p>The library is not hiring. Check back later for more information.</p>
+    </div>
+
+class Library extends Component {
+    // Shorthand for adding a constructor for state
+    state = { 
+        open: true,
+        freeBookmark: true,
+        hiring: false
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            <div>
+                {this.state.hiring ? <Hiring /> : <NotHiring />}
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+## Additional Library Features
+
+### Component Life Cycle
+
+* The React component lifecycle provides functions that are invoked at specific times during the rendering lifecycle
+    - See here: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+    - For example, terms like mounting and unmounting just means whenever it's added to the dom, and whenever it's taken away.
+    - Component lifecycle methods are only available when using class syntax, so you can't use them with function components.
+*  The only required method of the component lifecycle is render.
+    - Whenever the props or state of the app changes, render will be called. 
+    - The next method is the constructor. The constructor is called before the component is mounted, and it's a great place to initialize local state.
+        + You can also bind event handler methods to this component class, using the constructor.
+* Something else useful is `componentDidMount`, which, if you add a console.log for instance, will render as soon as the component is mounted. 
+    - `componentDidMount() { console.log("This component has now mounted!") }`
+* You can similarly utilize `componentDidUpdate`, which will only render if you update something (Eg. interaction), not when it's mounted.
+    - `componentDidUpdate() { console.log("This component has now updated!") }`
+* There are a bunch of other less common lifecycle methods, that you may want to explore given certain circumstances. But these inital ones will take you pretty far:
+    - The `constructor` allows us to initialize state, before the component is mounted. 
+    - `Render` is called every time there is any sort of change. 
+    - `ComponentDidMount` is going to be called right after the component is added to the dom.
+    - `ComponentDidUpdate`, when anything changes. 
+    - And then you can similarly use `ComponentWillUnmount`, to do any sort of cleanup. Eg. You want to invalidate a timer, or if you want to do any cleanup of any nodes, you can do that here.
+
+### Fetching Data
+
+* `ComponentDidMount` is a really excellent place to fetch some data.
+
+```jsx
+import React, { Component}  from "react"
+import ReactDOM, { Render } from "react-dom"
+
+// Mock Database
+let bookList = [
+    {"title": "The Sun Alsos Rises", "author": "Ernest Hemingway", "pages": 260},
+    {"title": "White Teeth", "author": "Zadie Smith", "pages": 480},
+    {"title": "Cat's Cradle", "author": "Kurt Vonnegut", "pages": 304},
+]
+
+const Book = ({title, author, pages, freeBookmark}) => {
+    return (
+        <section>
+            <h2>{title}</h2>
+            <p>By: {author}</p>
+            <p>Pages: {pages}</p>
+            <p>Free Bookmark Today: {freeBookmark ? "yes!" : "no!"}</p>
+        </section>
+    )
+}
+
+// New Conditionals for Rendering
+const Hiring = () => 
+    <div>
+        <p>The library is hiring. Go to www.library.com/jobs for more information.</p>
+    </div>
+
+const NotHiring = () =><div>
+        <p>The library is not hiring. Check back later for more information.</p>
+    </div>
+
+class Library extends Component {
+    // Shorthand for adding a constructor for state
+    state = { 
+        open: true,
+        freeBookmark: true,
+        hiring: false
+        // Fetching Data Example:
+        data: [],
+        loading: false
+    }
+
+    componentDidMount() {
+        this.setState({loading: true)}
+        // Fetching data from a REST API
+        fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
+            .then(data => data.json())
+            .then(data => this.setState({data, loading: false}))
+        console.log("This component has now mounted!")
+    }
+
+    componentDidUpdate() { 
+        console.log("This component has now updated!") 
+    }
+
+    toggleOpenClosed = () => {
+        // Adding prevState will make sure that this.setState, 
+        // no matter how long it takes, will work as expected.
+        this.setState(prevState => ({
+            open: !prevState.open
+        }))
+    }
+
+    render() {
+        console.log(this.state)
+        const { books } = this.props
+        return (
+            // Using component lifecycle to fetch some remote data and display it:
+            <div class="Advertisement">
+                {this.state.hiring ? <Hiring /> : <NotHiring />}
+                {this.state.loading
+                    ? "Loading..."
+                    : <div>
+                        {this.state.data.map(product => {
+                            return (
+                                <div>
+                                    <h3>Library Product of the Week!</h3>
+                                    <h4>{product.name}</h4>
+                                    <img src={product.image} height={100}/>
+                                </div>
+                        })}
+                    </div>
+                <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
+                <button onClick={this.toggleOpenClosed}>Change State</button>
+                {books.map(
+                    (book, i) => 
+                    <Book 
+                        key = {i}
+                        title = {book.title} 
+                        author = {book.author} 
+                        pages = {book.pages} 
+                        freeBookmark = {this.state.freeBookmark}
+                    />
+                )}
+            </div>
+        )
+    }
+}
+
+render (
+    <Library books={bookList}/>,
+    document.getElementById("root")
+)
+```
+
+### Accessibility
+
+* Web accessibility is a hugely important task of any developer. We want to make our websites as accessible as possible.
+* `Create-react-app` has been configured with a linting tool call `jsx-a11y`. So if you're ever working in a project that's using it, there are several accessibility features baked in.
+    - Eg. Image elements must have an alt prop, either with meaningful text or with an empty string for decorative images.
