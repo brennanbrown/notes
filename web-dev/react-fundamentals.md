@@ -2,31 +2,29 @@
 
 **Table of Contents:**
 
-- [React Fundamentals](#react-fundamentals)
-  - [What is React?](#what-is-react)
-  - [Introduction to React Elements](#introduction-to-react-elements)
-    - [Creating React Elements](#creating-react-elements)
-    - [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml-jsx)
-  - [React Components](#react-components)
-    - [React Properties (Props)](#react-properties-props)
-    - [Further Example w/ Destructuring](#further-example-w-destructuring)
-    - [Create Function Components (Refactoring Example)](#create-function-components-refactoring-example)
-  - [Props and State](#props-and-state)
-    - [Compose Components](#compose-components)
-    - [Displaying Child Components](#displaying-child-components)
-    - [Introduction of State](#introduction-of-state)
-    - [Using setState (Refactoring Example)](#using-setstate-refactoring-example)
-    - [Passing State as Props](#passing-state-as-props)
-    - [Conditional Rendering](#conditional-rendering)
-  - [Additional Library Features](#additional-library-features)
-    - [Component Life Cycle](#component-life-cycle)
-    - [Fetching Data](#fetching-data)
-    - [Accessibility](#accessibility)
-    - [Forms](#forms)
-    - [Default Props](#default-props)
-    - [PropTypes](#proptypes)
-    - [Modularizing Code](#modularizing-code)
-    - [Building Applications and Deployment](#building-applications-and-deployment)
+- [Introduction to React Elements](#introduction-to-react-elements)
+  - [Creating React Elements](#creating-react-elements)
+  - [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml-jsx)
+- [React Components](#react-components)
+  - [React Properties (Props)](#react-properties-props)
+  - [Further Example w/ Destructuring](#further-example-w-destructuring)
+  - [Create Function Components (Refactoring Example)](#create-function-components-refactoring-example)
+- [Props and State](#props-and-state)
+  - [Compose Components](#compose-components)
+  - [Displaying Child Components](#displaying-child-components)
+  - [Introduction of State](#introduction-of-state)
+  - [Using setState (Refactoring Example)](#using-setstate-refactoring-example)
+  - [Passing State as Props](#passing-state-as-props)
+  - [Conditional Rendering](#conditional-rendering)
+- [Additional Library Features](#additional-library-features)
+  - [Component Life Cycle](#component-life-cycle)
+  - [Fetching Data](#fetching-data)
+  - [Accessibility](#accessibility)
+  - [Forms](#forms)
+  - [Default Props](#default-props)
+  - [PropTypes](#proptypes)
+  - [Modularizing Code](#modularizing-code)
+  - [Building Applications and Deployment](#building-applications-and-deployment)
 
 ## What is React?
 
@@ -213,7 +211,7 @@ ReactDOM.render(
 // ES6 Destructure Component from react
 import React, { Component}  from "react"
 // Destructure Render from react-dom
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 let weatherData = {
     total: 365,
@@ -282,7 +280,7 @@ render(
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 let weatherData = {
     total: 365,
@@ -352,7 +350,7 @@ render(
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 const Book = ({title, author, pages}) => {
     return (
@@ -409,7 +407,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -462,7 +460,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -525,7 +523,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -600,7 +598,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -680,7 +678,7 @@ render (
 ```jsx
 
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -716,7 +714,7 @@ class Library extends Component {
     state = { 
         open: true,
         freeBookmark: true,
-        hiring: false
+        hiring: false,
     }
 
     toggleOpenClosed = () => {
@@ -785,7 +783,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -821,7 +819,7 @@ class Library extends Component {
     state = { 
         open: true,
         freeBookmark: true,
-        hiring: false
+        hiring: false,
         // Fetching Data Example:
         data: [],
         loading: false
@@ -911,7 +909,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 class FavouriteColourForm extends Component {
     state = { value: "" }
@@ -957,7 +955,7 @@ render(
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 
 // Mock Database
 let bookList = [
@@ -1001,7 +999,7 @@ class Library extends Component {
     state = { 
         open: true,
         freeBookmark: true,
-        hiring: false
+        hiring: false,
         // Fetching Data Example:
         data: [],
         loading: false
@@ -1080,7 +1078,7 @@ render (
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 // Will have to run `npm install prop-types --save` to install this new package.
 import PropTypes from "prop-types"
 
@@ -1126,7 +1124,7 @@ class Library extends Component {
     state = { 
         open: true,
         freeBookmark: true,
-        hiring: false
+        hiring: false,
         // Fetching Data Example:
         data: [],
         loading: false
@@ -1270,7 +1268,7 @@ class Library extends Component {
     state = { 
         open: true,
         freeBookmark: true,
-        hiring: false
+        hiring: false,
         // Fetching Data Example:
         data: [],
         loading: false
@@ -1353,7 +1351,7 @@ export default Library
 
 ```jsx
 import React, { Component}  from "react"
-import ReactDOM, { Render } from "react-dom"
+import ReactDOM, { render } from "react-dom"
 import Library from "./Library"
 
 let bookList = [
