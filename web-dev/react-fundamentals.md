@@ -827,7 +827,7 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        this.setState({loading: true)}
+        this.setState({loading: true})
         // Fetching data from a REST API
         fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
             .then(data => data.json())
@@ -1006,7 +1006,7 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        this.setState({loading: true)}
+        this.setState({loading: true})
         // Fetching data from a REST API
         fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
             .then(data => data.json())
@@ -1130,7 +1130,7 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        this.setState({loading: true)}
+        this.setState({loading: true})
         // Fetching data from a REST API
         fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
             .then(data => data.json())
@@ -1273,7 +1273,7 @@ class Library extends Component {
     }
 
     componentDidMount() {
-        this.setState({loading: true)}
+        this.setState({loading: true})
         // Fetching data from a REST API
         fetch("https://hplussport.com/api/products/order/price/sort/asc/qty1")
             .then(data => data.json())
