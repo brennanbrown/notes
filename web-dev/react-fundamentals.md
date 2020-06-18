@@ -2,30 +2,31 @@
 
 **Table of Contents:**
 
-- [What is React?](#what-is-react-)
-- [Introduction to React Elements](#introduction-to-react-elements)
-  * [Creating React Elements](#creating-react-elements)
-  * [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml--jsx-)
-- [React Components](#react-components)
-  * [React Properties (Props)](#react-properties--props-)
-  * [Further Example w/ Destructuring](#further-example-w--destructuring)
-  * [Create Function Components (Refactoring Example)](#create-function-components--refactoring-example-)
-- [Props and State](#props-and-state)
-  * [Compose Components](#compose-components)
-  * [Displaying Child Components](#displaying-child-components)
-  * [Introduction of State](#introduction-of-state)
-  * [Using setState (Refactoring Example)](#using-setstate--refactoring-example-)
-  * [Passing State as Props](#passing-state-as-props)
-  * [Conditional Rendering](#conditional-rendering)
-- [Additional Library Features](#additional-library-features)
-  * [Component Life Cycle](#component-life-cycle)
-  * [Fetching Data](#fetching-data)
-  * [Accessibility](#accessibility)
-  * [Forms](#forms)
-  * [Default Props](#default-props)
-  * [PropTypes](#proptypes)
-  * [Modularizing Code](#modularizing-code)
-  * [Building Applications and Deployment](#building-applications-and-deployment)
+- [React Fundamentals](#react-fundamentals)
+  - [What is React?](#what-is-react)
+  - [Introduction to React Elements](#introduction-to-react-elements)
+    - [Creating React Elements](#creating-react-elements)
+    - [Refactor Elements using JavaScript as XML (JSX)](#refactor-elements-using-javascript-as-xml-jsx)
+  - [React Components](#react-components)
+    - [React Properties (Props)](#react-properties-props)
+    - [Further Example w/ Destructuring](#further-example-w-destructuring)
+    - [Create Function Components (Refactoring Example)](#create-function-components-refactoring-example)
+  - [Props and State](#props-and-state)
+    - [Compose Components](#compose-components)
+    - [Displaying Child Components](#displaying-child-components)
+    - [Introduction of State](#introduction-of-state)
+    - [Using setState (Refactoring Example)](#using-setstate-refactoring-example)
+    - [Passing State as Props](#passing-state-as-props)
+    - [Conditional Rendering](#conditional-rendering)
+  - [Additional Library Features](#additional-library-features)
+    - [Component Life Cycle](#component-life-cycle)
+    - [Fetching Data](#fetching-data)
+    - [Accessibility](#accessibility)
+    - [Forms](#forms)
+    - [Default Props](#default-props)
+    - [PropTypes](#proptypes)
+    - [Modularizing Code](#modularizing-code)
+    - [Building Applications and Deployment](#building-applications-and-deployment)
 
 ## What is React?
 
@@ -864,6 +865,7 @@ class Library extends Component {
                                     <h4>{product.name}</h4>
                                     <img src={product.image} height={100}/>
                                 </div>
+                            )
                         })}
                     </div>
                 <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
@@ -1043,6 +1045,7 @@ class Library extends Component {
                                     <h4>{product.name}</h4>
                                     <img src={product.image} height={100}/>
                                 </div>
+                            )
                         })}
                     </div>
                 <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
@@ -1167,6 +1170,7 @@ class Library extends Component {
                                     <h4>{product.name}</h4>
                                     <img src={product.image} height={100}/>
                                 </div>
+                            )
                         })}
                     </div>
                 <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
@@ -1310,6 +1314,7 @@ class Library extends Component {
                                     <h4>{product.name}</h4>
                                     <img src={product.image} height={100}/>
                                 </div>
+                            )
                         })}
                     </div>
                 <h1>The Library is: {this.state.open ? "open" : "closed"}.</h1>
