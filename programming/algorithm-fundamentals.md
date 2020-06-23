@@ -1,5 +1,20 @@
 # Algorithm Fundamentals
 
+**Table of Contents:**
+
+- [Measuring Algorithm Performance](#measuring-algorithm-performance)
+- [Intro to Data Structures](#intro-to-data-structures)
+- [Stacks and Queues](#stacks-and-queues)
+- [Unordered List Search](#unordered-list-search)
+- [Searching an Ordered List](#searching-an-ordered-list)
+- [Determining if a List is Sorted](#determining-if-a-list-is-sorted)
+- [Unique Filtering with Hash Table](#unique-filtering-with-hash-table)
+- [Value Counting with Hash Table](#value-counting-with-hash-table)
+- [Finding Maximum Value with Recursion](#finding-maximum-value-with-recursion)
+
+
+## Introduction
+
 * Algorithms have *complexity* and *input/output*
     * Space complexity: How much memory does it require?
     * Time complexity: How much time does it take to complete?
