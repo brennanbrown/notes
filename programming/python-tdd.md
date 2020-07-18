@@ -13,6 +13,11 @@
 		- [Test Fixtures](#test-fixtures)
 		- [Assert Statements and Exceptions](#assert-statements-and-exceptions)
 		- [Pytest Command Line Arguments](#pytest-command-line-arguments)
+	- [Test Doubles](#test-doubles)
+		- [Types of Test Doubles](#types-of-test-doubles)
+		- [Unittest.mock](#unittestmock)
+		- [Mock Verification](#mock-verification)
+		- [MagicMock and MonkeyPatch](#magicmock-and-monkeypatch)
 
 ## Introduction
 
@@ -433,3 +438,168 @@ def test_Exception():
 * The `-s` option specifies that PyTest should not capture the console output, allowing you to see the printouts from the print, from the tests. 
 * The `--ignore` option allows you to specify a path that should be ignored during test discovery. 
 * The `--maxfail` option specifies that PyTest should stop after n number of test failures. 
+
+## Test Doubles
+
+### Types of Test Doubles
+
+* What are test doubles? Almost all code that gets implemented will depend on another piece of code in the system. 
+    * Those other pieces of code are often times trying to do things or communicate with things that are not available in the unit testing environment, or are so slow they would make our unit tests extremely slow. 
+    * Eg. If your code queries a third-party rest API on the internet, and that server is down for any reason, you can't run your test.
+    * Test doubles are the answer to that problem. They are objects that are created in the test to replace the real production system collaborators. 
+* There are many types of test doubles. **Dummy objects** are the simplest. 
+    * They are simply placeholders that are intended to be passed around but not actually called or used in any real way. 
+    * They'll often generate exceptions if they're called. 
+* **Fake objects** have a different and usually simplified implementation from the production collaborator that make them usable in the test code, but not suitable for production.
+* **Stubs** provide implementations that do expect to be called, but respond with basic canned responses. 
+* **Spies** provide implementations that record the values that are passed into them. 
+    * The tests can then use those recorded values for validating the code under test. 
+* **Mock objects** are the most sophisticated of all the test doubles. 
+    * They have pre-programmed expectations about the ordering of calls, the number of times functions will be called, and the values that will be passed in. 
+    * Mock objects will generate their own exceptions when these pre-programmed expectations are not met.
+* **Mock frameworks** are libraries that provide easy-to-use API's for automatically creating any of these types of test doubles *at runtime*. 
+    * They provide easy API's for specifying the Mocking expectations in your unit test. 
+    * They can be much more efficient than implementing your own custom Mock objects, because creating your own custom Mock objects can be time consuming, tedious, and error prone.
+
+
+### Unittest.mock
+
+* `Unittest.mock` is a Mocking framework for Python. It's build into the standard unit test for Python, in version 3.3 and newer, and for older versions of Python, a back-ported version of the library is available on pip, called Mock, and can be installed with the command `pip install mock`.
+	* `Unittest.mock` provides the Mock class, which is an extremely powerful class that can be used to create test objects that can be used as fakes, stubs, spies, or true Mocks for other classes or functions. 
+	* The Mock class has many initialization parameters for specifying how the object should behave, such as what in interface it should Mock, if it should call another function when it's called, or what value it should return. 
+	* Once a Mock object has been used, it has many built-in functions for verifying how it was used, such as how many times it was called, and with what parameters.
+
+```python
+# Example of unittest.mock
+
+def test_Foo():
+	bar = Mock()
+	bar_func(bar)
+	bar.assert_called_once()
+
+def test_Foo2():
+	# Specifies the interface that the Mock object is implementing. 
+	bar = Mock(spec = spec_class)
+	# Specifies a function that should be called when the Mock is called. 
+	bar2 = Mock(side_effect = bar_func)
+	# Specifies the value that should be returned when the Mock object is called. 
+	bar3 = Mock(return_value = 1)
+```
+
+* Mock provides many initialization parameters which can be used to control the Mock objects behavior. 
+    * The `spec` parameter specifies the interface that the Mock object is implementing. 
+        * If any attributes of the Mock object are called which are not in that interface, then the Mock will automatically generate an attribute exception. 
+    * The `side_effect` parameters specifies a function that should be called when the Mock is called. 
+        * This can be useful for more complicated test logic that returns different values depending on input parameters or generates exceptions.
+	* The `return_value` parameter specifies the value that should be returned when the Mock object is called. 
+    	* If the `side_effect` parameter is set, it's return value is used instead. 
+
+### Mock Verification
+
+* Mock provides many built-in functions for verifying how the Mock was called, including the following assert functions: 
+    * The `assert_called` function will pass if the Mock was ever called with any parameters. 
+    * The `assert_called_once` function will pass if the Mock was called exactly one time.
+    * The `assert_called_with` function will pass if the Mock was last called with the specified parameters. 
+    * The `assert_called_once_with` function will pass if the Mock was called exactly once with the specified parameters. 
+    * The `assert_any_call` function will pass if the Mock was ever called with the specified parameters. 
+    * the `assert_not_called` function will pass if the Mock was never called.
+* Mock provides these additional built-in attributes for verifying how it was called: 
+    * The `assert_has_calls` function passes if the Mock was called with parameters specified in each of the passed in list of Mock call objects, and optionally in the order that those call objects are put into the list.
+    * The `called` attribute is a boolean which is true if the Mock was ever called. 
+    * The `call_count` attribute is an integer value specifying the number of times the Mock object was called. 
+    * The `call_args` attribute contains the parameters that the Mock was last called with. 
+    * The `call_args_list` attribute is a list with each entry containing the parameters that were used in call to the Mock object. 
+
+### MagicMock and MonkeyPatch
+
+* Unittest.mock also provides the MagicMock class. MagicMock is derived from Mock and provides a default implementation of the Python magic methods.
+    * These are the methods with double underscores at the beginning and end of the name, like string: `__str__`, and integer: `__int__`. 
+* The following magic names are not supported by MagicMock, due to being used by Mock for other things, or because mocking them could cause other issues: 
+    * `__getattr__`, `__setattr__`, `__init__`, `__new__`, `__prepare__`, `__instancecheck__`, `__subclasscheck__`, and `_~del__`.
+    * In other words: Get attribute, set attribute, init, new, prepare, instance check, subclass check, and delete respectively. 
+* When using MagicMock, you just need to keep in mind the fact that the magic methods are already created and take note of the default values that are returned from those functions to ensure they match the needs of the test that's being implemented. 
+* PyTest provides the **Monkeypatch** Test Fixture to allow a test to dynamically change modules and class attributes, dictionary entries, and environment variables. 
+* `Unittest.mock` provides a patch decorator which provides similar operations, but this can sometimes conflict with the PyTest Text Fixture decorators.
+
+```python
+# MonkeyPatch Example
+def call_it():
+	print("Hello, world!")
+
+def test_patch(monkeypatch):
+	monkeypatch(call_it, Mock())
+	call_it()
+	call_it.assert_called_once()
+```
+
+* Below is an example of using TDD to implement a function called `read_from_file`, which will read and return the first line from a file. 
+* The filename and path to this pile would be passed in as an argument to the function, and the function will open that file, read in the first line, and return it.
+
+```python
+
+# line_reader.py
+
+import os
+
+# Function: Will read and return the first line from a file. 
+# The filename and path to this pile will be passed in as 
+# an argument to the function, and the function will open 
+# that file, read in the first line, and return it.
+def read_from_file(filename):
+	if not os.path.exists(filename):
+		raise Exception("Error: File Not Found.")
+	infile = open(filename, "r")
+	line = infile.readline()
+	return line
+```
+
+```python
+
+# line_reader_test.py
+
+            # TEST CASES: #
+# - Can call read_from_file
+# - read_from_file returns correct string
+# - read_from_file throws exception when file doesn't exist
+
+import pytest
+from pytest import raises
+from unittest.mock import MagicMock
+from line_reader import read_from_file
+
+# Note: Not utilized, as no real file is being read.
+# def test_canCallReadFromFile():
+# 	read_from_file("mock_file.txt")
+# 	assert True
+
+@pytest.fixture()
+def mock_open(monkeypatch):
+	mock_file = MagicMock()
+	mock_file.readline = MagicMock(return_value = "Mock Title")
+	mock_open = MagicMock(return_value = mock_file)
+	monkeypatch.setattr("builtins.open", mock_open)
+	return mock_open
+
+# Note: You don't actually want to have to open a file for this test, 
+# as that puts an external dependency on the test, 
+# and potentially slows the test down. Hence using mocks.
+def test_returnsCorrectString(mock_open, monkeypatch):
+	# Update the test case to mock out the os.path.exist, 
+	# and have it return true for that particular test case:
+	mock_exists = MagicMock(return_value = True)
+	monkeypatch.setattr("os.path.exists", mock_exists)
+	result = read_from_file("mock_file.txt")
+	mock_open.assert_called_once_with("mock_file.txt", "r")
+	assert result == "Mock Title"
+
+# Note: Mocking the os.path.exist functions to allow control when 
+# it returns true or false depending on the test case, 
+# without actually having to make modifications in the file system.
+def test_throwsExceptionWithBadFile(mock_open, monkeypatch):
+	mock_exists = MagicMock(return_value = False)
+	monkeypatch.setattr("os.path.exists", mock_exists)
+	with raises(Exception):
+		result = read_from_file("mock_file.txt")
+
+```
+
