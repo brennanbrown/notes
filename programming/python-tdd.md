@@ -55,7 +55,7 @@ There are several levels of testing which provide the layers of safety nets for 
 	- Systems can be collections of components or sub-systems. 
 * And lastly, comes **performance testing**, which test systems and sub-systems at expected production loads to verify that response times and resource utilization, eg. Memory, CPU and disk usage are acceptable.
 
-**Unit Testing Specifics:*8
+**Unit Testing Specifics:**
 
 * Unit testing test individual functions in the code. 
 	- Each test case for the function should have a corresponding unit test. 
@@ -113,7 +113,7 @@ def test_string_length():
 * The last law: **"You may not write more production code than is sufficient to pass the currently failing unit test"**, keeps you from writing production code without any unit test to verify it. 
 * These three laws help to keep you in a small, tight loop of writing a little test that fails, then writing a little production code to make it pass.
 
-**TDD Workflow: **
+**TDD Workflow:**
 
 * The TDD work flow is broken up into three phases referred to as the red phase, green phrase, and refactor phase. 
 * The first phase is the **red phase**. In the red phase, you write a failing unit test for the next bit of functionality you want to implement in the production code.
