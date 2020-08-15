@@ -16,7 +16,7 @@ Five Essential Elements of a Portfolio:
 
 1. Personality
     - They want to know what you bring to the table, quirks and all. Employers are assessing what you'd be like to work with, how you're likely to get along with the rest of the team and how well you'll represent their company. So what's memorable about you, let that shine through and you'll find your ideal position a lot faster.  
-2. Design Thinkingffhh
+2. Design Thinking
     - Your perspective employers probably care less about kerning and color pallets than you do, what they care about is your process and the results you achieve.So spell out for them how you've solved problems on past projects.
 3. Range
     - Employers want to know that whatever you design for them and their customers is going to look different from everything else in your portfolio so you need to show them some range in order to demonstrate your capacity to give each client something fresh.
@@ -91,8 +91,34 @@ Five Essential Elements of a Portfolio:
     - Are you a content-first kind of person, or do you start with a strong visual? What kind of research do you typically do? 
     - Do you thrive on collaboration, or are you more of an introvert? 
     - The answers to these questions convey a lot of information to a prospective employer right off the bat.
+   When you let them see how you work, not just the final polished product, you're giving them great insight into what it might actually be like to work with you. And you don't have to limit showing your work to the stuff that made the final cut either.
+    - Paths Not Taken: If there were some initial ideas or concepts that you rejected, you might consider including some of those in your portfolio.
+    - Rejected concepts actually provide a lot of insight, both into your creative mind, and also into your problem-solving process. You can explain what you liked and didn't like about them, what you thought worked and what didn't. You can talk about how they were received by your colleagues and clients. 
+    - All of this is another way of showing your work because it demonstrates not only that you're open to trying things that might not succeed, and also that you're open to learning from those mistakes and collaborating to create something that's more effective. 
+    - Write about any elements of these early designs that you ended up incorporating into later concepts. This is a way to show that you care enough to keep improving and aren't content just to go with the first good idea that comes into your head.
+* There's also imperfect work: These are projects that might not meet your every standard and that you might not choose to include in a public-facing portfolio or submit to a design competition, but if you can explain why they didn't make the cut, you can often provide some insight into how you work that an employer could find helpful.
+    - Obviously, you don't want to include a lot of these in your portfolio, but there are several opportunities here. You can talk about what you'd do differently next time. You can describe the factors that contributed to the project coming out this way.
+    - Whatever the factors were, there's value in describing what they were and showing an employer that you have the capacity to adapt under those circumstances.
+    - And even if the only source of the imperfections was you, showing that you're capable of learning and growing from project to project is also a really good thing.
+    - The fact is being able to talk openly about things you might do differently next time is actually a sign of a really strong candidate. 
+* Showcasing ompromises is also important. This may be one of the best things you can include in your portfolio.
+    - Examples of times when you had to compromise your ideal design for the sake of pleasing the client or resolving technology limitations. While you might feel less than great about how these compromises affected your design, it's a given with commercial design that we often need to make compromises, and your ability to roll with the punches is a huge asset.
+    - Perspective employers will appreciate knowing how you manage compromise during a project. That way they can get a sense of how well you adapt to changing circumstances, as well as how you manage the relational aspects of design work, which are such a huge component of the job.
 
 ### Demonstrate Range
 
-### Convey Depth of Experience
+* Show prospective employers that you're flexible, creative, and adaptable to different kinds of projects, styles, audiences and brands. 
+    - The bottom line here for prospective employers is, "Convince me that if I hire you, "you can handle anything I throw at you." They want to know that you're going to be valuable to them beyond a single project, that you'll continue to generate creative solutions and fresh visuals time and time again.
+* When it comes to hiring a full-time or even part-time team member, they're generally looking for someone who can handle multiple projects for different audiences. 
+    - So how do you show range in your portfolio? Of course quantity counts for something here. 
+    - You need to include several projects that show variety. And that illustrate how you take a custom-tailored approach for every client.
+* And remember to look at your project list through the eyes of a prospective employer because while you might feel that you can show a broad range of styles with just a few projects, an employer might see a sameness to them that you're not seeing.
+    - Don't be shy about paring your portfolio down to the projects that show the greatest contrast. Select your portfolio project with a critical eye, and make sure they don't look too similar. 
+* This where you might get into making compromises: Say you've got a project that you weren't going to include because it represents a type of work that you don't want to do anymore. But it's in a style that doesn't show up anywhere else in your portfolio. 
+    - You might want to hang onto it until you've got something fresh to replace it with. 
+* Beyond the visual style, range also includes the types of clients you choose to represent in your portfolio so be sure to include projects from a cross section of client types, sizes, and industries whenever possible. 
+    - This is particularly important if you're seeking a position with a design agency that works with a variety of client types. 
+    - It can also be a good way to demonstrate range in any portfolio. When employers, particularly agencies who are vying for contracts with different types of clients, are looking for designers, they're going to be most interested in hiring someone who's comfortable working with a wide range of clients and producing a wide range of deliverables. 
+* Jot down three or four types of clients you serve. Then, consider the services you offer. Let's say you do logo and branding, website design, and online advertising. To showcase your range, ideally, you'd include projects that illustrate each of your core services within the context of each of those three or four client types you described.
 
+### Convey Depth of Experience
