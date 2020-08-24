@@ -17,6 +17,11 @@
     - [Components](#components)
     - [Layout Component](#layout-component)
     - [CSS in Gatsby](#css-in-gatsby)
+  - [Plugins and Transformations](#plugins-and-transformations)
+    - [Plugin Options](#plugin-options)
+    - [Transformation Plugins](#transformation-plugins)
+  - [Appendix](#appendix)
+    - [Navigation Component](#navigation-component)
 
 ## Introduction
 
@@ -143,6 +148,23 @@ For a full breakdown of how to setup your development environment for Gatsby, ch
     - This can include things such as layouts, partials, scripts, etc.
 
 ## Architecture in Gatsby
+
+```
+/
+|-- /.cache
+|-- /plugins
+|-- /public
+|-- /src
+    |-- /pages
+    |-- /templates
+    |-- html.js
+|-- /static
+|-- /content
+|-- gatsby-config.js
+|-- gatsby-node.js
+|-- gatsby-ssr.js
+|-- gatsby-browser.js
+```
 
 - Gatsby projects have a more or less standard architecture. Some of this is defined by the application, some of it is defined by convention.
 - The majority of your work will be done in three places.
@@ -351,4 +373,102 @@ export default Layout;
 - Because Gatsby is built on top of React, styling and CSS in Gatsby is handled the same way styling and CSS is handled in React.
   - This is to say, there is no one set standard on how to handle styles and CSS.
   - Instead, you have multiple approaches and you can mix and match to fit with whatever coding methodology you prefer and requirement you need to meet.
-- There are three main approaches to styles and CSS in Gatsby that are worth knowing about: Plain CSS, CSS Modules, and CSS-in-JS
+- There are three main approaches to styles and CSS in Gatsby that are worth knowing about: Plain CSS, CSS Modules, and CSS-in-JS.
+- First up, standard, good, old-fashioned style sheets.
+  - You can create regular old CSS files and then import them into the browser using `gatsby-browser.js`, just by adding the line `import "./src/styles/main.css"`.
+  - What happens now is for every single page, `main.css` will be loaded first, meaning, it'll be applied globally on everything you're working with. There's no scoping, it's just a global style sheet applied everywhere.
+  - If that's what you want, this is a good approach, but it is rather heavy-handed, especially if you have a lot of components that may change behavior over time.
+- Next up, CSS modules. This is the CSS version of JavaScript and React components and they work alongside JavaScript and React components.
+  - Eg. `layout.module.css` would be imported directly into `layout.js` with `import style from "./layout.module.css"`.
+  - This is then used within the React JavaScript: `<main className={style.main_content}>`.
+  - When this is processed, Gatsby takes this`style.main_content` and creates a new class that applies only to this component and then ties the style to only that class.
+  - That means, all styles in the CSS modules become locally scoped to just this component, and you never have to worry about a CSS conflict anywhere else within the project.
+  - It also means, for each component, you need to create a CSS module. It allows you to write CSS the old way, but it means you're adding a ton of new files, one for each component you want to style.
+- The last option is CSS-in-JS. This is CSS actually written inside the component with specialized JavaScript syntax. This is typically done on component level, but it can be done anywhere within any file.
+  - You begin with `import styled from "styled-components" at the top of the page, then defining new styled components:
+  - Eg. `const Container = styled.section' display: grid;'`
+  - Then, the component `<Container>` will be automatically styled with those properties.
+  - CSS-in-JS has gathered a lot of momentum in recent years because it allows JavaScript developers to write JavaScript even when they write CSS, and it also directly connects the style to the element being styled, making it easy to figure out what's going on.
+- A good workflow example would be a setup using CSS modules alongside [postCSS](https://postcss.org/).
+  - This allows you to use CSS custom properties and other advanced CSS features, with proper fallbacks to unify styles across the entire site.
+  - This also allows you to have a file such as `global.module.css` with properties that will be applied everywhere throughout all of your modular style sheets.
+
+## Plugins and Transformations
+
+- Plugins allow you to extend Gatsby functionality beyond the basics.
+  - The term plugin has different meanings for different applications.
+  - In Gatsby, a plugin is a node package, often a customized version of a react module or component or package that implements Gatsby API's you can then use to perform advanced functionality.
+- There are a myriad of plugins available for Gatsby and more are added every day.
+  - You can find all available plugins for Gatsby by going to [gatsby.org/plugins](gatsby.org/plugins) and making a search for the feature you're looking for.
+  - In almost every case, what you need has already been built into a plugin and that plugin will be available right from this page.
+  - That said, you can also create your own plugins if you want to, to add specific features to your site. You can find documentation and step by step instructions in the official Gatsby documentation under [creating plugins](https://www.gatsbyjs.com/docs/creating-plugins/).
+- Installing Gatsby plugins: `npm install --save gatsby-plugin-react-helmet react-helmet`, then adding `` plugins: [`gatsby-plugin-react-helmet`] `` into the file `gatsby-config.js`.
+- If you already had Gatsby developer running, and then went into Gatsby config and added the plugin, it won't work.
+  - Every time you add a new plugin or make any changes to Gatsby config, it's a good idea to turn Gatsby develop off and booted back up again after you've saved Gatsby config.
+  - That initializes all the new functionality and gets things up and running.
+
+### Plugin Options
+
+- Some plugins can be used as is out of the box. Other plugins need some level of configuration, and that's done by adding options to the plugin configuration inside Gatsby config.
+- An example of this is the [gatsby-source-filesystem](https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/). As stated in its description, this plugin is for sourcing data into your gatsby application from your local file system.
+
+```javascript
+// In gatsby-config.js:
+module.exports = {
+  plugins: [
+    {
+      // Calling and appending the plugin:
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/content/images/`,
+      },
+    },
+  ],
+};
+```
+
+- When you save this and run `gatsby develop`, everything that's inside `/content/images` now becomes available to Gatsby, and Gatsby can then process that information. However, more needs to be done in the next section.
+
+### Transformation Plugins
+
+- Once you've added a new data source with gatsby-source-filesystem, you can use what's known as a transformer plugin to make the raw content at that data source available for Gatsby and React to transform.
+- An example of this is [gatsby-transformer-sharp](https://www.gatsbyjs.com/plugins/gatsby-transformer-sharp/). This will optimize images on your website using the Sharp image processing lirbary, as well as provide fields in GraphQL typers for processing images in a variety of ways.
+
+## Appendix
+
+### Navigation Component
+
+Example of a navigation component `mainnav.js`:
+
+Note: The Gatsby `<link>` component is a special component for Gatsby that allows you to create dynamic links to anything that's within the Gatsby site and it will resolve all the links for you. Read more about it in [the docs](https://www.gatsbyjs.com/docs/gatsby-link/).
+
+```javascript
+import React from "react";
+import { Link } from "gatsby";
+
+import style from "./mainnave.module.css";
+
+const MainNav = () => {
+  return (
+    <nav className={style.navigation}>
+      <ul>
+        <li>
+          {" "}
+          <Link to="/">Home</Link>{" "}
+        </li>
+        <li>
+          {" "}
+          <Link to="/events">Events</Link>{" "}
+        </li>
+        <li>
+          {" "}
+          <Link to="/">Home</Link>{" "}
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default MainNav;
+```
