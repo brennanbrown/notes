@@ -20,8 +20,11 @@
   - [Plugins and Transformations](#plugins-and-transformations)
     - [Plugin Options](#plugin-options)
     - [Transformation Plugins](#transformation-plugins)
+  - [Data and GraphQL](#data-and-graphql)
+    - [Queries in GraphQL](#queries-in-graphql)
   - [Appendix](#appendix)
     - [Navigation Component](#navigation-component)
+    - [Adding Multiple Images](#adding-multiple-images)
 
 ## Introduction
 
@@ -83,7 +86,7 @@ For a full breakdown of how to setup your development environment for Gatsby, ch
   - This is a pre-configured package of a Gatsby setup that has either a very basic site or a fully built-out site that you can configure to fit your needs.
   - You'll find starters for pretty much all content management systems, online e-commerce solutions, and everything else.
 - To start off with the smallest amount of code possible, use the [Gatsby Starter Default](https://www.gatsbyjs.com/starters/gatsbyjs/gatsby-starter-default/).
-  - To install: `gatsby new gatsby-folder-name https://github.com/gatsbyjs/gatsby-starter-default`
+  - **To install**: `gatsby new gatsby-folder-name https://github.com/gatsbyjs/gatsby-starter-default`
   - The last variable points to a GitHub repository. That means you can pull a starter from anywhere on GitHub, and that means you can also create your own starters and pull them down to get everything installed.
 - Once the site has been installed, you can begin developing and running the server:
   - `cd gatsby-folder-name`
@@ -433,7 +436,59 @@ module.exports = {
 ### Transformation Plugins
 
 - Once you've added a new data source with gatsby-source-filesystem, you can use what's known as a transformer plugin to make the raw content at that data source available for Gatsby and React to transform.
-- An example of this is [gatsby-transformer-sharp](https://www.gatsbyjs.com/plugins/gatsby-transformer-sharp/). This will optimize images on your website using the Sharp image processing lirbary, as well as provide fields in GraphQL typers for processing images in a variety of ways.
+- An example of this is [gatsby-transformer-sharp](https://www.gatsbyjs.com/plugins/gatsby-transformer-sharp/).
+  - Earlier images were added to the static folder and then pull them into the about page using a regular image element. This works fine, but it bypasses the whole purpose of using Gatsby in the first place. By pulling the images in as replaced elements, we bypass any optimization Gatsby or react could have provided.
+  - Using a transformer plugin like this will instead optimize images on your website using the Sharp image processing library, as well as provide fields in GraphQL typers for processing images in a variety of ways.
+- In addition to `gatsby-plugin-sharp settings` in `gatsby-config.js`, there are additional query options that apply to fluid, fixed, and resized images:
+  - `grayscale` (bool, default: false)
+  - `duotone` (bool|obj, default: false), etc.
+
+```javascript
+export const query = graphql`
+  {
+    headerImage: file(relativePath: { eq: "test-image-1024x2048.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 1184) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+`;
+```
+
+- The above code is telling React to grab the image and transform it into a responsive image and the output from this will be a responsive image providing us with different break points for different screen sizes, all automatically.
+  - You don't have to write any of that fancy responsive images code.
+  - Requires `import Img from "gatsby-image"`
+  - Then pull in the data from that query at the bottom of the document. That data automatically becomes available to us as data up here in the properties: `const AboutPage = ({data}) => { //... }`.
+
+```javascript
+<Img fluid={data.headerImage.childImageSharp.fluid} alt="Test Image" />
+```
+
+- If you go look at the image, you'll see here in the mark-up that we're not just looking at a regular imported image.
+  - This is in fact a fully responsive image. You can see it's wrapped in a picture element that has fallbacks and it has multiple different sizes, depending on the size of the view port and everything.
+- These transformer plugins are important because they allow react and Gatsby to do a ton of the heavy lifting that you would otherwise have to do.
+
+## Data and GraphQL
+
+- GraphQL is the query language we use inside react to pull data into pages from other sources.
+- Going back to the previous example, GraphQL will return to us a JSON object that can be parsed.
+  - The JSON object is called `data`, and you parse through the data, just stepping through the object, from `data` to `.headerImage` to `.childImageSharp` to `.fluid` or `.fixed`, depending on which image you want to display.
+- There's a tool provided by Gatsby that makes GraphQL much easier to understand and work with.
+  - When you run Gatsby develop, you may have noticed, you actually get two URLs to the local server once the process is complete.
+  - The first URL just goes to the live site. The second URL that you see down here goes to GraphiQL, an in-browser IDE, to explore your site's data and schema: **localhost:8000/\_\_graphql**.
+- From this graphical interface, you can explore your entire GraphQL setup on your local server.
+  - From here, we can see all available information in the explorer, we can craft custom requests, and we see the result of those those requests over on the right-hand side right away, so this is effectively where you build your requests before you put them into code.
+- GraphiQL is essential to working with data in GraphQL, and as you move forward, you'll start building new GraphQL queries.
+  - Any time you do that, it's a good idea to go into GraphiQL and play around with that query to figure out exactly what it's doing and what else you can do with it by exploring it in the explorer.
+
+### Queries in GraphQL
+
+- In Gatsby, there are two different types of GraphQL queries, which are used in two different circumstances.
+- For pages, like `events.js`, you use a page query. A page query sits separately from the main export components.
+  - It's it own component and the key benefit of a page query is it can accept variables. So you can make the query it's self dynamic by passing variables to it.
+  - But, as the name suggests, it only works for pages. You can not use a page query inside a component.
 
 ## Appendix
 
@@ -471,4 +526,54 @@ const MainNav = () => {
 };
 
 export default MainNav;
+```
+
+### Adding Multiple Images
+
+```javascript
+import React from "react";
+import Img from "gatsby-image";
+
+import Layout from "../components/layout";
+import style from "./events.module.css";
+
+const IndexPage = ({ data }) => {
+  return (
+    <Layout>
+      <section className={style.wrapper}>
+        <Img fluid={data.headerImage.childImageSharp.fluid} alt="Robots" />
+        <div>
+          <Img
+            className={style.image}
+            fixed={data.bodyImage.childImageSharp.fixed}
+            alt="Robots"
+          />
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default IndexPage;
+
+export const query = graphql`
+  {
+    headerImage: file(
+      relativePath: { eq: "getting-creative-with-3-d-printers-1184x360.jpg" }
+    ) {
+      childImageSharp {
+        fluid(maxWidth: 1184) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    bodyImage: file(relativePath: { eq: "bubbles-disc.png" }) {
+      childImageSharp {
+        fixed(width: 288, grayscale: true) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`;
 ```
