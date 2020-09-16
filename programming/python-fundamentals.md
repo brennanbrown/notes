@@ -1,5 +1,22 @@
 # Python Fundamentals
 
+**Table of Contents:**
+
+- [Python Fundamentals](#python-fundamentals)
+  - [Variables](#variables)
+  - [Arguments / Functions](#arguments--functions)
+  - [Conditional Structures](#conditional-structures)
+  - [Loops](#loops)
+  - [Classes](#classes)
+  - [Date, Time, and Datetime Classes](#date-time-and-datetime-classes)
+  - [Reading and Writing Files](#reading-and-writing-files)
+    - [Working with OS Path Utilities](#working-with-os-path-utilities)
+    - [Using File System Shell Methods](#using-file-system-shell-methods)
+  - [Fetching Internet Data](#fetching-internet-data)
+    - [Working with JSON data](#working-with-json-data)
+    - [Parsing and Processing HTML](#parsing-and-processing-html)
+    - [Manipulating XML](#manipulating-xml)
+
 ```python
 #             #
 # Hello World #
@@ -11,7 +28,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 
 ## Variables
 
@@ -44,7 +60,6 @@ del f
 f = 0
 print(f)
 ```
-
 
 ## Arguments / Functions
 
@@ -105,7 +120,6 @@ def multiAdd(*adds):
 print(multiAdd(4, 5, 2, 13))
 ```
 
-
 ## Conditional Structures
 
 ```python
@@ -135,7 +149,6 @@ if __name__ == "__main__":
     main()
 
 ```
-
 
 ## Loops
 
@@ -176,7 +189,6 @@ def main():
         print(i, d)
 ```
 
-
 ## Classes
 
 ```python
@@ -212,7 +224,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
 
 ## Date, Time, and Datetime Classes
 

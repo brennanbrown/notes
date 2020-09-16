@@ -1,49 +1,48 @@
 # Python Fundamentals Extended
 
-<!-- MarkdownTOC -->
+**Table of Contents:**
 
-- Python Anatomy
-    - Expressions and Statements
-- Blocks and Scopes
-    - Loops
-- -- Add Stuff Here--
-    - Bitwise Operators
-    - Operator Precedence
-- Python Loops
-- Functions
+- [Python Fundamentals Extended](#python-fundamentals-extended)
+  - [Introduction](#introduction)
+  - [Python Anatomy](#python-anatomy)
+    - [Expressions and Statements](#expressions-and-statements)
+  - [Blocks and Scopes](#blocks-and-scopes)
+    - [Loops](#loops)
+    - [Bitwise Operators](#bitwise-operators)
+    - [Operator Precedence](#operator-precedence)
+  - [Python Loops](#python-loops)
+  - [Functions](#functions)
 
-<!-- /MarkdownTOC -->
+## Introduction
 
-
-* **Python** is a modern, object-oriented scripting language.
-* Python was developed in the late 1980s by Dutch research programmer Guido van Rossum.
-    - Guido wrote the first Python interpreter over his Christmas holiday in 1989.
-    - He chose the name Python as a reference to Monty Python's Flying Circus.
-    - Guido remains Python's principal author to this day, and the Python community affectionately refers to him as BDFL, Benevolent Dictator For Life.
-* There's a core philosophy behind the Python language, which includes the following statements:
-    - Beautiful is better than ugly.
-    - It's always a good idea to make your code elegant and readable. Explicit is better than implicit.
-    - Don't make your readers guess what your code does, make it obvious.
-    - Simple is better than complex.
-    - If you can make it simple, do.
-    - Complex is better than complicated.
-    - If complexity is necessary, don't complicate it.
-    - Readability counts.
-    - As a casual reader with a good understanding of the Python language, you should be able to understand the code with a minimal amount of effort.
-* The design principles of Python can be found if you type in `import this` into any Python interpreter.
-* Python 3 is not backwards compatible with the original Python 2:
-    - Everything in Python 3 is an object.
-    - `print()` is a function, not a statement, and thus requires parenthesis.
-    - There is only a single integer type in Python 3.
-    - All text is now Unicode.
-    - Python 3 is a decade old, and thus all new code should be written in it, with legacy code of Python 2 being maintained.
-    - Division of two integers will result in a float.
-* Python does not use braces or semicolons.
-    - Instead, line endings and indentations are meaningful.
-* The purpose of `Hello World` is to validate your development environment.
-    - Whenever you set up a new development environment, it's a good idea to use a simple, minimal, and functional program to confirm that your development cycle functions as you expect, and that's what `Hello World` is for.
-* There are no half-measures with whitespace. Either a piece of code is in a block or it isn't.
-
+- **Python** is a modern, object-oriented scripting language.
+- Python was developed in the late 1980s by Dutch research programmer Guido van Rossum.
+  - Guido wrote the first Python interpreter over his Christmas holiday in 1989.
+  - He chose the name Python as a reference to Monty Python's Flying Circus.
+  - Guido remains Python's principal author to this day, and the Python community affectionately refers to him as BDFL, Benevolent Dictator For Life.
+- There's a core philosophy behind the Python language, which includes the following statements:
+  - Beautiful is better than ugly.
+  - It's always a good idea to make your code elegant and readable. Explicit is better than implicit.
+  - Don't make your readers guess what your code does, make it obvious.
+  - Simple is better than complex.
+  - If you can make it simple, do.
+  - Complex is better than complicated.
+  - If complexity is necessary, don't complicate it.
+  - Readability counts.
+  - As a casual reader with a good understanding of the Python language, you should be able to understand the code with a minimal amount of effort.
+- The design principles of Python can be found if you type in `import this` into any Python interpreter.
+- Python 3 is not backwards compatible with the original Python 2:
+  - Everything in Python 3 is an object.
+  - `print()` is a function, not a statement, and thus requires parenthesis.
+  - There is only a single integer type in Python 3.
+  - All text is now Unicode.
+  - Python 3 is a decade old, and thus all new code should be written in it, with legacy code of Python 2 being maintained.
+  - Division of two integers will result in a float.
+- Python does not use braces or semicolons.
+  - Instead, line endings and indentations are meaningful.
+- The purpose of `Hello World` is to validate your development environment.
+  - Whenever you set up a new development environment, it's a good idea to use a simple, minimal, and functional program to confirm that your development cycle functions as you expect, and that's what `Hello World` is for.
+- There are no half-measures with whitespace. Either a piece of code is in a block or it isn't.
 
 ```python
 
@@ -63,9 +62,9 @@ if __name__ == "__main__":
 `#!/usr/bin/env python3`
 `#!/usr/local/bin/python3`
 
-* There is sometimes a **shebang** line at the beginning of Python code.
-    - The shebang line is a common pattern for Unix-based systems.
-    - It allows scripts to be invoked from the command line.
+- There is sometimes a **shebang** line at the beginning of Python code.
+  - The shebang line is a common pattern for Unix-based systems.
+  - It allows scripts to be invoked from the command line.
 
 ```python
 #!usr/bin/env python3
@@ -90,11 +89,10 @@ if __name__ == "__main__":
 
 ### Expressions and Statements
 
-* In general terms, a *statement* is a unit of execution, and an *expression* is a unit of evaluation.
-* In Python specifically, an expression is any combination of *literals*, *identifiers*, and *operators*.
-    - Generally, this means anything that returns a value is an expression.
-    - Eg. `x=y`, `x*y`, `(x, y)`, `True`, `f()`
-
+- In general terms, a _statement_ is a unit of execution, and an _expression_ is a unit of evaluation.
+- In Python specifically, an expression is any combination of _literals_, _identifiers_, and _operators_.
+  - Generally, this means anything that returns a value is an expression.
+  - Eg. `x=y`, `x*y`, `(x, y)`, `True`, `f()`
 
 ## Blocks and Scopes
 
@@ -115,9 +113,9 @@ print("z is {}".format(z))
 
 ### Loops
 
-* Python provides two basic types of loops.
-* A **While** loop tests a *conditional expression* and the body of the loop is executed while the condition remains true.
-* A **For** loop iterates over a *sequence* (elements) and the body of the loop is executed for each element of the sequence and until the sequence is exhausted.
+- Python provides two basic types of loops.
+- A **While** loop tests a _conditional expression_ and the body of the loop is executed while the condition remains true.
+- A **For** loop iterates over a _sequence_ (elements) and the body of the loop is executed for each element of the sequence and until the sequence is exhausted.
 
 ```python
 
@@ -212,12 +210,12 @@ new()
 class Duck:
 	sound = "Quack!"
 	walking = "It walks like a duck!"
-	
-	# Self is reference to the object when 
+
+	# Self is reference to the object when
 	# the class is used to create an object.
 	def quack(self):
 		print(self.sound)
-	
+
 	def walk(self):
 		print(self.walking)
 
@@ -231,9 +229,9 @@ if __name__ == "__main__":
 
 ### Types ###
 
-# Python uses a form of dynamic typing 
-# sometimes called "duck typing" where 
-# the type of a value is determined by 
+# Python uses a form of dynamic typing
+# sometimes called "duck typing" where
+# the type of a value is determined by
 # the value itself.
 
 new()
@@ -377,11 +375,11 @@ else:
     print("x is a different number.")
 ```
 
-* The conditional operators of Python include:
-    - Comparison operators - If an element is greater, equal, unequal, or less than another element.
-    - Logical operators - `and`, `or`, or `not`, used to test multiple element's states at once.
-    - Identity operators - `is` and `is not`. If a variable is a specific type.
-    - Membership operators - If a variable is a part of a specific collection.
+- The conditional operators of Python include:
+  - Comparison operators - If an element is greater, equal, unequal, or less than another element.
+  - Logical operators - `and`, `or`, or `not`, used to test multiple element's states at once.
+  - Identity operators - `is` and `is not`. If a variable is a specific type.
+  - Membership operators - If a variable is a part of a specific collection.
 
 ```python
 
@@ -394,12 +392,12 @@ print(x)
 
 ### Bitwise Operators
 
-* Bitwise operators are utilized on bits, not logical operators used for conditional constructs.
-    - `&` - And
-    - `|` - Or
-    - `^` - Xor
-    - `>>` - Shift left
-    - `<<` - Right right
+- Bitwise operators are utilized on bits, not logical operators used for conditional constructs.
+  - `&` - And
+  - `|` - Or
+  - `^` - Xor
+  - `>>` - Shift left
+  - `<<` - Right right
 
 ```python
 
@@ -442,13 +440,13 @@ Python operator precedence is as follows:
 
 ## Python Loops
 
-* Python has two basic forms of loops, `while` loops and fo`r loops.
-* A **While** loop uses a conditional expression to control the loop.
-    - When the condition is true, the body of the loop is executed. When the body is complete, the condition is tested again.
-    - And if the condition is still true, the body is executed again.
-    - The loop continues as long as the condition is true, and when the condition is false, the loop ends and execution continues with the lines of code after the loop.
-* A **For** loop uses a sequence, like an iterator or a list, tuple, or other collection type to control the loop.
-    - The body of the loop is executed for each item in the sequence, and when the sequence is exhausted the loop ends.
+- Python has two basic forms of loops, `while` loops and fo`r loops.
+- A **While** loop uses a conditional expression to control the loop.
+  - When the condition is true, the body of the loop is executed. When the body is complete, the condition is tested again.
+  - And if the condition is still true, the body is executed again.
+  - The loop continues as long as the condition is true, and when the condition is false, the loop ends and execution continues with the lines of code after the loop.
+- A **For** loop uses a sequence, like an iterator or a list, tuple, or other collection type to control the loop.
+  - The body of the loop is executed for each item in the sequence, and when the sequence is exhausted the loop ends.
 
 ```python
 
@@ -490,7 +488,7 @@ else:
 
 ## Functions
 
-* Python has no distinction between a function and a procedure.
+- Python has no distinction between a function and a procedure.
 
 ```python
 

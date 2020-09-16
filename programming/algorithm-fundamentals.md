@@ -2,25 +2,26 @@
 
 **Table of Contents:**
 
-- [Measuring Algorithm Performance](#measuring-algorithm-performance)
-- [Intro to Data Structures](#intro-to-data-structures)
-- [Stacks and Queues](#stacks-and-queues)
-- [Unordered List Search](#unordered-list-search)
-- [Searching an Ordered List](#searching-an-ordered-list)
-- [Determining if a List is Sorted](#determining-if-a-list-is-sorted)
-- [Unique Filtering with Hash Table](#unique-filtering-with-hash-table)
-- [Value Counting with Hash Table](#value-counting-with-hash-table)
-- [Finding Maximum Value with Recursion](#finding-maximum-value-with-recursion)
-
+- [Algorithm Fundamentals](#algorithm-fundamentals)
+  - [Introduction](#introduction)
+  - [Measuring Algorithm Performance](#measuring-algorithm-performance)
+  - [Intro to Data Structures](#intro-to-data-structures)
+  - [Stacks and Queues](#stacks-and-queues)
+  - [Unordered List Search](#unordered-list-search)
+  - [Searching an Ordered List](#searching-an-ordered-list)
+  - [Determining if a List is Sorted](#determining-if-a-list-is-sorted)
+  - [Unique Filtering with Hash Table](#unique-filtering-with-hash-table)
+  - [Value Counting with Hash Table](#value-counting-with-hash-table)
+  - [Finding Maximum Value with Recursion](#finding-maximum-value-with-recursion)
 
 ## Introduction
 
-* Algorithms have *complexity* and *input/output*
-    * Space complexity: How much memory does it require?
-    * Time complexity: How much time does it take to complete?
-    * What can the algorithm accept, and what are its results?
-* There are also classifications of algorithms:
-    - Eg. serial/parallel, exact/approximate, deterministic/non-deterministic
+- Algorithms have _complexity_ and _input/output_
+  - Space complexity: How much memory does it require?
+  - Time complexity: How much time does it take to complete?
+  - What can the algorithm accept, and what are its results?
+- There are also classifications of algorithms:
+  - Eg. serial/parallel, exact/approximate, deterministic/non-deterministic
 
 ```java
 for (each shape) {
@@ -30,10 +31,10 @@ for (each shape) {
 }
 ```
 
-* `Search Algorithms` are for finding a specific data in a structure. (Eg. a substring within a string)
-* `Sorting Algorithms` are for taking datasets and applying a specific sort order to it.
-* `Computation Algorithms` are for figuring out a calculation given a set of data (Eg. is a given number prime?)
-* `Collection Algorithms` are for working with collections of data (Eg. counting specific items, navigating among data elements, filter out unwanted data, etc.)
+- `Search Algorithms` are for finding a specific data in a structure. (Eg. a substring within a string)
+- `Sorting Algorithms` are for taking datasets and applying a specific sort order to it.
+- `Computation Algorithms` are for figuring out a calculation given a set of data (Eg. is a given number prime?)
+- `Collection Algorithms` are for working with collections of data (Eg. counting specific items, navigating among data elements, filter out unwanted data, etc.)
 
 Example: Euclid's Algorithm
 
@@ -71,19 +72,19 @@ print(gcd(20, 8))
 
 ## Measuring Algorithm Performance
 
-* Measure how an algorithm responds to dataset size
-    * `Big-O` notation is classifying performance of an algorithm as the input size increases.
-        - "O" indicates the *order of operation*: time scale to perform an operation
-    * Many different algorithms and data structures hve more than just one O
-        - Dependant on inserting data, searching for data, deleting data, etc.
+- Measure how an algorithm responds to dataset size
+  - `Big-O` notation is classifying performance of an algorithm as the input size increases.
+    - "O" indicates the _order of operation_: time scale to perform an operation
+  - Many different algorithms and data structures hve more than just one O
+    - Dependant on inserting data, searching for data, deleting data, etc.
 
 Big-O Terms and Notations:
 
-* `O(1)` Constant time eg. Looking up a single element in an array.
-* `O(logN)` Logarithmic eg. Finding an item in a sorted array with a binary search.
-* `O(n)` Linear time eg. Searching an unsorted array for a specific value
-* `O(n log n)` Log-linear eg. Complex sorting algorithms like *heap sort* or *merge sort*
-* `O(n^2)` Quadratic eg. Simple sorting algorithms, such as bubble sort, selection sort, and insertion sort.
+- `O(1)` Constant time eg. Looking up a single element in an array.
+- `O(logN)` Logarithmic eg. Finding an item in a sorted array with a binary search.
+- `O(n)` Linear time eg. Searching an unsorted array for a specific value
+- `O(n log n)` Log-linear eg. Complex sorting algorithms like _heap sort_ or _merge sort_
+- `O(n^2)` Quadratic eg. Simple sorting algorithms, such as bubble sort, selection sort, and insertion sort.
 
 ```python
 
@@ -106,21 +107,21 @@ def bogosort(data) -> List:
 
 ## Intro to Data Structures
 
-* Data structures are used to organize data so it can be properly processed.
-    - Eg. Arrays, Linked Lists, Stacks and Queues, Trees, and Hash Tables
-* **Arrays** are a collection of elements identified by index or key.
-    - eg. `even_elem = array[2n]`
-* Array operations:
-    - Calculating an item's index: `O(1)`
-    - Inserting or deleting items at the beginning or middle: `O(n)`
-    - Inserting or deleting an item at the end: `O(1)`
-* **Linked Lists** are a collection of elements, called nodes, and contain reference to the next node in the list. They can hold whatever data the applications needs.
-    - Elements can be more easily inserted or removed than in arrays. Underlying memory doesn't need to be reorganized
-    - The main drawback, though, is that you can't do constant-time random item access, meaning that looking up an arbitary item is linear in time scale `O(n))` instead of `O(1)` constant time in the array.
-    * A linked list operation, such as adding a new element, requires setting the new node's next pointer to be the current head, and then set the head to be the new node.
-    * A node can be removed from a list by changing the next field of the node that points to it.
-        - To remove the node, simply have the previous node point directly to the node that came after.
-    - Just by manipulating the various *pointers*, you can achieve operations with linked lists.
+- Data structures are used to organize data so it can be properly processed.
+  - Eg. Arrays, Linked Lists, Stacks and Queues, Trees, and Hash Tables
+- **Arrays** are a collection of elements identified by index or key.
+  - eg. `even_elem = array[2n]`
+- Array operations:
+  - Calculating an item's index: `O(1)`
+  - Inserting or deleting items at the beginning or middle: `O(n)`
+  - Inserting or deleting an item at the end: `O(1)`
+- **Linked Lists** are a collection of elements, called nodes, and contain reference to the next node in the list. They can hold whatever data the applications needs.
+  - Elements can be more easily inserted or removed than in arrays. Underlying memory doesn't need to be reorganized
+  - The main drawback, though, is that you can't do constant-time random item access, meaning that looking up an arbitary item is linear in time scale `O(n))` instead of `O(1)` constant time in the array.
+  * A linked list operation, such as adding a new element, requires setting the new node's next pointer to be the current head, and then set the head to be the new node.
+  * A node can be removed from a list by changing the next field of the node that points to it.
+    - To remove the node, simply have the previous node point directly to the node that came after.
+  - Just by manipulating the various _pointers_, you can achieve operations with linked lists.
 
 ```python
 
@@ -213,10 +214,10 @@ itemlist.dump_list()
 
 ## Stacks and Queues
 
-* A **Stack** is a collection that supports *push* and *pop* operations.
-    - The last item pushed is the first one popped. In other words: last-in, first-out.
-    - Used to evaluate mathematical expressions.
-    - Used for backtracking features, eg. browser back button uses a stack
+- A **Stack** is a collection that supports _push_ and _pop_ operations.
+  - The last item pushed is the first one popped. In other words: last-in, first-out.
+  - Used to evaluate mathematical expressions.
+  - Used for backtracking features, eg. browser back button uses a stack
 
 ```python
 stack = []
@@ -234,9 +235,9 @@ print(x)
 print(stack)
 ```
 
-* A **Queue** is a collection that supports adding and removing
-    - First item added is first item out.
-    - Used for chronological order processing and messaging
+- A **Queue** is a collection that supports adding and removing
+  - First item added is first item out.
+  - Used for chronological order processing and messaging
 
 ```python
 from collections import deque
@@ -255,13 +256,13 @@ print(x)
 print(queue)
 ```
 
-* A **Hash Table** is a collection of that maps keys to their associated values and does this using the `hash` function. They are typically very fast.
-    - Ideally, the hash function will assign each key to a unique slot in the table where the values are stored.
-    - In reality, sometimes there are collisions in which two separate keys each map to the same slot in the table.
-    - In that case, the hash table has to have a way of resolving those collisions so that the correct value is mapped to the right key.
-    - `Key-to-value` mappings are unique.
-    - For small datasets, arrays are usually more efficient.
-    - Hash tables also don't order entires in any predictable way.
+- A **Hash Table** is a collection of that maps keys to their associated values and does this using the `hash` function. They are typically very fast.
+  - Ideally, the hash function will assign each key to a unique slot in the table where the values are stored.
+  - In reality, sometimes there are collisions in which two separate keys each map to the same slot in the table.
+  - In that case, the hash table has to have a way of resolving those collisions so that the correct value is mapped to the right key.
+  - `Key-to-value` mappings are unique.
+  - For small datasets, arrays are usually more efficient.
+  - Hash tables also don't order entires in any predictable way.
 
 ```python
 items1 = dict({"key1" : "foo", "key2" : "bar", "key3" : "foobar"})
@@ -277,11 +278,11 @@ for key, value in items2.items():
     print("Key: ", key, " Value: ", value)
 ```
 
-* **Recursion** is when a function calls itself
-    - Eg. `function f() { f() };`
-    - Recursion functions need to have a breaking condition, else the will loop indefinitely and hang, and then crash as the program and computer will run out of memory to keep track of each nested function call.
-    - Each time the function is called, the old arguments are saved.
-        + This is called the "call stack"
+- **Recursion** is when a function calls itself
+  - Eg. `function f() { f() };`
+  - Recursion functions need to have a breaking condition, else the will loop indefinitely and hang, and then crash as the program and computer will run out of memory to keep track of each nested function call.
+  - Each time the function is called, the old arguments are saved.
+    - This is called the "call stack"
 
 ```python
 def countdown(x):
@@ -325,13 +326,13 @@ print("{}! equals {}".format(4, factorial(4)))
 print("{}! equals {}".format(0, factorial(0)))
 ```
 
-* Sorting data is an important feature in many applications and programs.
-    - Eg. somebody searching for real estate might want to sort the listings posted by price descending.
-    - Most modern programming languages have sorting built-in.
-* The **bubble sort** first compares the first two elements, and if the first element is larger, they are swapped. The algorithm then advances to the next slot and performs the same comparison.
-    - It is very easy to understand and implement.
-    - However, it has a performance profile of `O(n^2)`
-        + `For` loops inside of other `for` loops are usually quadratically-timed algorithms.
+- Sorting data is an important feature in many applications and programs.
+  - Eg. somebody searching for real estate might want to sort the listings posted by price descending.
+  - Most modern programming languages have sorting built-in.
+- The **bubble sort** first compares the first two elements, and if the first element is larger, they are swapped. The algorithm then advances to the next slot and performs the same comparison.
+  - It is very easy to understand and implement.
+  - However, it has a performance profile of `O(n^2)`
+    - `For` loops inside of other `for` loops are usually quadratically-timed algorithms.
 
 ```python
 def bubbleSort(dataset):
@@ -374,12 +375,12 @@ if __name__ == "__main__":
 
 ```
 
-* The **merge sort** is known as the divide-and-conquer algorithm
-    - It breaks a dataset into individual pieces and merges them
-    - Uses recursion to operate on datasets
-    - Performs well on large data sets
-    - In general, has a performance of `O(n log(n))` time complexity
-    - Break arrays down until you are left with one-elementary arrays, all of which are sorted by definition because they only contain one element. Then begin merging these arrays back up into each other until the array is rebuilt in its sorted form.
+- The **merge sort** is known as the divide-and-conquer algorithm
+  - It breaks a dataset into individual pieces and merges them
+  - Uses recursion to operate on datasets
+  - Performs well on large data sets
+  - In general, has a performance of `O(n log(n))` time complexity
+  - Break arrays down until you are left with one-elementary arrays, all of which are sorted by definition because they only contain one element. Then begin merging these arrays back up into each other until the array is rebuilt in its sorted form.
 
 ```python
 
@@ -427,17 +428,17 @@ print(items)
 
 ```
 
-* The **Quicksort** algorithm is, like the mergesort, also divide-and-conquer.
-    - Uses recursion to perform sorting as well.
-    - Generally performs better than merge sort, `O(n log(n))`
-    - Operates in place in data, replacing existing array.
-    - Worst case is `O(n*2)` when the data set is mostly sorted already.
-*  One of the main features of the Quicksort is the selection of what's called the Pivot Point.
-    - There are various ways of picking the pivot position, and there's all kinds of research and dissertations done on this.
-    - For simplicity, use the first position. The value at the first position becomes the pivot value. And then start the process of partitioning the list.
-* The main purpose of the partitioning process is to move items that are on the wrong side of the pivot value and figure out the point at which to split the array so this can be recursively done again.
-    - There are two indexes, the lower index and the upper index. Start by incrementing the lower index, as long as it is less than the upper index, and until a value that's larger than the pivot value is found.
-* In the Quicksort, all the work gets done in the partition step, and the data is being sorted in place.
+- The **Quicksort** algorithm is, like the mergesort, also divide-and-conquer.
+  - Uses recursion to perform sorting as well.
+  - Generally performs better than merge sort, `O(n log(n))`
+  - Operates in place in data, replacing existing array.
+  - Worst case is `O(n*2)` when the data set is mostly sorted already.
+- One of the main features of the Quicksort is the selection of what's called the Pivot Point.
+  - There are various ways of picking the pivot position, and there's all kinds of research and dissertations done on this.
+  - For simplicity, use the first position. The value at the first position becomes the pivot value. And then start the process of partitioning the list.
+- The main purpose of the partitioning process is to move items that are on the wrong side of the pivot value and figure out the point at which to split the array so this can be recursively done again.
+  - There are two indexes, the lower index and the upper index. Start by incrementing the lower index, as long as it is less than the upper index, and until a value that's larger than the pivot value is found.
+- In the Quicksort, all the work gets done in the partition step, and the data is being sorted in place.
 
 ```python
 
@@ -595,9 +596,9 @@ print(result)
 
 ## Value Counting with Hash Table
 
-* To create a counter, create a new hash table and then loop over the set of the items to count.
-    - Use the name of each item as a key, and if that item already exists in the hash table, then increment the value that the key corresponds to, otherwise, set the value of the key with that item name equal to one.
-    - After iterating over all the items, the counter will contain unique keys that represent all the items, along with the number of times that that item was encountered.
+- To create a counter, create a new hash table and then loop over the set of the items to count.
+  - Use the name of each item as a key, and if that item already exists in the hash table, then increment the value that the key corresponds to, otherwise, set the value of the key with that item name equal to one.
+  - After iterating over all the items, the counter will contain unique keys that represent all the items, along with the number of times that that item was encountered.
 
 ```python
 
