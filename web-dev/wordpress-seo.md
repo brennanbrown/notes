@@ -21,6 +21,11 @@
     - [HTTPS Status Codes](#https-status-codes)
     - [Modifying Existing Links](#modifying-existing-links)
     - [Changing Permalink Structure](#changing-permalink-structure)
+  - [HTTP vs. HTTPS](#http-vs-https)
+    - [Migration to HTTPS](#migration-to-https)
+  - [Robots and Sitemaps](#robots-and-sitemaps)
+    - [Robots.txt](#robotstxt)
+    - [Sitemaps](#sitemaps)
 
 ## Search Engine Optimization for Wordpress
 
@@ -255,3 +260,80 @@
     - This is helpful for troubleshooting. Every time a request comes in, we'll see if a redirect worked or if a redirect didn't work and served a 404 error. 
 - In addition, the plugin gives the ability to bake in a new redirection, and we start by adding the source URL and then the target URL. 
     - If we had a relatively simple site, we could manually add each redirect one at a time.
+
+## HTTP vs. HTTPS
+
+- It's really important that your site makes the move to HTTPS if you haven't done it already. 
+  - Google is determined to make HTTPS the standard across the web and it provides a very secure experience for your visitors. 
+- HTTP stands for hypertext transfer protocol and it's designed to let two different systems communicate. 
+  - This means that your web browser can communicate with a web server to deliver a website. 
+  - The protocol defines how all of that information should be formatted and transmitted. 
+- HTTP was designed to transfer all of that information openly in plain text. 
+  - It's essentially a postcard. Your message is visible to anyone who handles that postcard or anyone who finds a way to take a look at that postcard before it arrives at the destination. 
+- If you want something to be secure, you need to hide the contents, and that's where the S comes from. 
+  - It means secure. It does the same thing, it encrypts the information before transmitting any messages. 
+  - Essentially, it's going to put your contents in a secure envelope that only the intended recipient can open. 
+- And additionally, HTTPS comes with authenticity. 
+  - You need an SSL certificate to not only create that encryption, essentially secure that package, but also to prove that the website is who it says it is and nobody is impersonating it in an attempt to intercept that message. 
+- You should be protecting all of your sites with HTTPS. 
+  - Not only does it enhance security, it is a ranking factor for Google and the modern Chrome browser issues a warning to users for sites that aren't on HTTPS.
+- Setting up HTTPS is going to vary from host to host. 
+  - Some come with it built in out of the box, others require that you find and secure your own SSL certificate, but it's worth the effort.
+
+### Migration to HTTPS
+
+- If you're going to be migrating your WordPress site to HTTPS, you'll need to pay close attention to how you handle this migration. 
+- After securing your SSL certificate there's still more work to be done. 
+  - You'll need to make sure that all of your redirects are in place so HTTP automatically redirects to HTTPS, and you'll need to make sure that all of the code libraries and file hosting services you're using are also secure. 
+- A really easy way to manage this setup is to use a lightweight plugin called *Really Simple SSL*. 
+  - This plugin handles most of the issues that WordPress has with SSL. 
+  - Say you're using a load balancer or there's no headers being passed, so WordPress can't detect your SSL. 
+  - It also helps by automatically managing all of your incoming requests and redirecting them to HTTPS. 
+  - It also changes your site URL and home URL to HTTPS, and it'll automatically solve all insecure content by forcing HTTP URLS to HTTPS. 
+- The first thing that you want to do is take a look at the difference between the WordPress 301 redirect and the 301 at the .htaccess level. 
+  - It's recommended that you set your 301 redirect from HTTP to HTTPS at the HT access level as the WordPress 301 redirect is living within the software whereas the HT access is living directly within your server. 
+  - This can cause problems depending on how your site is configured, if you're unfamiliar, read the article about how to regain access in the event that your site goes into a redirect loop. 
+- The .htaccess file is not writeable, and this is because the way that this server is configured doesn't give this user privileges to modify the .htaccess file. 
+  - You'd have to manually copy and paste the information provided 
+- Once you've configured HTTPS you'll want to test to make sure that it's working, and you can do that by running another crawl and making sure that all of your URLS 301 redirect to HTTPS and you don't receive any 404 errors. 
+  - Furthermore you'll want to make sure that you update your site map if it doesn't automatically update, and you'll also want to make sure that you reconfigure any analytics, tracking, and say Google search console as all of those will likely have been configured as HTTP. 
+- There's quite a bit that goes into this migration, but it's worth the effort. 
+
+## Robots and Sitemaps
+
+### Robots.txt
+
+- A properly configured website is going to have a `robots.txt` file. 
+  - This file is really important, because it creates the set of instructions that crawlers use when they arrive on your website. 
+  - These instructions indicate what the crawler should crawl and what they should not crawl. Essentially, it disallows or allows certain behavior. 
+- This file exists at `websitename.com/robots.txt`. 
+  - All robots.txt files live at the same destination, and they're all case sensitive, so they will always be lowercase r in the robots. 
+
+The default `robots.txt` that comes pre-installed on your WordPress website:
+
+```txt
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admn-ajax.php
+
+Sitemap: https://www.webitename.com/sitemap_index.xml
+```
+- First, it's saying the user agent (that's the piece of software that's crawling the website) is an asterisk which means all user agents must follow the directive below. 
+  - That directive says you're not allowed to crawl the folder `wp-admin`. 
+  - That's the folder that we use to log in and administer everything we're doing in WordPress, so it makes sense that we don't want the crawlers going through all of those URLs. 
+  - It says you're allowed, however, to visit one particular URL within that folder, `admin-ajax`. 
+- It's important to know that disallowing pages or subdirectories isn't a security feature, this isn't going to prevent people from accessing this content. 
+  - This just tells the robots to not waste their time crawling it. 
+  - This is really important, because a particular crawler, say Google, has a quota, an allotment of time that it's going to dedicate to crawling your website. 
+  - Once that time has elapsed, it's done and it leaves. 
+- If the crawler wastes time visiting content that is never going to be relevant for what people are searching for, it's content that you're never going to send traffic to, there's no point in having Google, or any other crawler, visit that content. 
+  - That is why we use a robots.txt file. We use it to provide directives, the instructions that we want the crawler to follow. 
+
+### Sitemaps
+
+-  A sitemap lays out all of the content on your site as a way to indicate to both search engine spiders and sometimes visitors to your site, where all of the information exists. 
+    - There are traditionally two types of sitemaps: The HTML sitemap and the XML sitemap. The HTML sitemap is usually for your users and the XML sitemap is used for crawlers.
+- Essentially, the HTML sitemap is a page that allows you to navigate the categories and topics, a variety of sections. 
+    - It's here to help users navigate a large website such as Lynda.com. 
+- The sitemap that is most important when it comes to improving your SEO is your XML sitemap. 
+    - Traditionally you find that at `/sitemap.xml`. However, you can look in the robots.txt file to see if it's somewhere else. 
