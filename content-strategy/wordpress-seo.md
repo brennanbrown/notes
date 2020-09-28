@@ -24,7 +24,7 @@
   - [HTTP vs. HTTPS](#http-vs-https)
     - [Migration to HTTPS](#migration-to-https)
   - [Robots and Sitemaps](#robots-and-sitemaps)
-    - [Robots.txt](#robotstxt)
+    - [Robots.txtvv](#robotstxtvv)
     - [Sitemaps](#sitemaps)
 
 ## Search Engine Optimization for Wordpress
