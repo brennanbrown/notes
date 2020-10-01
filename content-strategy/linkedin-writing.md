@@ -11,6 +11,8 @@
   - [Timely Writing](#timely-writing)
   - [Attribute Your Sources](#attribute-your-sources)
   - [Handling Feedback](#handling-feedback)
+  - [Sharing Your Work](#sharing-your-work)
+  - [Analytics](#analytics)
 
 ## Introduction
 
@@ -178,3 +180,37 @@
 - If you write something that generates a tremendous amount of feedback, take that feedback, find four or five themes that people are bringing up and create a new post out of that.
   - It's a new way to come up with a topic for you to write about and you carry on the conversation.
 - It's really important to accept that we are in a social world that people want to have their voice heard, that you're giving them the icebreaker to talk about their own experiences. The more you can embrace comments and help turn them into a conversation, the better off you're going to be.
+
+## Sharing Your Work
+
+- After writing, you need to build an audience for your work. 
+  - One of the top ways you do that is by sharing your content. 
+  - You've got to be out there sharing everything that you're writing. 
+- For instance, send it out on Twitter, on LinkedIn, on Facebook. 
+  - That's to start, then you want to do things like talk about the people you're discussing in the story.
+  - Add the name of the person you're talking about, or other people that I think might be interested in this story. 
+  - It's going to show up in their feeds, it's going to show up in emails to them, etc. 
+  - They're going to want to respond by sharing it with their own networks. They might have something they want to add. 
+- They might write their own posts off of it. 
+  - Again, what you're trying to do here is start a conversation. 
+  - You can't start a conversation in the vacuum. You have to have people around you who are willing to engage with your content.
+
+## Analytics
+
+- When you're writing, you're writing based off what you know. 
+  - You're using your heart and your head and your gut to be able to get it all out onto the screen. 
+- When you're done, that's when you turn to the analytics. 
+  - The data can really help you understand who you're reaching, whether you got to the right people and when the right times are for your next post. 
+  - You can use the data to be a better writer. 
+- There are a couple different tools that I would encourage you to rely on: 
+  - On LinkedIn, there's a page where you can get information for every single post about what industries you reach and what geographies your readers are in and what level of seniority they're at. 
+  - A lot of writers use this to make sure they're reaching the audiences they were hoping to reach. 
+- For instance, a CEO of a major healthcare company who only wants to reach doctors.
+  - When he writes a post that does incredibly well, the first thing he does is look at his analytics and say, "did I reach people in the healthcare industry?" 
+  - A post can be a giant post forum, but if you reach the wrong audience, it was a failure. 
+- Data can help you understand whether you're reaching the right audience. 
+  - Before you start writing, you're always thinking about the audience you want to reach. 
+  - The data tells you, "did I get to these people?" the data also helps you understand when the right time is for you to write, who your readers are, who are the people who are constantly sharing your work and talking about it because you want to engage with those people. 
+- They're the ones who are going to start the conversation based on what you were saying. 
+  - You can use all kinds of data tools to help you schedule your post to be able to think about social media sharing. 
+  - The data really gives you the ability to build this audience. So use it wisely. 
