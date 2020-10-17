@@ -204,7 +204,7 @@ app.use(async (request, response, next) => {
 - Things get easier once the layout has been split into logical parts.
 
 * First add the template tag `<%`, without an equal sign or a minus, because there is no direct output.
-* For control structure, use bracket percent `{%<`, and add the appropiate elements.
+* For control structure, use bracket percent `{%<`, closing with `%}` and add the appropiate elements.
 * Like in Javascript, call a `forEach` on it.
   - And as it is with a `forEach` function, this takes a callback that gets, for each iteration, the current array item.
   - And then I continue as if this would be regular Javascript, by adding curly brackets.
