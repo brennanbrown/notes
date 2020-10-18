@@ -57,7 +57,7 @@
   - Usage of `url_for` function for resolving links
   - Usage of `route()` decorator to bind a function to one or more URL patterns
     - Eg. `https://domain.com/`, `https://domain.com/index`, `https://domain.com/home`
-  - Usage of Jinga delimiters, eg. `{% ... %}` or `{# ... #}`
+  - Usage of Jinga delimiters, eg. `{％ ... %}` or `{# ... #}`
 
 ### Jinja Templates
 

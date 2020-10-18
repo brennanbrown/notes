@@ -215,7 +215,7 @@ app.use(async (request, response, next) => {
 Example of using looping in `/views`:
 
 ```javascript
-<％ speakerNames.forEach(function (speaker) {%>
+<％ speakerNames.forEach(function (speaker) {％>
     <a class="dropdown-item" href="/speakers/<％=speaker.shortname%>"><％=speaker.name%></a>
 <％})%>
 ```
@@ -235,7 +235,7 @@ Associated file, `topSpeakers.ejs`:
 
 ```html
 <div class="row">
-  <％ topSpeakers.forEach(function(speaker) {%>
+  <％ topSpeakers.forEach(function(speaker) {％>
   <div class="col-md text-center">
     <h4 class="speakerslist-title"><％=speaker.title%></h4>
     <div class="speakerslist-name">
@@ -314,7 +314,7 @@ Form Template Example:
 
 ```html
 <div class="feedback-items">
-  <％ feedback.forEach(function (item) {%>
+  <％ feedback.forEach(function (item) {％>
   <div class="feedback-item item-list media-list">
     <div class="feedback-item media">
       <div class="feedback-info media-body">
