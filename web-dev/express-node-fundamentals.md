@@ -26,6 +26,8 @@
     - [Creating and Testing an API Endpoint](#creating-and-testing-an-api-endpoint)
     - [Add Client-side JavaScript](#add-client-side-javascript)
 
+> NOTE: All "%" symbols have been replaced with "％" to prevent errors on Jekyll's rendering.
+
 ## Introduction
 
 - **node.js** is one of the major platforms for the web.

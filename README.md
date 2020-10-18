@@ -2,6 +2,8 @@
 
 This is a public domain repository of notes I have taken regarding various skills, including programming and software development.
 
+NOTE: You can view all of these notes online [**here!**](https://brennanbrown.github.io/notes)
+
 ## List of Topics
 
 **Programming Foundations:**
