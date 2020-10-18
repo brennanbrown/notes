@@ -45,7 +45,7 @@ html {
     /* default theme: light background, dark text, blue accent */
     --theme-hue: 0;
     /* white */
-    --accent-hue: 194;
+    --accent-hue: 204;
     /* blue */
 
     --text-color-richer: hsl(var(--theme-hue), 0%, 5%);
@@ -55,7 +55,7 @@ html {
     --text-color-softer: hsl(var(--theme-hue), 0%, 33%);
     /* #555555 		button color; button:hover border */
 
-    --accent-color: hsl(var(--accent-hue), 86%, 57%);
+    --accent-color: hsl(var(--accent-hue), 86%, 37%);
     /* #33C3F0 		link; button-primary bg+border; textarea,select:focus border */
     --accent-color-hover: hsl(var(--accent-hue), 76%, 49%);
     /* #1EAEDB 		link hover; button-primary:hover:focus bg+border */
@@ -222,13 +222,14 @@ h5,
 h6 {
     margin-top: 0;
     margin-bottom: 2rem;
-    font-weight: 300;
+    font-weight: bold;
 }
 
 h1 {
     font-size: 4.0rem;
     line-height: 1.2;
     letter-spacing: -.1rem;
+    text-align: center;
 }
 
 h2 {
@@ -455,6 +456,7 @@ label>.label-body {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 ul {
     list-style: circle inside;
+    font-size: 22px;
 }
 
 ol {
@@ -471,7 +473,6 @@ ul ul,
 ul ol,
 ol ol,
 ol ul {
-    font-size: 100%;
     margin: 1rem 0 1rem 3rem;
     color: var(--text-color-softer);
 }
@@ -586,6 +587,13 @@ hr {
     border-top: 1px solid var(--border-color-softer);
 }
 
+blockquote {
+    border-left-color: black;
+    border-left-width: 3px;
+    border-left-style: solid;
+    padding-left: 10px;
+    font-style: italic;
+}
 
 /* Clearing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -618,3 +626,12 @@ there.
 
 /* Larger than tablet */
 @media (min-width: 1200px) {}
+
+
+/* Custom Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.container {
+    margin: 0 auto;
+    max-width: 800px;
+}
