@@ -160,8 +160,8 @@ app.get(,/speakers/:speakername?', handler);
 - When working with external files, Eg. `/js/main.js`, make it absolute.
   - Remove the dot (previouisly `./js/main.js`)
   - This is because the absolute path points to the root of a project when it's delivered via Express and it will work even when we are on a sub-page where the relative path would not point to the right location anymore.
-- With EJS, to add sections, use for example `<%- include(\`../pages/\${template}\`) %>`
-  - Use `<%-` to include the template unescaped.
+- With EJS, to add sections, use for example `<％- include(\`../pages/\${template}\`) %>`
+  - Use `<％-` to include the template unescaped.
   - If you would escape it, the raw html would be visible on the page, and not the parsed html.
 - In the `index.js`, you would change it to `response.render('layout', { pageTitle: 'Example Text', template: 'index' });`
 - Similarly, you can add any JavaScript to `scripts.ejs` as a parital as well.
@@ -174,7 +174,7 @@ app.get(,/speakers/:speakername?', handler);
   - Eg. to change the navigation section, you have to scroll around to eventually find and edit it, making
 - Start by creating a new folder in the `layout` directory calledc `partials` called `navigation.ejs`, for example.
 - An important note that, when within a parital, a html file such as `./contact.html`, you would change it to just `/contact`.
-- Similarly, to add the parital to a page, you would add `<%- include('./partials/navigation') %>`
+- Similarly, to add the parital to a page, you would add `<％- include('./partials/navigation') %>`
 
 ### Template Variables in More Detail
 
@@ -182,7 +182,7 @@ app.get(,/speakers/:speakername?', handler);
   - First, you can set the variable directly These variables are only available to the particular template for this particular request.
   - Second, Express also knows variables that are globally available to any template for a given request. So they are request global template variables, and they are set on the response object. Typically you would set that via middleware.
   - Lastly, there are also variables that are set during start up of the application, and then available for the whole lifecycle. This is done on the application object.
-  - Eg. in `server.js` you would add `app.locals.siteName = 'Business Website';` and then `<%= siteName %>` to the `index.ejs`
+  - Eg. in `server.js` you would add `app.locals.siteName = 'Business Website';` and then `<％= siteName %>` to the `index.ejs`
 
 ```javascript
 
@@ -203,7 +203,7 @@ app.use(async (request, response, next) => {
 
 - Things get easier once the layout has been split into logical parts.
 
-* First add the template tag `<%`, without an equal sign or a minus, because there is no direct output.
+* First add the template tag `<％`, without an equal sign or a minus, because there is no direct output.
 * For control structure, use bracket percent `{ %<`, (without space) and add the appropiate elements.
 * Like in Javascript, call a `forEach` on it.
   - And as it is with a `forEach` function, this takes a callback that gets, for each iteration, the current array item.
@@ -215,9 +215,9 @@ app.use(async (request, response, next) => {
 Example of using looping in `/views`:
 
 ```javascript
-<% speakerNames.forEach(function (speaker) {%>
-    <a class="dropdown-item" href="/speakers/<%=speaker.shortname%>"><%=speaker.name%></a>
-<%})%>
+<％ speakerNames.forEach(function (speaker) {%>
+    <a class="dropdown-item" href="/speakers/<％=speaker.shortname%>"><％=speaker.name%></a>
+<％})%>
 ```
 
 Example of looping in `server.js`:
@@ -229,30 +229,30 @@ speakersService.getList(); console.log(topSpeakers); response.render('layout', {
 pageTitle: 'Welcome', template: 'index', topSpeakers }); }); }
 ```
 
-- Make sure to add `<%- include(./partials/topSpeakers` to the top of the `index.ejs` in the `/pages` directory.
+- Make sure to add `<％- include(./partials/topSpeakers` to the top of the `index.ejs` in the `/pages` directory.
 
 Associated file, `topSpeakers.ejs`:
 
 ```html
 <div class="row">
-  <% topSpeakers.forEach(function(speaker) {%>
+  <％ topSpeakers.forEach(function(speaker) {%>
   <div class="col-md text-center">
-    <h4 class="speakerslist-title"><%=speaker.title%></h4>
+    <h4 class="speakerslist-title"><％=speaker.title%></h4>
     <div class="speakerslist-name">
       with
-      <a href="/speakers/<%=speaker.shortname%>"><%=speaker.name%></a>
+      <a href="/speakers/<％=speaker.shortname%>"><％=speaker.name%></a>
     </div>
     <p class="speakerslist-info mt-2">
-      <a href="/speakers/<%=speaker.shortname%>">
+      <a href="/speakers/<％=speaker.shortname%>">
         <img
           class="speakerslist-img rounded-circle"
-          src="/images/speakers/<%=speaker.shortname%>_tn.jpg"
-          alt="Photo of <%=speaker.name%>"
+          src="/images/speakers/<％=speaker.shortname%>_tn.jpg"
+          alt="Photo of <％=speaker.name%>"
         />
       </a>
     </p>
   </div>
-  <%})%>
+  <％})%>
 </div>
 ```
 
@@ -304,7 +304,7 @@ app.use((err, request, response, next) => {
 
 - By default, the error page looks pretty broken, there are no links back to safer grounds and the user that ends up there will likely leave.
   - To create your own error page, you must create a middleware that captures the 404 error.
-- In order to make this page dynamic, make sure you add both `<%=status%>` and the respective `<%=message%>` to the page.
+- In order to make this page dynamic, make sure you add both `<％=status%>` and the respective `<％=message%>` to the page.
 
 ## Handling Form Data
 
@@ -314,19 +314,19 @@ Form Template Example:
 
 ```html
 <div class="feedback-items">
-  <% feedback.forEach(function (item) {%>
+  <％ feedback.forEach(function (item) {%>
   <div class="feedback-item item-list media-list">
     <div class="feedback-item media">
       <div class="feedback-info media-body">
         <div class="feedback-head">
-          <div class="feedback-title"><%=item.title%></div>
-          <small>by <%=item.name%></small>
+          <div class="feedback-title"><％=item.title%></div>
+          <small>by <％=item.name%></small>
         </div>
-        <div class="feedback-message"><%=item.message%></div>
+        <div class="feedback-message"><％=item.message%></div>
       </div>
     </div>
   </div>
-  <%})%>
+  <％})%>
 </div>
 ```
 
