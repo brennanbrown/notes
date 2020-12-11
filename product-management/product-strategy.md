@@ -12,6 +12,9 @@
     - [History of Project Management](#history-of-project-management)
   - [Role of Product Management](#role-of-product-management)
     - [Differences in Roles](#differences-in-roles)
+    - [Type of User](#type-of-user)
+    - [Types of Products](#types-of-products)
+    - [What Project Managers Do](#what-project-managers-do)
   - [Problem Identification](#problem-identification)
   - [Vision & Strategy](#vision--strategy)
   - [Communication Skills](#communication-skills)
@@ -124,15 +127,59 @@ When looking at the **4 P's of Marketing**, Place, Price, and Promotion are unde
 
 A company’s philosophy to building products also shapes the role of a PM. The most common philosophies:
 
-- Product led: Solving problems for users, focusing on understanding and writing requirements.
+- **Product led:** Solving problems for users, focusing on understanding and writing requirements.
   - Research is done through talking and studying users.
   - Then, once engineering has the requirements, they will build.
   - While this is a customer-centered approach, there might be a lack of empathy from non-customer facing teams.
-- Engineering led: Engineers solve a technical problem, and the PM brings it to marketing.
+- **Engineering led:** Engineers solve a technical problem, and the PM brings it to marketing.
   - This promotes technical innovation, and sometimes, customers don't really know what they want, until they have it.
   - However, this increases the possibility that the product won't resonate with the customer.
-- Product + Engineering partnership: PMs write the requirements, but engineering is included in identifying them.
+- **Product + Engineering partnership:** PMs write the requirements, but engineering is included in identifying them.
   - Engineering then builds based on requirements, but the PM is included in the Eng Design.
+
+### Type of User
+
+- Consumers mean focusing on user problems and providing value.
+  - Customer-facing products require a simple, clean UX design.
+  - The user is likely the person who purchases the product.
+- On the other hand, for enterprise products, the focus is both on the user and the business problems.
+  - The bulk of the value is provided to the company, and some value to the user.
+  - And, ultimately, it's the company that decides to purchase the product, even though the employees will be using it.
+  - In these types of environments, the user and the customer are not the same.
+  - There are usually a lot more problems for PMs to identify any requirements to manage, thus creating slower iteration and development.
+
+### Types of Products
+
+- **Software** products require PMs to really focus on UX and will also need to understand roll-out cycles and processes like App Store reviews.
+- **Hardware** products focus on components, capabilities, cost, and the supply chain.
+  - In addition to shipping certification, factory lines, and import implications.
+  - Physical products also cannot be updated nearly as easily as digital ones, meaning there's more emphasis on getting things right the first time.
+- **Data** products are used for researching and possibly machine learning, getting super deep into data and numbers.
+  - The goal being to figure out how to build a product on top of a _lot_ of data.
+  - Eg. Self-driving cars or Netflix recommendations.
+- **Growth** is where PMs focus on accelerating the product through features that drive adaptability, either directly or indirectly.
+  - The focus being on getting new users and having a deep understanding of their funnel optimization.
+- **Internationalization** is the focus on bringing the product to new places.
+  - This means deeply understanding the differences in those markets, user behaviour and expectations, and adopting the product to fit.
+  - This also includes adaptions such as adding support to right-to-left languages in UI or creating systems that can customize content in an app based on location.
+  - Some markets might also have additional requirements that must be met before the product can be launched there.
+
+### What Project Managers Do
+
+- Finding the problem (Understand, Identify, Define)
+  - This one of the most important things that a PM does.
+  - Understanding the user and their needs, as well as the space that the product will be in.
+  - Conducting market, user, or competitive research to leverage existing product insights and data or other inputs to create hypotheses and test them.
+- Creating strategy, once armed with an understanding of the problem space and opportunity.
+  - PMs can build strategies for how to solve the problem through the creation of their product.
+  - Creating a high-level overview of the product, features and what it does.
+  - As well as how it maps to goals, objectives, and KPIs.
+- Once the problem and requirements have been identified, then planning begins to figure out how to tackle the work.
+  - This usually involves working with design and engineering to figure out how much time is needed to both design and build the product.
+  - For larger products that will take a longer time to ship, it can be helpful to break things down into **milestones**.
+  - It is also important to identify key points of contact in both design and engineering that will be working with you as PM.
+- During UX design, it's super important to focus on building out mocks and the spec for the user-experience.
+  - Your role as PM is to provide context that can help inform design decisions.
 
 ## Problem Identification
 
