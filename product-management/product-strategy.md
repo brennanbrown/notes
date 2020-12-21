@@ -246,8 +246,8 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 
 ### Identifying Requirements
 
-- Once a requirement has been identified, it gets documented in a PRD (Product Requirements Document). 
-- Keep in mind that identifying requirements is a much more active and involved process than just “gathering.” 
+- Once a requirement has been identified, it gets documented in a PRD (Product Requirements Document).
+- Keep in mind that identifying requirements is a much more active and involved process than just “gathering.”
 - It’s important that PMs understand the problem and why a specific requirement exists. Identifying Requirements can happen through a variety of channels:
   - Research
   - Prototyping
@@ -255,17 +255,17 @@ There will be lots to learn! But even while you are ramping up, you can still pr
   - Input from cross functional partners
 - And two common challenges that come up when identifying requirements are:
   - Never be sure that all requirements have been identified
-  - Users might not be able to tell you what the product should do (ie: the requirement). 
+  - Users might not be able to tell you what the product should do (ie: the requirement).
   - Instead it’s better to focus on understanding the problem the user is facing and their needs. Ask why. Then ask why again. And keep asking why until you get to a deeper understanding.
 
 ### Product Roadmap
 
-- Product Managers spend a lot of their time answering the question WHAT should the product do and aligning internal teams to execute against their vision. 
+- Product Managers spend a lot of their time answering the question WHAT should the product do and aligning internal teams to execute against their vision.
   - There are two tools that PMs use to communicate WHAT the product should do: Roadmaps and PRDs.
-- A product roadmap is the plan that the team will be executing against. 
-- Product roadmaps provide a high level overview of the direction of the product over time. 
+- A product roadmap is the plan that the team will be executing against.
+- Product roadmaps provide a high level overview of the direction of the product over time.
   - It calls out work that is required to meet business objectives and roughly when that work needs to happen.
-- Roadmaps are a powerful artifact because they set expectations across the team in terms of the team’s priorities. 
+- Roadmaps are a powerful artifact because they set expectations across the team in terms of the team’s priorities.
   - They also are a powerful mechanism for driving alignment across various stakeholders and making tradeoffs between new requests and planned work.
 - In addition:
   - High level overview of the direction of the product over time (ie: multiple features)
@@ -275,8 +275,8 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 
 ### Product Requirements Document
 
-- The PRD is the source of truth that answers the question WHAT is the team building and WHY, which is incredibly helpful to drive alignment across the team. 
-  - A PRD is never done and will continue to evolve as the team is working on the problem. 
+- The PRD is the source of truth that answers the question WHAT is the team building and WHY, which is incredibly helpful to drive alignment across the team.
+  - A PRD is never done and will continue to evolve as the team is working on the problem.
   - It’s the PM’s job to write the PRD and keep it up to date as decisions are made and new information becomes available.
 - PRDs always need to have these components:
   - **frame the problem…** and answers the question WHY are we solving it.
@@ -285,24 +285,24 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 - Additionally, other components can include:
   - assumptions
   - options considered
-  - UI mocks 
+  - UI mocks
     - (it can be super helpful to work with design and include these in the PRD because it is often easier to communicate some ideas visually instead of through text)
   - out of scope
   - risks & mitigations
   - support plan
-- In addition: 
+- In addition:
   - More detail about a specific feature
   - Frame the problem and answer the question WHY are we solving it.
   - Outline the goals (both user goals, business goals, and success metrics). This section also helps to explain WHY the problem should be solved.
-  - Describe the requirements and answers WHAT does the product do? 
+  - Describe the requirements and answers WHAT does the product do?
     - Remember, as a PM you are answering WHAT the product does. Design and engineering have to figure out HOW.
 
 ## Problem Identification
 
 ### Identifying Opportunties
 
-- Finding the right problem to solve is critical for the success of your product! 
-  - If you aren’t focusing on the right problems, your product will fail. 
+- Finding the right problem to solve is critical for the success of your product!
+  - If you aren’t focusing on the right problems, your product will fail.
   - This is something that both big and small companies struggle with. You’ll have to work through constraints and tradeoffs
 - You can start to identify which problems to solve by looking at:
   - Market Research
@@ -313,14 +313,14 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 
 ### Understanding the Market
 
-- Understanding the market is critical to building successful products. 
-  - Some markets are better than others. And some products do a better job than others. 
+- Understanding the market is critical to building successful products.
+  - Some markets are better than others. And some products do a better job than others.
   - You’ll want to make sure that your product satisfies the needs of the market.
 - Understanding the market allows you to focus on solving the right problem. Keep in mind that some markets are better than others.
   - **Size**: How many people have this problem?
   - **Growth**: Is the size of the market increasing?
   - **Acquisition**: How much does it cost to acquire customers?
-- To better understand the market, you’ll want to talk to your users and customers. 
+- To better understand the market, you’ll want to talk to your users and customers.
 - But before you do, you can look at some of these things to get more familiarity with the market:
   - Online research
   - Headlines & News
@@ -331,11 +331,11 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 
 ### Target User
 
-- Identifying a target user is important, because it makes it very clear who you are building the product for. 
-  - Oftentimes, a problem will best be solved in different ways for different types of users. 
+- Identifying a target user is important, because it makes it very clear who you are building the product for.
+  - Oftentimes, a problem will best be solved in different ways for different types of users.
 - Identifying a target user creates focus and lets you focus on solving the needs of that specific target user.
-- Your target user represents a set of users with shared characteristics, like demographics, motivations, goals, and frustrations, who are likely interested in your product. 
-  - To identify your target user, you will need to talk to your users and do market research.  
+- Your target user represents a set of users with shared characteristics, like demographics, motivations, goals, and frustrations, who are likely interested in your product.
+  - To identify your target user, you will need to talk to your users and do market research.
 
 ### Total Addressable Market
 
@@ -350,8 +350,6 @@ There are several approaches to calculating TAM:
   - This involves using known data points that you have (data from early customers and sales) that you could extrapolate to represent a larger market opportunity. For example, if you are already selling a product in one region and were considering selling it globally.
 - **Value Theory**
   - Generally used for new product categories where you don’t have much information to base estimates on. This involves conducting market research to understand how much people would pay for your product and how many potential customers you have.
-
-
 
 ## Vision & Strategy
 
