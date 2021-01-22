@@ -39,7 +39,19 @@
 - Most content serves one of four main purposes:
   - Entertainment, Education, Persuasion, or Conversion.
 
+> BradNames.com/
+
 ## Idea Generation
+
+- The more valuable content that you publish, the more opportunites you have to connect with people. 
+  - The process for coming up with good content consistently is to be able to come up with good ideas consistently.
+  - You need a reliable **Ideation System**.
+- Creation begins with consumption
+- Conducting a braindump
+- The #1 tool for content research
+- Questions from your target audience
+- Eavesdropping on niche communities
+- Your existing audience and content can help you generate new ideas
 
 ## Improving Your Writing
 
