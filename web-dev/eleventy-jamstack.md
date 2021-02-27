@@ -10,6 +10,8 @@
     - [Building a Project](#building-a-project)
   - [Organizing a Serverless Website](#organizing-a-serverless-website)
     - [Creating Front Matter Data](#creating-front-matter-data)
+    - [Building a Template Page](#building-a-template-page)
+    - [Layout Chaining](#layout-chaining)
   - [Using Site Data](#using-site-data)
   - [Working with Content Features](#working-with-content-features)
   - [Managing Collections](#managing-collections)
@@ -96,11 +98,16 @@ module.exports = function(eleventyConfig) {
     // Exposing the eleventyConfig variable to process imgs:
     eleventyConfig.addPassthroughCopy("./site/images");
 
+    // Creates a shortcut alias for long layout path names: 
+    eleventyConfig.addLayoutAlias("base", "pageTemplates/base.njk);
+
     return { 
-        dir: {
+      markdownTemplateEngine: 'njk',
+      dir: {
         input: "_site",
+        includes: "_layouts",
         output: "dist",
-        }
+      }
     }
 }
 ```
@@ -114,7 +121,7 @@ module.exports = function(eleventyConfig) {
     "name": "jamstack",
     "version": "1.0.0",
     "scripts": {
-        "start": "eleventy --serve"
+        "start": "eleventy --serve --quiet"
     }
 }
 ```
@@ -134,6 +141,9 @@ module.exports = function(eleventyConfig) {
 
 ---
 title: Testing YAML
+date: 2020-01-03 # Could be "Created" or "Modified"
+templateEngineOverride: md, njk
+layout: base
 object_examples:
     key: value
     array:
@@ -148,7 +158,22 @@ content: |-
     Or you can
     auto-convert line
     breaks to save space!
+tags:
+  - home
+  - welcome
+  - info
 ---
+
+**Date:** {{ page.date.toUTCString() }}
+
+**By:** {{ pkg.author }}
+
+**Tags:**
+<ul>
+  {% for item in tags %}
+  <li>{{ item }}</li>
+  {% endfor %}
+</ul>
 
 Hello World, this post is called {{ title }}! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur, mi non scelerisque lobortis, risus eros fermentum eros, et sagittis justo ex hendrerit tortor.
 
@@ -156,6 +181,55 @@ Hello World, this post is called {{ title }}! Lorem ipsum dolor sit amet, consec
 
 - The above unformation is exposed in a templating language, of which there are eleven different ones that you can use with Eleventy.
 - **Liquid** is the default in Eleventy, but a lot of times you'll notice that the documentation will be written in **Nunjucks** which is what's used in this project. They are pretty similar.
+- If you want to, you can override the default engine for the entire Website by using a markdown template engine variable in your Eleventy.js configuration file. 
+  - But you can also override the template for the specific page by using a template engine override variable in your markdown front matter.
+  - For that, you would add `templateEngineOverride: md, njk` in the YAML.
+
+### Building a Template Page 
+
+- Eleventy allows you to create a type of document called a layout and these are templates that you can wrap around pieces of content. 
+- The way that this works is by looking for an `_includes` folder by default, and any files that you put in there can be accessed through the front matter in your markdown documents. 
+  - You can also override the location of these files, so in your `eleventy.js` file you can modify the `dir.includes` object and specify that you want the templates to be somewhere else. 
+  - By default, is going to assume that all of these live inside whatever is the input folder for your project, which would be the `_site` folder.
+- You can also separate *templates* from *includes*, includes can have additional pieces of information in them, so you can create a separate folder for only templates. 
+  - This makes things a little bit cleaner and more organized. 
+- Templates themselves can have their own frontmatter variables. 
+  - You can use those inside the template itself, or also the content that is being wrapped by the template. 
+  - In order to use the content that is going to be wrapped by the template, you can use a special content variable `{{ content | safe }}`. 
+    - And if you're using Nunjunks, you want to use the save filter like this, so it doesn't double process variables. 
+  - **Layout:** `path/mylayout.njk`
+  - You can alias the template path with the following function: `eleventyConfig.addLayoutAlias("name", "path");`
+- This means that you can easily create layouts, create aliases to layouts and create multiple page layouts by putting things inside my layouts folder. 
+
+**`_site/_layouts/pageTemplates/base.njk`:**
+
+```html
+---
+siteTitle: JAMStack with Eleventy
+---
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{siteTitle}} -- {{Title}}</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+  <body>
+    <div class="container">
+      {{ content | safe }}
+    </div>
+  </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
+```
+
+### Layout Chaining
 
 ## Using Site Data
 
