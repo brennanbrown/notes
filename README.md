@@ -31,6 +31,7 @@ NOTE: You can view all of these notes online [**here!**](https://brennanbrown.gi
   - Gatsby Fundamentals
 - Flask Fundamentals
 - Django Fundamentals
+- Building Serverless Apps with JAMStack and Eleventy
 
 **Tools:**
 
