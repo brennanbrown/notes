@@ -1,5 +1,7 @@
 # Building Serverless Apps with JAMStack and Eleventy
 
+> **NOTE:** In order to not have the display break when writing example code, all `{{` brackets have been replaced with `[[` brackets.
+
 **Table of Contents:**
 
 - [Building Serverless Apps with JAMStack and Eleventy](#building-serverless-apps-with-jamstack-and-eleventy)
@@ -14,6 +16,9 @@
     - [Layout Chaining](#layout-chaining)
   - [Using Site Data](#using-site-data)
     - [Using a Data File](#using-a-data-file)
+    - [Adding Directory Data](#adding-directory-data)
+    - [Loading Content Dynamically via APIs](#loading-content-dynamically-via-apis)
+    - [Using Alternative Data Formats](#using-alternative-data-formats)
   - [Working with Content Features](#working-with-content-features)
   - [Managing Collections](#managing-collections)
   - [Using Pagination and Plugins](#using-pagination-and-plugins)
@@ -108,8 +113,10 @@ module.exports = function(eleventyConfig) {
       markdownTemplateEngine: 'njk',
       dir: {
         input: "_site",
-        includes: "_layouts",
-        output: "dist",
+        data: "_data",
+        includes: "_includes",
+        layouts: "_layouts",
+        output: "dist"
       }
     }
 }
@@ -167,18 +174,18 @@ tags:
   - info
 ---
 
-**Date:** {{ page.date.toUTCString() }}
+**Date:** [[ page.date.toUTCString() ]]
 
-**By:** {{ pkg.author }}
+**By:** [[ pkg.author ]]
 
 **Tags:**
 <ul>
-  {% for item in tags %}
-  <li>{{ item }}</li>
-  {% endfor %}
+  [% for item in tags %]
+  <li>[[ item ]]</li>
+  [% endfor %]
 </ul>
 
-Hello World, this post is called {{ title }}! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur, mi non scelerisque lobortis, risus eros fermentum eros, et sagittis justo ex hendrerit tortor.
+Hello World, this post is called [[ title ]]! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur, mi non scelerisque lobortis, risus eros fermentum eros, et sagittis justo ex hendrerit tortor.
 
 ```
 
@@ -198,7 +205,7 @@ Hello World, this post is called {{ title }}! Lorem ipsum dolor sit amet, consec
   - This makes things a little bit cleaner and more organized.
 - Templates themselves can have their own frontmatter variables.
   - You can use those inside the template itself, or also the content that is being wrapped by the template.
-  - In order to use the content that is going to be wrapped by the template, you can use a special content variable `{{ content` `| safe }}`.
+  - In order to use the content that is going to be wrapped by the template, you can use a special content variable `[[ content | safe ]]`.
     - And if you're using Nunjunks, you want to use the save filter like this, so it doesn't double process variables.
   - **Layout:** `path/mylayout.njk`
   - You can alias the template path with the following function: `eleventyConfig.addLayoutAlias("name", "path");`
@@ -217,14 +224,17 @@ siteTitle: JAMStack with Eleventy
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{siteTitle}} -- {{Title}}</title>
+    <title>[[siteTitle]] -- [[Title]]</title>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
     </head>
-  <body>
+  <body class="bg-dark">
     <div class="container">
-      {{ content | safe }}
+      <div class="bg-white">
+        [[ content | safe ]]
+      </div>
+      [% include "social.njk" %]
     </div>
   </body>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -257,7 +267,7 @@ layout: base
 headerHeight: 50vh
 ---
 <!-- Used for pages that have a "hero" graphic: -->
-<header class="site-header position-relative" style="width: 100vw; min-height: {{headerHeight}};">
+<header class="site-header position-relative" style="width: 100vw; min-height: [[headerHeight]];">
 <section class="layout-hero position-absolute d-flex align-items-center" 
   style="background-image: linear-gradient(rgba(0, 0, 0, .7) 50px, transparent), 
   url({{hero}}); height: 100%; width: 100%;"></section>
@@ -265,17 +275,17 @@ headerHeight: 50vh
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="header-content col-11 col-sm-10 col-md-9 animated fadeInUp">
-        <h2 class="page-section-title text-light">{{ title }}</h2>
+        <h2 class="page-section-title text-light">[[ title ]]</h2>
         <p class="page-section-text text-light d-none d-md-block">
-          {{ summary | safe }}
+          [[ summary | safe ]]
         </p>
       </div>
     </div>
   </div>
 </div>
 </header>
-<main class="container mt-4">
-  {{ content | safe }}
+<main class="container py-4">
+  [[ content | safe ]]
 </main>
 ```
 
@@ -287,7 +297,7 @@ layout: base
 ---
 
 <main class="container mt-4">
-  {{ content | safe }}
+  [[ content | safe ]]
 </main>
 ```
 
@@ -298,12 +308,12 @@ layout: base
 title: About Me
 layout: page-hero
 headerHeight: 70vh
-hero: http://pixelprowess.com/i/raybo01.jpg
-summary: Helping people learn full-stack development with a clear, practice style
-permalink: '/about-{{ pkg.author | slug }}/'
+hero: https://brennanbrown.ca/img/header.jpg
+summary: Content Strategist and Web Developer looking to improve lives with the JAMstack!
+permalink: '/about-[[ pkg.author | slug ]]/'
 ---
 
-# {{title}}
+# [[title]]
 
 Hey there! My name is Brennan, I'm a 24-year-old Métis web developer and content strategist from Winnipeg, Manitoba and currently reside in Calgary, Alberta. I've recently compeleted a Full Stack Developer Program at [EvolveU](https://www.evolveu.ca/), and I'm looking to help those that need web development work done, or searching for ideas and management for their next content project.
 
@@ -334,7 +344,144 @@ I'm always looking to work with people that are hopeless idealists like me, as w
 - The folder structure of where you put that data *does* matter.
   - For example: If you want to have a variable called `social.site`, you can just place the data in the `_data/social/` folder and then put a file named `site.json` in that folder.
   - If you just wanted to have a `social.json` file, you would just call this `_/data/social.json` and it would automatically add a variable called social to your website.
-- The data can be available either to the entire website or you can place it anywhere in the file structure of your website. So for example if you want the information to only be available to your posts, then you would put the data file in the _site/posts location. Or you can put it anywhere else and then anything in that folder will have access to that data. 
+- The data can be available either to the entire website or you can place it anywhere in the file structure of your website.
+  - For example: If you want the information to only be available to your posts, then you would put the data file in the `_site/posts` location.
+  - Or you can put it anywhere else, and then anything in that folder will have access to that data.
+- Another example: Create some navigation with social media links.
+
+**`_site/_data/social.json`:**
+
+```json
+[
+  {
+    "name": "github",
+    "iconClass": "fab fa-github",
+    "url": "https://github.com/brennanbrown"
+  },
+  {
+    "name": "linkedin",
+    "iconClass": "fab fa-linkedin",
+    "url": "https://linkedin.com/in/brennankbrown"
+  },
+  { "name": "twitter", "iconClass": "fab fa-twitter", "url": "https://twitter.com/brennankbrown" },
+  { "name": "dribble", "iconClass": "fab fa-dribbble", "url": "https://dribbble.com/brennanbrown" },
+  {
+    "name": "flickr",
+    "iconClass": "fab fa-flickr",
+    "url": "https://www.flickr.com/photos/brennankbrown/sets/72157602932636630/"
+  },
+  { "name": "youtube", "iconClass": "fab fa-youtube", "url": "https://www.youtube.com/user/brennankbrown" },
+  { "name": "instagram", "iconClass": "fab fa-instagram", "url": "https://www.instagram.com/iviewsource" }
+]
+```
+
+- Generally, you create layouts for things like pages and then you use the **`_includes`** folder for simpler or smaller things.
+  - These can be considered 'modular' containers of information that might be used on multiple pages, or just be separated to files smaller and more readable.
+
+**`_site/_includes/social.njk`:**
+
+```njk
+<nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
+  <div class="navbar-nav">
+  [%- for item in social-%]
+    <a class="nav-item nav-link" target="_blank" href="[[item.url]]">
+      <i class="nav-social-icon [[item.iconClass]] mr-2"></i>
+      <span class="align-text-bottom text-white d-none d-lg-inline">[[item.name]]</span>
+    </a>
+  [%- endfor -%]
+  </div>
+</nav>
+```
+
+### Adding Directory Data
+
+- In addition to creating global data files, you can create files that apply to a specific directory.
+  - For example: Let's say that you wanted to modify the layout of each of the files in the `_posts` directory to use the base template.
+  - Create a new file in the `_post` directory, and the trick is you have to name it the same thing as the directory name, in this case `posts.JSON`.
+  - And then in that JSON, you can add variables that every post will have.
+  - That's pretty powerful because it means that we can pass a lot of information that will go into every one of these templates.
+- Overall, it is much easier to create variables for your entire directory or actually bring in a file that applies only to information within that directory.
+
+**`_posts/posts.json`:**
+
+```json
+{
+  "layout": "page"
+}
+
+```
+
+### Loading Content Dynamically via APIs
+
+- In addition to creating data from a JSON file, you can use a regular JavaScript document to work with data.
+- With JavaScript, the way that you export data is a little bit different.
+  - You don't have to have this JSON format. You can get rid of these quotes if you want to.
+- But it can be more powerful than that as you remember the, **JAMstack** has three letters, JavaScript, APIs, and Markup.
+  - And so we can actually use an API from the web to import some data into our project.
+  - It should be noted that you aren't using the regular version of Javascript with 11ty, but rather the node.js version of it.
+- `npm install --save-dev node-fetch` will add the node-fetch module to our development enviorment for the project.
+  - What this will do is add a item to your `package.JSON` file and you can see that under `devDependencies`, `node-fetch` has been installed.
+  - This means you can now use the `fetch` command.
+
+**`clients/clients.11tydata.js`:**
+
+```js
+module.exports = {
+  clients: [
+     {
+      "id": "1",
+      "name": "Audry Topsy",
+      "title": "Owner",
+      "company": "Topsy Turvy Cake Designs",
+      "profile_photo": "30825.jpg",
+      "friends": [
+        {
+          "id": "2",
+          "name": "Dahlia Landon",
+          "title": "CEO",
+          "company": "Landon Hotel",
+          "profile_photo": "15436.jpg"
+        },
+        {
+          "id": "3",
+          "name": "Dalania Devitto",
+          "title": "Executive Director",
+          "company": "OVCAA",
+          "profile_photo": "33926.jpg"
+        },
+        {
+          "id": "4",
+          "name": "Dr. Elizabeth Chase",
+          "title": "Owner",
+          "company": "Wisdom Pet Medicine",
+          "profile_photo": "15919.jpg"
+        }
+  ]
+}
+```
+
+**Using `fetch`:**
+
+```javascript
+const fetch = require('node-fetch`);
+
+module.exports = async function() {
+
+  return fetch("http://trainingxyz.com/api/users/all")
+    .then( res => res,json())
+    .then(json => {
+      return {
+        clients: json
+      }
+    })
+}
+```
+
+- The cool thing about this is that we're making a dynamic API call.
+  - This means that if the API changes or if somebody uses some application to modify this API, every time we run this, it's going to keep it up-to-date.
+  - Which means that we can also use things like the GitHub actions to actually generate a call for this every now and then so that this website can be automatically updated once a day or once a week or however often you want to do that.
+
+### Using Alternative Data Formats
 
 ## Working with Content Features
 
