@@ -1,6 +1,6 @@
 # Building Serverless Apps with JAMStack and Eleventy
 
-> **NOTE:** In order to not have the display break when writing example code, all `{{` brackets have been replaced with `[[` brackets.
+> **NOTE:** In order to not have the display break when writing example code, all `{` brackets have been replaced with `[` brackets.
 
 **Table of Contents:**
 
