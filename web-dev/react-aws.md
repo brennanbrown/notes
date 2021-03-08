@@ -1,8 +1,8 @@
-# Hosting React on Amazing Web Services
+# Hosting React on Amazon Web Services
 
 **Table of Contents:**
 
-- [Hosting React on Amazing Web Services](#hosting-react-on-amazing-web-services)
+- [Hosting React on Amazon Web Services](#hosting-react-on-amazon-web-services)
   - [Hosting on AWS](#hosting-on-aws)
   - [User Authentication](#user-authentication)
   - [DynamoDB API with APISync](#dynamodb-api-with-apisync)
@@ -19,7 +19,7 @@
   - Configure your AWS on your local machine: `amplify configure`
   - Initialize the new project on AWS: `amplify init`
   - Host the project online: `amplify hosting add`
-  - View the bucket: https://s3.console.aws.amazon.com/s3/home
+  - View the bucket: <https://s3.console.aws.amazon.com/s3/home>
   - Add Amplify module to your React project: `npm add aws-amplify aws-amplify-react --save`
   - View local changes that have been made: `amplify status`
   - `amplify push` will build all your local backend resources and provision it in the cloud
