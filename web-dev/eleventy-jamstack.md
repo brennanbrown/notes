@@ -623,7 +623,7 @@ layout: page
 
 ```html
 <p class="mt-1">
-  {% for friend in client.frends%}{% clientTag %}{% endfor %}
+  [% for friend in client.frends%][% clientTag %][% endfor %]
 </p>
 ```
 
@@ -642,11 +642,11 @@ eleventyConfig.addShortcode("clientTag", function(name) {
 
 ```html
 <p class="mt-1">
-  {% for friend in client.friends%}
-  {% pariedClient friend.name %}
+  [% for friend in client.friends%]
+  [% pariedClient friend.name %]
   <i class="fas fa-heard text-danger mr-1"></i>
-  {% endPairedClient %}
-  {% endfor %}
+  [% endPairedClient %]
+  [% endfor %]
 </p>
 ```
 
@@ -668,8 +668,6 @@ eleventyConfig.addPairedShortcode("pairedClient", function(data, name) {
 - It's very flexible and powerful, and you can make the names a lot more meaningful and keyword driven for SEO.
 
 ### Filters
-
-
 
 ## Managing Collections
 
