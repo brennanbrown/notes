@@ -19,7 +19,11 @@
     - [Adding Directory Data](#adding-directory-data)
     - [Loading Content Dynamically via APIs](#loading-content-dynamically-via-apis)
     - [Using Alternative Data Formats](#using-alternative-data-formats)
+    - [Building Pages from Data](#building-pages-from-data)
   - [Working with Content Features](#working-with-content-features)
+    - [Short Codes](#short-codes)
+    - [Permalinks](#permalinks)
+    - [Filters](#filters)
   - [Managing Collections](#managing-collections)
   - [Using Pagination and Plugins](#using-pagination-and-plugins)
   - [Conclusion](#conclusion)
@@ -63,12 +67,13 @@
 
 ### What is Eleventy?
 
-- Eleventy was created to be a JavaScript alternative to Jekyll.
+- Eleventy was created to be a JavaScript (node.js) alternative to Jekyll.
   - It’s zero-config by default but has flexible configuration options.
   - Eleventy works with your project’s existing directory structure.
 - It's apparently basic in terms of functionality at its core.
 - It's designed to simply be an engine that manages the conversion of templates to pages.
-  - It's made like that on purpose, it doesn't assume that you're using a specific build process or even that you'll be using a build process at all. Thus, it's made to be super flexible.
+  - It's made like that on purpose, it doesn't assume that you're using a specific build process or even that you'll be using a build process at all.
+  - Thus, it's made to be super flexible.
 
 ### Eleventy Commands
 
@@ -98,16 +103,21 @@
 **`.eleventy.js:`**
 
 ```js
+const yaml = require("js-yaml");
+
 module.exports = function(eleventyConfig) {
 
     // Exposing the eleventyConfig variable to process assets:
-    eleventyConfig.addPassthroughCopy("./site/images");
-    eleventyConfig.addPassthroughCopy("./site/css");
+    eleventyConfig.addPassthroughCopy("./_site/images");
+    eleventyConfig.addPassthroughCopy("./_site/css");
 
     // Creates shortcut aliases for long layout path names: 
-    eleventyConfig.addLayoutAlias("base", "pageTemplates/base.njk);
-    eleventyConfig.addLayoutAlias("page", "pageTemplates/page.njk);
-    eleventyConfig.addLayoutAlias("page-hero", "pageTemplates/page-hero.njk);
+    eleventyConfig.addLayoutAlias("base", "_pageTemplates/base.njk");
+    eleventyConfig.addLayoutAlias("page", "_pageTemplates/page.njk");
+    eleventyConfig.addLayoutAlias("page-hero", "_pageTemplates/page-hero.njk);
+
+    // Using the YAML data format instead of JSON:
+    eleventyConfig.addDataExtension('yaml' contents => yaml.safeLoad(contents));
 
     return { 
       markdownTemplateEngine: 'njk',
@@ -257,7 +267,7 @@ siteTitle: JAMStack with Eleventy
 - One template can be used for one purpose, and that template can be based on another template, and another template can be used for another purpose, etc. and still be based on the same template.
   - So, you generally have a base template with sort of just a basic HTML for every page and then you add different page layout templates for any of your other needs.
 - Using the data cascade to your advantage:
-  - If you're hard-coding a value that you would rather have different values for different pages, you can use the data cascade and create a variable `{{headerHeight}}` and add it to the tempalte.
+  - If you're hard-coding a value that you would rather have different values for different pages, you can use the data cascade and create a variable `[[headerHeight]]` and add it to the tempalte.
 
 **`_site/_layouts/pageTemplates/page-hero.njk`:**
 
@@ -267,10 +277,10 @@ layout: base
 headerHeight: 50vh
 ---
 <!-- Used for pages that have a "hero" graphic: -->
-<header class="site-header position-relative" style="width: 100vw; min-height: [[headerHeight]];">
+<header class="site-header position-relative" style="min-height: [[headerHeight]];">
 <section class="layout-hero position-absolute d-flex align-items-center" 
   style="background-image: linear-gradient(rgba(0, 0, 0, .7) 50px, transparent), 
-  url({{hero}}); height: 100%; width: 100%;"></section>
+  url([[hero]]); height: 100%; width: 100%;"></section>
 <div class="layout-hero-content position-absolute d-flex align-items-center w-100 h-100">
   <div class="container">
     <div class="row justify-content-center text-center">
@@ -296,7 +306,7 @@ headerHeight: 50vh
 layout: base
 ---
 
-<main class="container mt-4">
+<main class="container py-4">
   [[ content | safe ]]
 </main>
 ```
@@ -483,10 +493,193 @@ module.exports = async function() {
 
 ### Using Alternative Data Formats
 
+- Once you get working with Eleventy you'll get used to working with YAML front matter.
+  - It's a real convenient way of writing information.
+  - You might be wondering if there's a way of creating data in formats other than JSON or JavaScript.
+  - Sure enough, you can extend the functionality of Eleventy by installing some modules.
+- First, install the js-yaml module, `npm install --savedev js-yaml`.
+  - Next, simply add it to the `.eleventy.js` configuration file.
+
+**`_site/_data/courses.yaml`:**
+
+```yaml
+- thumbnail: '/images/courses/svelte_tn.jpg'
+  url: https://www.linkedin.com/learning/svelte-first-look
+  icon: <i class="fas fa-graduation-cap"></i>
+  title: 'Svelte: First Look'
+  date: Dec 9, 2019
+  summary: JavaScript frameworks and libraries keep growing, sprouting increasingly
+    more dependencies along the way. Svelte—a new, lightweight component framework—marches
+    into this tangle with a brush cutter, trimming down the weeds to provide a core
+    set of key functionalities with zero dependencies.
+  tags: frameworks,svelte,javascript
+
+- thumbnail: '/images/courses/gulp_tn.jpg'
+  url: https://www.linkedin.com/learning/gulp-js-web-project-workflows
+  icon: <i class="fas fa-graduation-cap"></i>
+  title: 'Gulp.js: Web Project Workflows'
+  date: Oct 31, 2019
+  summary: 'Gulp.js make setting up compression, minification, preprocessing, and other common tasks as easy as writing a setup file. In this course, learn how to use gulp.js to build workflows that make managing the process of building websites a bit easier.'
+  tags: javascript,web developer,tools,build tools, tooling, nodejs
+```
+
+**`_site/courses/index.md`:**
+
+```markdown
+---
+title: Courses
+layout: Page
+---
+# [[title]]
+
+
+
+<div class="container mt-4">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+  [% for course in courses %]
+  <div class="col mb-4">
+    <div class="card h-100" >
+      <img src="[[ course.thumbnail | safe ]]" alt="[[ course.title | safe ]] image" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title my-0">[[ course.title | safe ]]</h5>
+        <time class="item-date small d-block text-muted mb-2" datetime="[[ course.date | safe ]]">[[ course.date | safe ]]</time>
+        <p class="card-text">[[ course.summary | safe ]]</p>
+        <a href="[[ course.url | url ]]" class="btn btn-secondary stretched-link" target="_blank">Watch course</a>
+      </div>
+    </div>
+  </div>
+  [% endfor %]
+  </div>
+
+```
+
+### Building Pages from Data
+
+- With data in Eleventy, you can actually generate pages from data with the platform.
+- To do this you're going to have to use another feature, **pagination**, you're going to see how it's really useful.
+  - On any page, you can break up some content into different sections called *pages*.
+- Add the pagination object to your page in the YAML front matter, and then specify a few things:
+  - First of all, you have to specify what data we're using to paginate the elements, in this case, the clients that is coming from this `clients.11tydata.js` file, which is reading this data from an API.
+  - Second, in addition to that, we have to add a size. Normally, this particular method will let you take a number of pages and divide them into sub-pages. (For example, if you had five clients you can take this content and divide it, so that every page has three clients.)
+  - In this case though, we want each of the records to create an individual page, so set that to one, and then declare a variable for the individual item for each one of the pages:
+
+**`_site/clients/generate.md`:**
+
+```markdown
+---
+pagination: 
+  data: clients
+  size: 1
+  alias: client
+permalink: "clients/[[client.name | slug]]/"
+layout: page
+---
+
+<h1 class="mt-0">[[client.name]]</h1>
+<p>[[client.title]], <span class="font-weight-bold text-secondary">[[client.company]]</span></p>
+
+<img src="[[client.profile_photo]]" class="w-50 d-block mb-3" alt="[[client.name]]">
+
+<h2 class="mb-0">Friends</h2>
+
+<p class="mt-1"> 
+[% for friend in client.friends %]
+<a class="badge badge-secondary mr-2" href="/clients/[[ friend.name | slug ]]">[[friend.name]]</a>
+[% endfor %]
+</p>
+
+<h2 class="mb-0">Posts</h2>
+
+[% for post in client.posts %]
+
+---
+
+#### [[post.title]]
+
+<time class="item-date small d-block text-muted mb-2"
+  datetime="[[ course.date | safe ]]">[[ post.date_created | safe ]]</time>
+
+<p>[[post.text]]</p>
+
+[% endfor %]
+
+```
+
 ## Working with Content Features
+
+### Short Codes
+
+- There's a small feature that you can use to create a series of processed micro templates called short codes.
+  - To make one of these you create a `name` for the short code and then pass along one or two `parameters` in your template.
+  - Then in the `.eleventy.js` file you use the `eleventyConfig.addShortcode` method to the config variable and then pass along the name of the short code and then a function with the parameters.
+  - The nice thing about short codes is that it lets you use all the power of Node.js to make complex transformation to the data from your templates.
+- In addition to that you, can create something called paired shortcodes.
+  - These are slightly different: You create a start (`pairedName`) and ending tag name (`endPairedName`) in your templates and then you can place some sort of content within the shortcode.
+  - Just like with the regular shortcode, you add a method to the config variable, `eleventyConfig.addPairedShortcode`.
+  - Now this time you pass along the name of the element and then both the content and a variable as well as any parameters.
+  - You can then return the content with the parameters transforming them with the full power of Node.js.
+
+**Shortcode Example:**
+
+```html
+<p class="mt-1">
+  {% for friend in client.frends%}{% clientTag %}{% endfor %}
+</p>
+```
+
+```javascript
+/* 
+  Here, you can write any JavaScript function you want. 
+  And so you can use any sort of node module or any JS
+  you want to control how this information is processed:
+*/
+eleventyConfig.addShortcode("clientTag", function(name) {
+  return `<a class="badge badge-secondary mr-2" href="/clients/${name}">${name}</a>`
+})
+```
+
+**Paired Shortcode Example:**
+
+```html
+<p class="mt-1">
+  {% for friend in client.friends%}
+  {% pariedClient friend.name %}
+  <i class="fas fa-heard text-danger mr-1"></i>
+  {% endPairedClient %}
+  {% endfor %}
+</p>
+```
+
+```javascript
+eleventyConfig.addPairedShortcode("pairedClient", function(data, name) {
+  return `${data} <a class="badge badge-secondary" href="/clients/${name}">${name}</a>`
+});
+```
+
+### Permalinks
+
+- Permalinks are a way to remount the output of your templates to a different location.
+  - In other words, it's a way to modify the location of the documents that Eleventy is going to generate.
+- To create a permalink, add the option to your front matter data, you can use either a path or the word false.
+  - When you create a path, don't forget the trailing slash `/`, or at least put .html so that the page will render properly.
+- Why would you use false?
+  - It allows you to create content that doesn't show up but is still part of collections, and therefore the data for the website.
+- You can use variables in your permalinks as well as filters, you should place quotes around your permalinks to make sure that some errors in formatting with special characters don't happen.
+- It's very flexible and powerful, and you can make the names a lot more meaningful and keyword driven for SEO.
+
+### Filters
+
+
 
 ## Managing Collections
 
 ## Using Pagination and Plugins
 
 ## Conclusion
+
+- There's a lot more to Eleventy, and of course the best place to find out more information is on the [Eleventy website](https://www.11ty.dev/).
+  - There's a **[docs section](https://www.11ty.dev/docs/)** with a full list of all the different features.
+- And if you want to, you can also take a look at **[Nunjucks](https://mozilla.github.io/nunjucks/)]** as well.
+  - Nunjucks does quite a few things that will help you get better at working with Eleventy.
+- There's also the template called **[Seven](https://github.com/planetoftheweb/seven)** by Ray Villalobos. You can click on the GitHub repo and fork or download a copy of this project.
+  - This is a lot more complicated that what we've done here but it does include things like webpack, SASS, and a lot of other features.
