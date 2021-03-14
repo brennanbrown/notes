@@ -119,7 +119,7 @@ When looking at the **4 P's of Marketing**, Place, Price, and Promotion are unde
   - **Business** is to align the product goals to the business objectives.
   - **Technology** is to understand how the product is built, as well as understanding complexity, risks, and tradeoffs.
 - PMs need to be able to _influence without authority_, as they don't usually have actual control over any particular team.
-- - Solving problems might make the product more appealing to users.
+  - - Solving problems might make the product more appealing to users.
     - It has the potential to increase sales.
     - It reduces user churn, and keeps the company competitive.
     - It also can increase the team's efficiency.
@@ -340,7 +340,7 @@ There will be lots to learn! But even while you are ramping up, you can still pr
 ### Total Addressable Market
 
 - TAM, or total addressable market, is a measure of the revenue opportunity for a product. Keep in mind that TAM is not a measure of your revenue or future revenue. Instead, it allows you to understand the size of the market if you had 100% of the market. A larger TAM indicates a larger opportunity, with more demand for a particular product. However, just because there’s a large TAM does not mean that a product is guaranteed to be successful… There are lots of other factors that will come into play, like competition.
-- - TAM = Average revenue per user X total number of potential users in the market
+  - - TAM = Average revenue per user X total number of potential users in the market
 
 There are several approaches to calculating TAM:
 

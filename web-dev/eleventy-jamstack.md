@@ -25,6 +25,9 @@
     - [Permalinks](#permalinks)
     - [Filters](#filters)
   - [Managing Collections](#managing-collections)
+    - [Understanding Collections](#understanding-collections)
+    - [Building Collections using Tags](#building-collections-using-tags)
+    - [Using Collection Modifiers](#using-collection-modifiers)
   - [Using Pagination and Plugins](#using-pagination-and-plugins)
   - [Conclusion](#conclusion)
 
@@ -78,14 +81,14 @@
 ### Eleventy Commands
 
 - One of the advantages of using something like Eleventy over other products is that it lets you use NodeJS and npm to manage your modules and projects.
-- You can *try out* Eleventy by using the `npx eleventy /folder` command, which runs the Eleventy format, without having to install anything on your platform globally.
-- You can also install it *globally* using `npm install -f @11ty/eleventy`, and the commands are going to be a little bit easier to run this way.
-- You can also install it as a *project* using `npm i @11ty/eleventy`.
-- By default, running the Eleventy command will choose the current folder as the *input* location, but you can change that with a special flag called input, like this `--input=`.
+- You can _try out_ Eleventy by using the `npx eleventy /folder` command, which runs the Eleventy format, without having to install anything on your platform globally.
+- You can also install it _globally_ using `npm install -f @11ty/eleventy`, and the commands are going to be a little bit easier to run this way.
+- You can also install it as a _project_ using `npm i @11ty/eleventy`.
+- By default, running the Eleventy command will choose the current folder as the _input_ location, but you can change that with a special flag called input, like this `--input=`.
   - In order to not generate other markdown files in your repository, such as the README or LICENSE, use the `eleventy --input=_site --output` to only procress files in the site folder.
   - This will create a new `/build` subfolder, which will be added to the `.gitignore` file.
-- The default *destination* folder is `_site`. If you want to create a folder like a builds or a dist folder, you can use the output flag `--output=_site`.
-- You can watch a specific folder for changes with the `--watch` option or use the `--serve` option to use something called *Browsersync*.
+- The default _destination_ folder is `_site`. If you want to create a folder like a builds or a dist folder, you can use the output flag `--output=_site`.
+- You can watch a specific folder for changes with the `--watch` option or use the `--serve` option to use something called _Browsersync_.
   - Adding the `--watch` command will auto-update the build of the website anytime a file is modified, deleted, or creatd.
   - This will allow you to monitor changes and also run a live preview server so that you can see changes in your browser after you make them in the files.
 - In whole, using the command **`eleventy --input=_site --output=build --serve`** will run your project in an easily manageable fashion.
@@ -111,7 +114,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("./_site/images");
     eleventyConfig.addPassthroughCopy("./_site/css");
 
-    // Creates shortcut aliases for long layout path names: 
+    // Creates shortcut aliases for long layout path names:
     eleventyConfig.addLayoutAlias("base", "_pageTemplates/base.njk");
     eleventyConfig.addLayoutAlias("page", "_pageTemplates/page.njk");
     eleventyConfig.addLayoutAlias("page-hero", "_pageTemplates/page-hero.njk);
@@ -119,7 +122,7 @@ module.exports = function(eleventyConfig) {
     // Using the YAML data format instead of JSON:
     eleventyConfig.addDataExtension('yaml' contents => yaml.safeLoad(contents));
 
-    return { 
+    return {
       markdownTemplateEngine: 'njk',
       dir: {
         input: "_site",
@@ -137,12 +140,12 @@ module.exports = function(eleventyConfig) {
 **`package.json`:**
 
 ```json
-{ 
-    "name": "jamstack",
-    "version": "1.0.0",
-    "scripts": {
-        "start": "eleventy --serve --quiet"
-    }
+{
+  "name": "jamstack",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "eleventy --serve --quiet"
+  }
 }
 ```
 
@@ -158,45 +161,44 @@ module.exports = function(eleventyConfig) {
   - In addition to using anything that you've created and the front matter, you can also get information about the current page, and also any information in your package .JSON file with the two special variables `page` and `pkg`.
 
 ```markdown
-
 ---
 title: Testing YAML
 date: 2020-01-03 # Could be "Created" or "Modified"
 templateEngineOverride: md, njk
 layout: page
 object_examples:
-    key: value
-    array:
-        - null_value:
-        - boolean: true
-        - integer: 1
+  key: value
+  array:
+    - null_value:
+    - boolean: true
+    - integer: 1
 paragraph: >
-    Blank lines denote
+  Blank lines denote
 
-    paragraph breaks like this!
+  paragraph breaks like this!
 content: |-
-    Or you can
-    auto-convert line
-    breaks to save space!
+  Or you can
+  auto-convert line
+  breaks to save space!
 tags:
   - home
   - welcome
   - info
 ---
 
-**Date:** [[ page.date.toUTCString() ]]
+**Date:** [[page.date.toUTCString()]]
 
-**By:** [[ pkg.author ]]
+**By:** [[pkg.author]]
 
 **Tags:**
+
 <ul>
   [% for item in tags %]
   <li>[[ item ]]</li>
   [% endfor %]
 </ul>
 
-Hello World, this post is called [[ title ]]! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur, mi non scelerisque lobortis, risus eros fermentum eros, et sagittis justo ex hendrerit tortor.
-
+Hello World, this post is called [[title]]! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi efficitur, mi non scelerisque lobortis, risus eros fermentum eros, et sagittis justo ex hendrerit tortor.
 ```
 
 - The above unformation is exposed in a templating language, of which there are eleven different ones that you can use with Eleventy.
@@ -211,7 +213,7 @@ Hello World, this post is called [[ title ]]! Lorem ipsum dolor sit amet, consec
 - The way that this works is by looking for an `_includes` folder by default, and any files that you put in there can be accessed through the front matter in your markdown documents.
   - You can also override the location of these files, so in your `eleventy.js` file you can modify the `dir.includes` object and specify that you want the templates to be somewhere else.
   - By default, is going to assume that all of these live inside whatever is the input folder for your project, which would be the `_site` folder.
-- You can also separate *templates* from *includes*, includes can have additional pieces of information in them, so you can create a separate folder for only templates.
+- You can also separate _templates_ from _includes_, includes can have additional pieces of information in them, so you can create a separate folder for only templates.
   - This makes things a little bit cleaner and more organized.
 - Templates themselves can have their own frontmatter variables.
   - You can use those inside the template itself, or also the content that is being wrapped by the template.
@@ -228,34 +230,56 @@ Hello World, this post is called [[ title ]]! Lorem ipsum dolor sit amet, consec
 siteTitle: JAMStack with Eleventy
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>[[siteTitle]] -- [[Title]]</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/styles.css">
-    </head>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+      integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
   <body class="bg-dark">
     <div class="container">
-      <div class="bg-white">
-        [[ content | safe ]]
-      </div>
+      <div class="bg-white">[[ content | safe ]]</div>
       [% include "social.njk" %]
     </div>
   </body>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"
+  ></script>
 </html>
 ```
 
 ### Layout Chaining
 
-- Eleventy let's use templates in a way that's *recursive* so that one template can be based on another.
+- Eleventy let's use templates in a way that's _recursive_ so that one template can be based on another.
   - This is a pretty powerful way to build templates.
 - You have to be aware of something called the **data cascades.**
   - There are some instances when the variables in your template or layout will create a conflict with other variables.
@@ -276,27 +300,33 @@ siteTitle: JAMStack with Eleventy
 layout: base
 headerHeight: 50vh
 ---
+
 <!-- Used for pages that have a "hero" graphic: -->
-<header class="site-header position-relative" style="min-height: [[headerHeight]];">
-<section class="layout-hero position-absolute d-flex align-items-center" 
-  style="background-image: linear-gradient(rgba(0, 0, 0, .7) 50px, transparent), 
-  url([[hero]]); height: 100%; width: 100%;"></section>
-<div class="layout-hero-content position-absolute d-flex align-items-center w-100 h-100">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      <div class="header-content col-11 col-sm-10 col-md-9 animated fadeInUp">
-        <h2 class="page-section-title text-light">[[ title ]]</h2>
-        <p class="page-section-text text-light d-none d-md-block">
-          [[ summary | safe ]]
-        </p>
+<header
+  class="site-header position-relative"
+  style="min-height: [[headerHeight]];"
+>
+  <section
+    class="layout-hero position-absolute d-flex align-items-center"
+    style="background-image: linear-gradient(rgba(0, 0, 0, .7) 50px, transparent), 
+  url([[hero]]); height: 100%; width: 100%;"
+  ></section>
+  <div
+    class="layout-hero-content position-absolute d-flex align-items-center w-100 h-100"
+  >
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="header-content col-11 col-sm-10 col-md-9 animated fadeInUp">
+          <h2 class="page-section-title text-light">[[ title ]]</h2>
+          <p class="page-section-text text-light d-none d-md-block">
+            [[ summary | safe ]]
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </header>
-<main class="container py-4">
-  [[ content | safe ]]
-</main>
+<main class="container py-4">[[ content | safe ]]</main>
 ```
 
 **`_site/_layouts/pageTemplates/page.njk`:**
@@ -306,21 +336,19 @@ headerHeight: 50vh
 layout: base
 ---
 
-<main class="container py-4">
-  [[ content | safe ]]
-</main>
+<main class="container py-4">[[ content | safe ]]</main>
 ```
 
 **`_site/about/index.md`:**
 
-```html
+```markdown
 ---
 title: About Me
 layout: page-hero
 headerHeight: 70vh
 hero: https://brennanbrown.ca/img/header.jpg
 summary: Content Strategist and Web Developer looking to improve lives with the JAMstack!
-permalink: '/about-[[ pkg.author | slug ]]/'
+permalink: "/about-[[ pkg.author | slug ]]/"
 ---
 
 # [[title]]
@@ -351,7 +379,7 @@ I'm always looking to work with people that are hopeless idealists like me, as w
   - And you can pass along variables which will then be available to your website.
 - By default, any global data that you want to store for the entire site can be placed in a `_data` folder or `dir.data`.
   - That can also be overwritten by using the directory object in the `11T.js` document with a data variable.
-- The folder structure of where you put that data *does* matter.
+- The folder structure of where you put that data _does_ matter.
   - For example: If you want to have a variable called `social.site`, you can just place the data in the `_data/social/` folder and then put a file named `site.json` in that folder.
   - If you just wanted to have a `social.json` file, you would just call this `_/data/social.json` and it would automatically add a variable called social to your website.
 - The data can be available either to the entire website or you can place it anywhere in the file structure of your website.
@@ -373,15 +401,31 @@ I'm always looking to work with people that are hopeless idealists like me, as w
     "iconClass": "fab fa-linkedin",
     "url": "https://linkedin.com/in/brennankbrown"
   },
-  { "name": "twitter", "iconClass": "fab fa-twitter", "url": "https://twitter.com/brennankbrown" },
-  { "name": "dribble", "iconClass": "fab fa-dribbble", "url": "https://dribbble.com/brennanbrown" },
+  {
+    "name": "twitter",
+    "iconClass": "fab fa-twitter",
+    "url": "https://twitter.com/brennankbrown"
+  },
+  {
+    "name": "dribble",
+    "iconClass": "fab fa-dribbble",
+    "url": "https://dribbble.com/brennanbrown"
+  },
   {
     "name": "flickr",
     "iconClass": "fab fa-flickr",
     "url": "https://www.flickr.com/photos/brennankbrown/sets/72157602932636630/"
   },
-  { "name": "youtube", "iconClass": "fab fa-youtube", "url": "https://www.youtube.com/user/brennankbrown" },
-  { "name": "instagram", "iconClass": "fab fa-instagram", "url": "https://www.instagram.com/iviewsource" }
+  {
+    "name": "youtube",
+    "iconClass": "fab fa-youtube",
+    "url": "https://www.youtube.com/user/brennankbrown"
+  },
+  {
+    "name": "instagram",
+    "iconClass": "fab fa-instagram",
+    "url": "https://www.instagram.com/iviewsource"
+  }
 ]
 ```
 
@@ -418,7 +462,6 @@ I'm always looking to work with people that are hopeless idealists like me, as w
 {
   "layout": "page"
 }
-
 ```
 
 ### Loading Content Dynamically via APIs
@@ -487,7 +530,7 @@ module.exports = async function() {
 }
 ```
 
-- The cool thing about this is that we're making a dynamic API call.
+- The cool thing about this is that this is making a dynamic API call.
   - This means that if the API changes or if somebody uses some application to modify this API, every time we run this, it's going to keep it up-to-date.
   - Which means that we can also use things like the GitHub actions to actually generate a call for this every now and then so that this website can be automatically updated once a day or once a week or however often you want to do that.
 
@@ -503,23 +546,24 @@ module.exports = async function() {
 **`_site/_data/courses.yaml`:**
 
 ```yaml
-- thumbnail: '/images/courses/svelte_tn.jpg'
+- thumbnail: "/images/courses/svelte_tn.jpg"
   url: https://www.linkedin.com/learning/svelte-first-look
   icon: <i class="fas fa-graduation-cap"></i>
-  title: 'Svelte: First Look'
+  title: "Svelte: First Look"
   date: Dec 9, 2019
-  summary: JavaScript frameworks and libraries keep growing, sprouting increasingly
+  summary:
+    JavaScript frameworks and libraries keep growing, sprouting increasingly
     more dependencies along the way. Svelte—a new, lightweight component framework—marches
     into this tangle with a brush cutter, trimming down the weeds to provide a core
     set of key functionalities with zero dependencies.
   tags: frameworks,svelte,javascript
 
-- thumbnail: '/images/courses/gulp_tn.jpg'
+- thumbnail: "/images/courses/gulp_tn.jpg"
   url: https://www.linkedin.com/learning/gulp-js-web-project-workflows
   icon: <i class="fas fa-graduation-cap"></i>
-  title: 'Gulp.js: Web Project Workflows'
+  title: "Gulp.js: Web Project Workflows"
   date: Oct 31, 2019
-  summary: 'Gulp.js make setting up compression, minification, preprocessing, and other common tasks as easy as writing a setup file. In this course, learn how to use gulp.js to build workflows that make managing the process of building websites a bit easier.'
+  summary: "Gulp.js make setting up compression, minification, preprocessing, and other common tasks as easy as writing a setup file. In this course, learn how to use gulp.js to build workflows that make managing the process of building websites a bit easier."
   tags: javascript,web developer,tools,build tools, tooling, nodejs
 ```
 
@@ -530,9 +574,8 @@ module.exports = async function() {
 title: Courses
 layout: Page
 ---
+
 # [[title]]
-
-
 
 <div class="container mt-4">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
@@ -550,14 +593,13 @@ layout: Page
   </div>
   [% endfor %]
   </div>
-
 ```
 
 ### Building Pages from Data
 
 - With data in Eleventy, you can actually generate pages from data with the platform.
 - To do this you're going to have to use another feature, **pagination**, you're going to see how it's really useful.
-  - On any page, you can break up some content into different sections called *pages*.
+  - On any page, you can break up some content into different sections called _pages_.
 - Add the pagination object to your page in the YAML front matter, and then specify a few things:
   - First of all, you have to specify what data we're using to paginate the elements, in this case, the clients that is coming from this `clients.11tydata.js` file, which is reading this data from an API.
   - Second, in addition to that, we have to add a size. Normally, this particular method will let you take a number of pages and divide them into sub-pages. (For example, if you had five clients you can take this content and divide it, so that every page has three clients.)
@@ -567,7 +609,7 @@ layout: Page
 
 ```markdown
 ---
-pagination: 
+pagination:
   data: clients
   size: 1
   alias: client
@@ -597,12 +639,11 @@ layout: page
 #### [[post.title]]
 
 <time class="item-date small d-block text-muted mb-2"
-  datetime="[[ course.date | safe ]]">[[ post.date_created | safe ]]</time>
+  datetime="[[ course.date | safe ]]">[[post.date_created | safe]]</time>
 
 <p>[[post.text]]</p>
 
 [% endfor %]
-
 ```
 
 ## Working with Content Features
@@ -622,9 +663,7 @@ layout: page
 **Shortcode Example:**
 
 ```html
-<p class="mt-1">
-  [% for friend in client.frends%][% clientTag %][% endfor %]
-</p>
+<p class="mt-1">[% for friend in client.frends%][% clientTag %][% endfor %]</p>
 ```
 
 ```javascript
@@ -633,26 +672,24 @@ layout: page
   And so you can use any sort of node module or any JS
   you want to control how this information is processed:
 */
-eleventyConfig.addShortcode("clientTag", function(name) {
-  return `<a class="badge badge-secondary mr-2" href="/clients/${name}">${name}</a>`
-})
+eleventyConfig.addShortcode("clientTag", function (name) {
+  return `<a class="badge badge-secondary mr-2" href="/clients/${name}">${name}</a>`;
+});
 ```
 
 **Paired Shortcode Example:**
 
 ```html
 <p class="mt-1">
-  [% for friend in client.friends%]
-  [% pariedClient friend.name %]
+  [% for friend in client.friends%] [% pariedClient friend.name %]
   <i class="fas fa-heard text-danger mr-1"></i>
-  [% endPairedClient %]
-  [% endfor %]
+  [% endPairedClient %] [% endfor %]
 </p>
 ```
 
 ```javascript
-eleventyConfig.addPairedShortcode("pairedClient", function(data, name) {
-  return `${data} <a class="badge badge-secondary" href="/clients/${name}">${name}</a>`
+eleventyConfig.addPairedShortcode("pairedClient", function (data, name) {
+  return `${data} <a class="badge badge-secondary" href="/clients/${name}">${name}</a>`;
 });
 ```
 
@@ -669,7 +706,80 @@ eleventyConfig.addPairedShortcode("pairedClient", function(data, name) {
 
 ### Filters
 
+- Filters allow you to modify content quickly inside template expressions.
+  - We've already been using them quite a bit, but let's talk about what else you can do with them.
+- The format for filters is pretty simple.
+  - You have, in an expression, a `name` of some sort of variable and then you use a pipe symbol `|` and then the name of the `filter` that you want to use.
+- There's a few built-in Eleventy filters. You've seen them before.
+  - They are `url`, which converts some text into a URL-friendly format.
+  - As well as `slug`, which transforms existing text into a format that is friendly to use in links.
+- There are a number of Nunjucks-specific filters, so here are some examples:
+  - First the `first` element in an array.
+  - Second, `safe` eliminates some characters so they do not show up as links: For example, if you have some HTML in your text, when you use safe, it'll take the HTML tags out.
+  - Third, `random` chooses a random element in the array.
+  - You can take a look at some of the other filters available on [**this page**](https://mozilla.github.io/nunjucks/templating.html#builtin-filters). There are quite a few.
+- You can also add your own filters with the `addFilter()` method in your configuration variable that's in the `.eleventy.js` file.
+  - For example: You could write a `simpleDate` filter to made readable dates automatically.
+  - You can use `npm install --save-dev luxon` to utilize the Luxon node.js plug-in for the date formatting.
+
+```js
+const { DateTime } = require("luxon");
+
+// ...
+
+eleventyConfig.addFilter("simpleDate", (dateObj) => {
+  return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("LLL dd, yyyy");
+});
+
+eleventyConfig.addFilter("courseDate", (dateObj) => {
+  return DateTime.fromFormat(dateObj, "LLL d, yyyy").toFormat("yyyy-LL-dd");
+});
+```
+
+```markdown
+# [[Title]]
+
+**Date:** [[page.date | simpleDate]]
+```
+
 ## Managing Collections
+
+### Understanding Collections
+
+- Eleventy lets you group some of the content you create by collections, and that makes it easier to refer to certain content by groups.
+  - Collections is a pretty deep topic.
+- The easiest way to create a collection is by using the keyword tags in your front matter.
+  - When you add the tag keyword and then a name, Eleventy will create a collection with that name.
+  - Tags are created in the front matter with YAML, and you can use any valid YAML notation like arrays or multi-line arrays.
+  - Instead of writing a single tag, you can use an array notation and then give it different keywords.
+  - You can also put in a carriage return, and then add some dashes, and write it like this.
+- In your templates, you can refer to collections with the collections keyword, and then the name of the tag you've created.
+  - There is a special .all collection, which will have all of your collections from all Eleventy-generated content.
+- You can exclude a page from a collection by using this keyword right here, it's rather long, and then setting that to true in your front matter.
+  - Once you get to the collection information, you usually do a for-loop to go through each of the items in the collection.
+  - That allows you to have access to certain data. The most common pieces of data are the URL that will allow you to get to the page of the item in the collection, as well as the date of the item and any data that is in the front matter or inherited from templates.
+- You can sort the data in a collection or a template by using templating filters.
+- In Nunjucks and Liquid, you can use the `reverse` filter, which will give you the latest items first.
+  - Although you can use the reverse method when working in your Eleventy configuration, you don't want to use this in templates because this will mutate or change your array. And it will have ramifications in other places.
+  - So, save the reverse method when you want to access a collection in JavaScript inside the Eleventy JS file.
+- One of the nice things that you can do is to add or create a collection.
+  - You give the collection a name and then execute some sort of callback that fills that collection.
+  - In addition to generating collections with tags, you can manually generate collections with this method.
+  - Once you have the collection, you can go through all of the items by issuing the `getAll` command.
+  - This is going to get all of the content from a specific collection and then let you do something with it.
+  - This is where you may want to use something like reverse if you wanted to reverse the order of the items.
+- You can also do `getAllSorted`, and it's going to execute the default sorted method.
+  - And that would be collections by ascending date and then also by file name if the ascending dates happen to be the same.
+- If you're using Nunjucks or Liquid, it's easier to reverse directly in the template.
+- You can also filter the current content by a specific tag or tags just like you can in the template.
+  - There's a couple of different filters than you can apply here and then get items that are specifically tagged with a single tag or an array of tags.
+- There's also a really useful `getFilteredByGlob` method.
+  - This will allow you to look at a folder for files in a certain format and create a collection with any of those files.
+- You can read more about working with collections on [**the website**](), and there are a lot of examples of the different methods and the different ways of manipulating collections that we've talked about.
+
+### Building Collections using Tags
+
+### Using Collection Modifiers
 
 ## Using Pagination and Plugins
 
