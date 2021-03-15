@@ -748,36 +748,112 @@ eleventyConfig.addFilter("courseDate", (dateObj) => {
 
 - Eleventy lets you group some of the content you create by collections, and that makes it easier to refer to certain content by groups.
   - Collections is a pretty deep topic.
-- The easiest way to create a collection is by using the keyword tags in your front matter.
+- The easiest way to create a collection is by using the keyword `tags: name` in your front matter.
   - When you add the tag keyword and then a name, Eleventy will create a collection with that name.
   - Tags are created in the front matter with YAML, and you can use any valid YAML notation like arrays or multi-line arrays.
-  - Instead of writing a single tag, you can use an array notation and then give it different keywords.
-  - You can also put in a carriage return, and then add some dashes, and write it like this.
-- In your templates, you can refer to collections with the collections keyword, and then the name of the tag you've created.
-  - There is a special .all collection, which will have all of your collections from all Eleventy-generated content.
-- You can exclude a page from a collection by using this keyword right here, it's rather long, and then setting that to true in your front matter.
-  - Once you get to the collection information, you usually do a for-loop to go through each of the items in the collection.
-  - That allows you to have access to certain data. The most common pieces of data are the URL that will allow you to get to the page of the item in the collection, as well as the date of the item and any data that is in the front matter or inherited from templates.
+    - Instead of writing a single tag, you can use an array notation `tages: [ tag1, tag2, tag3 ]` and then give it different keywords.
+    - You can also put in a carriage return, and then add some dashes. (See above.)
+- In your templates, you can refer to collections with the `collections.name` keyword.
+  - There is a special `collections.all` collection, which will have all of your collections from all Eleventy-generated content.
+  - You can exclude a page from a collection by using the keyword `eleventyExcludeFromCollections: true`.
+- Once you get to the collection information, you usually do a for-loop to go through each of the items in the collection.
+  - That allows you to have access to certain data.
+  - The most common pieces of data are the `URL` that will allow you to get to the page of the item in the collection,
+  - As well as the `date` of the item and any `data` that is in the front matter or inherited from templates.
 - You can sort the data in a collection or a template by using templating filters.
-- In Nunjucks and Liquid, you can use the `reverse` filter, which will give you the latest items first.
-  - Although you can use the reverse method when working in your Eleventy configuration, you don't want to use this in templates because this will mutate or change your array. And it will have ramifications in other places.
-  - So, save the reverse method when you want to access a collection in JavaScript inside the Eleventy JS file.
+  - In Nunjucks and Liquid, you can use the `| reverse` filter, which will give you the latest items first.
+  - Although you can use the `reverse()` method when working in your Eleventy configuration, you don't want to use this in templates because this will mutate or change your array. And it will have ramifications in other places.
+  - So, save the reverse method when you want to access a collection in JavaScript inside the `.eleventy.js` file.
 - One of the nice things that you can do is to add or create a collection.
   - You give the collection a name and then execute some sort of callback that fills that collection.
+  - `addCollection(name, callback)
   - In addition to generating collections with tags, you can manually generate collections with this method.
-  - Once you have the collection, you can go through all of the items by issuing the `getAll` command.
+- Once you have the collection, you can go through all of the items by issuing the `getAll()` command.
   - This is going to get all of the content from a specific collection and then let you do something with it.
   - This is where you may want to use something like reverse if you wanted to reverse the order of the items.
-- You can also do `getAllSorted`, and it's going to execute the default sorted method.
+- You can also do `getAllSorted()`, and it's going to execute the default sorted method.
   - And that would be collections by ascending date and then also by file name if the ascending dates happen to be the same.
 - If you're using Nunjucks or Liquid, it's easier to reverse directly in the template.
 - You can also filter the current content by a specific tag or tags just like you can in the template.
-  - There's a couple of different filters than you can apply here and then get items that are specifically tagged with a single tag or an array of tags.
+  - `getFilteredByTag()`, `getFilteredByTags()`
+  - This gets items that are specifically tagged with a single tag or an array of tags.
 - There's also a really useful `getFilteredByGlob` method.
   - This will allow you to look at a folder for files in a certain format and create a collection with any of those files.
-- You can read more about working with collections on [**the website**](), and there are a lot of examples of the different methods and the different ways of manipulating collections that we've talked about.
+- You can read more about working with collections on [**the website**](https://www.11ty.dev/docs/collections/), and there are a lot of examples of the different methods and the different ways of manipulating collections that we've talked about.
 
 ### Building Collections using Tags
+
+- It's time to start adding collections using tags.
+  - Make modifications to your posts by adding front matter data with some of the information that is in the content of the file:
+
+```yaml
+---
+title: Horizontally Centered Navigation Menu with CSS
+hero: /images/posts/horizontally.png
+thumbnail: /images/posts/horizontally_tn.png
+summary: "Getting a menu to center horizontally is surprisingly hard, especially when you're using CSS lists. In this tutorial, I'll show you how to change the display element to pretend you're centering a table, which is easy."
+tags:
+  - tutorials
+  - css
+  - UX design
+---
+
+```
+
+- If you want a specific front-matter collection such as tags applied to every post, you can add it to the `posts.json` file for ease:
+
+```json
+{
+  "layout": "page",
+  "tags": "post
+}
+```
+
+**`_site/index.md`:**
+
+```html
+<div class="row">
+  <div class="main-content col-lg-9">
+    <header class="mb-4">
+      <h4 class="text-secondary mt-2 mb-0">Latest Posts</h4>
+      <div class="small">
+        &raquo; <a class="text-secondary" href="/posts">more posts</a>
+      </div>
+    </header>
+    <div class="row">
+      <div class="col">
+        <article class="mb-5 position-relative">
+          <div class="row">
+            <div class="col-12 col-sm-4">
+              <img
+                class="w-100 rounded"
+                src="{{item.data.thumbnail}}"
+                alt="{{item.title}}"
+              />
+              <time
+                class="item-date small d-block text-muted mb-2"
+                datetime="{{item.date }}"
+                >{{item.date | simpleDate}}</time
+              >
+            </div>
+            <div class="col">
+              <h4>{{item.data.title}}</h4>
+              <p class="mb-0">{{item.data.summary}}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <a
+              href="{{ item.url | url }}"
+              class="btn btn-sm btn-outline-secondary stretched-link"
+              >read more</a
+            >
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+```
 
 ### Using Collection Modifiers
 
