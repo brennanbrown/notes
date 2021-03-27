@@ -859,6 +859,33 @@ tags:
 
 ## Using Pagination and Plugins
 
+- Another nice feature of Eleventy is that it provides a way to paginate your content in to groups of pages. 
+  - You've already used this to generate some client information, this is meant to explain all the options, 
+- Let's go over the pagination options. 
+  - First, you add a `pagination: ` option to your front matter data. 
+  - Under that you'll specify the data that will be paginated, and this can come from a collection or some other place. 
+    - Eg. `date`, `size`, `alias`, `reverse: true`, etc.
+  - The `size` parameter determines how many items are going to appear per page. 
+- If you specify an *alias*, then you can control the name of the pagination. This helps the pages have a more SEO-friendly name. 
+  - You've seen how we can use that in the client's section output, the names of the clients, and we use this look filter to make sure that name is friendly.
+- `reverse: true` allows you to reverse the order of the data before the pages are output. 
+  - That's useful if you want the content in reverse order. 
+- Usually you do add a `permalink` option, which determines the structure of the website content and allows you to use the alias.
+- Pagination has some advanced options:
+  - For example, you can use the `filter` that exempts certain pieces of data from the pagination. 
+  - The `before` keyword allows you to run the data through a javascript function before you display the data. 
+    - That's useful for transformations. 
+- You can add tags to pagination, but unless you use the add all-pages to collection item, only the first page of the paginated items will be a part of that collection. 
+  - If you're using tags, make sure that you turn this on. 
+- Finally, inside the templates, you have a few options that you can use to help you paginate your content. 
+- This comes in a pagination object so usually say `pagination.` and then one of these. 
+  - The list of items in the current page, are stored in the items arrays. 
+  - Pagination items and usually create a for loop to go through all of these. 
+- In addition to that, you have a number of utility features that allow you to build the navigation for the pagination. 
+  - For example, you have an item they gives you the current page number and that is zero index, as well as the ability to get the previous and the next page, as well as the first and the last page. 
+- If you want to take a look at the pagination options in detail, make sure you check out this page in the documentation. 
+
+
 ## Conclusion
 
 - There's a lot more to Eleventy, and of course the best place to find out more information is on the [Eleventy website](https://www.11ty.dev/).
