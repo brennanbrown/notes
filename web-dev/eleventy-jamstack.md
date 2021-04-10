@@ -822,6 +822,7 @@ tags:
     </header>
     <div class="row">
       <div class="col">
+        [%- doe item in collections.post -%]
         <article class="mb-5 position-relative">
           <div class="row">
             <div class="col-12 col-sm-4">
@@ -849,6 +850,7 @@ tags:
             >
           </div>
         </article>
+        [%- endfor -%]
       </div>
     </div>
   </div>
@@ -856,6 +858,12 @@ tags:
 ```
 
 ### Using Collection Modifiers
+
+- You may notice that in the above code, the posts are not in the chronological order, with the most recent posts first.
+  - To fix this, you can do a couple of things.
+  - The easiest one is if you're using Nunjucks or Liquid, you can just add a filter from those templating languages called `reverse`.
+    - This will reverse the natural order of the array. So once that finishes saving, you should get a list with the oldest article first.
+- There's another way that you can do this, if you're not using Liquid or Nunjucks, you can create a filter.
 
 ## Using Pagination and Plugins
 
