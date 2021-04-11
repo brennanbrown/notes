@@ -12,7 +12,7 @@
 
 **Variables:**
 
-```less
+```sass
 $main_color: #9e2932;
 
 .navbar {
@@ -28,7 +28,7 @@ h3 {
 
 **Nesting:**
 
-```less
+```sass
 .pixgrid {
   ul {
     margin: 0;
@@ -46,7 +46,7 @@ h3 {
 
 **Partials:**
 
-```less
+```sass
 // Core Partial
 @import "variables";
 @import "mixins";
@@ -62,7 +62,7 @@ h3 {
 
 **Extend:**
 
-```less
+```sass
 .btn {
   padding: 6px 12px;
   line-height: 140%;
@@ -82,7 +82,7 @@ h3 {
 
 **Operators:**
 
-```less
+```sass
 $border_thickness: 1px;
 $thicker: $border_thickness * 5;
 
@@ -97,6 +97,6 @@ $thicker: $border_thickness * 5;
 
 **Mixins:**
 
-```less
+```sass
 
 ```
