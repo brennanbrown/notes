@@ -1,3 +1,9 @@
+---
+layout: default
+title: Success as a Web Developer
+nav_order: 4
+---
+
 # Success as a Web Developer
 
 **Table of Contents:**
@@ -111,7 +117,7 @@
 - Any time a browser is asked to display an HTML document, it creates a document object model or **DOM**, which is a structural representation of the elements in the document and their relationships.
   - This document object model can be visualized as a DOM tree, where each element is a leaf or node, and the connections are branches. When you add new elements to an HTML document, you are effectively adding a node to this DOM tree.
   - When you target elements using CSS or JavaScript, you ask the browser to follow the branches all the way from the root to the node or nodes in question.
-  * This is called either walking or traversing or navigating the DOM.
+  - This is called either walking or traversing or navigating the DOM.
   - When creating a website, it can be helpful to draw out the DOM tree to understand relationships and inheritances between different elements.
   - This also encourages the reduction of complexity and avoid unnecessary nesting by prioritizing accessibility and logical structure.
 - **HTML** was created to allow humans to write highly-structured documents which could be interpreted consistently and universally by any rendering engine supporting the language.

@@ -1,3 +1,9 @@
+---
+layout: default
+title: CSS Bootstrap 4 Fundamentals
+nav_order: 4
+---
+
 # Bootstrap 4 Fundamentals
 
 **Table of Contents:**
