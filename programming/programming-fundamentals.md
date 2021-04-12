@@ -1,32 +1,36 @@
-# Programming Foundations: Fundamentals
+---
+layout: default
+title: Programming Fundamentals
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Programming Foundations: Fundamentals](#programming-foundations-fundamentals)
-  - [Programming Language](#programming-language)
-  - [Running Code](#running-code)
-  - [Integrated Development Environments](#integrated-development-environments)
-  - [Why Python?](#why-python)
-  - [Numbers](#numbers)
-  - [Strings](#strings)
-  - [Whitespace](#whitespace)
-  - [Challenge 1](#challenge-1)
-  - [Conditional Code](#conditional-code)
-  - [Functions](#functions)
-  - [Parameters and Arguments](#parameters-and-arguments)
-  - [Returning Values from Functions](#returning-values-from-functions)
-  - [Challenge: Favorite Cities](#challenge-favorite-cities)
+- [Programming Language](#programming-language)
+- [Running Code](#running-code)
+- [Integrated Development Environments](#integrated-development-environments)
+- [Why Python?](#why-python)
+- [Numbers](#numbers)
+- [Strings](#strings)
+- [Whitespace](#whitespace)
+- [Challenge 1](#challenge-1)
+- [Conditional Code](#conditional-code)
+- [Functions](#functions)
+- [Parameters and Arguments](#parameters-and-arguments)
+- [Returning Values from Functions](#returning-values-from-functions)
+- [Challenge: Favorite Cities](#challenge-favorite-cities)
 
 ## Programming Language
 
 - Programming is like a recipe
+
   - Ingredients and instructions -- specific
   - Literal arguments -> Exact
   - Bug: Unexpected happened
   - Crash: Something freezes
 
-* Order of steps is important, programming is _sequential_
-* Finding errors and preventing crashes are just as important as creating instructions
+- Order of steps is important, programming is _sequential_
+- Finding errors and preventing crashes are just as important as creating instructions
 
 - Syntax is rules, semantics is meaning.
 - Each languages have their own strengths and weaknesses.
@@ -53,11 +57,12 @@ print "Hello, world!"
 ## Running Code
 
 - Python is an _interpretive language_, which means that it needs to be converted into machine language before it's able to run.
+
   - You convert interpretive language into machine language with _compile_ or _interpret_ or a combination of both.
 
-* Languages such as `C, C++, and Objective-C` are compiled languages
-* Languages such as `PHP and JavaScript` are interpreted languages.
-* `Java, C# and Python `are a combination of both.
+- Languages such as `C, C++, and Objective-C` are compiled languages
+- Languages such as `PHP and JavaScript` are interpreted languages.
+- `Java, C# and Python`are a combination of both.
 
 ## Integrated Development Environments
 

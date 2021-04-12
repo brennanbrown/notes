@@ -1,14 +1,17 @@
-# Django Fundamentals
+---
+layout: default
+title: Django Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Django Fundamentals](#django-fundamentals)
-  - [Getting Started](#getting-started)
-  - [Project vs. Apps](#project-vs-apps)
-  - [Database Management](#database-management)
-  - [Admin Dashboard](#admin-dashboard)
-  - [Deployment on DigitalOcean](#deployment-on-digitalocean)
-  - [Deployment on Heroku](#deployment-on-heroku)
+- [Getting Started](#getting-started)
+- [Project vs. Apps](#project-vs-apps)
+- [Database Management](#database-management)
+- [Admin Dashboard](#admin-dashboard)
+- [Deployment on DigitalOcean](#deployment-on-digitalocean)
+- [Deployment on Heroku](#deployment-on-heroku)
 
 ## Getting Started
 

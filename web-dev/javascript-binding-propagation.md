@@ -1,21 +1,24 @@
-# JavaScript Biding and Propagation
+---
+layout: default
+title: Javascript Binding and Propagation
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [JavaScript Biding and Propagation](#javascript-biding-and-propagation)
-  - [Prototype in JavaScript](#prototype-in-javascript)
-    - [Planning the Application](#planning-the-application)
-    - [Pseduocode](#pseduocode)
-    - [Immediately invoked function expression](#immediately-invoked-function-expression)
-  - [Dynamic Elements](#dynamic-elements)
-  - [Animation and `this` in JavaScript](#animation-and-this-in-javascript)
-    - [Meaning and Definition of `this`](#meaning-and-definition-of-this)
-    - [`bind`, `call`, and `apply`](#bind-call-and-apply)
-  - [Fisher-Yates Shuffle](#fisher-yates-shuffle)
-    - [Stacking](#stacking)
-  - [Propagation](#propagation)
-    - [Discard Pile](#discard-pile)
-    - [Drag-and-Drop](#drag-and-drop)
+- [Prototype in JavaScript](#prototype-in-javascript)
+  - [Planning the Application](#planning-the-application)
+  - [Pseduocode](#pseduocode)
+  - [Immediately invoked function expression](#immediately-invoked-function-expression)
+- [Dynamic Elements](#dynamic-elements)
+- [Animation and `this` in JavaScript](#animation-and-this-in-javascript)
+  - [Meaning and Definition of `this`](#meaning-and-definition-of-this)
+  - [`bind`, `call`, and `apply`](#bind-call-and-apply)
+- [Fisher-Yates Shuffle](#fisher-yates-shuffle)
+  - [Stacking](#stacking)
+- [Propagation](#propagation)
+  - [Discard Pile](#discard-pile)
+  - [Drag-and-Drop](#drag-and-drop)
 
 ## Prototype in JavaScript
 

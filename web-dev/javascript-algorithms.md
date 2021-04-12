@@ -1,21 +1,24 @@
-# JavaScript Algorithms
+---
+layout: default
+title: Javascript Algorithms
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [JavaScript Algorithms](#javascript-algorithms)
-  - [Performance Testing](#performance-testing)
-  - [Using `arr.sort` Function](#using-arrsort-function)
-    - [Node List](#node-list)
-    - [Filter Null Values](#filter-null-values)
-    - [Sorting Nodes](#sorting-nodes)
-  - [Bubble Sort](#bubble-sort)
-  - [Merge Sort](#merge-sort)
-  - [Insertion Sort](#insertion-sort)
-  - [Quartile Sort](#quartile-sort)
-    - [Values Into Header](#values-into-header)
-    - [Quartile, Min, Max, and Mean](#quartile-min-max-and-mean)
-    - [Sorter Nodes](#sorter-nodes)
-    - [Bucketing into Quartiles](#bucketing-into-quartiles)
+- [Performance Testing](#performance-testing)
+- [Using `arr.sort` Function](#using-arrsort-function)
+  - [Node List](#node-list)
+  - [Filter Null Values](#filter-null-values)
+  - [Sorting Nodes](#sorting-nodes)
+- [Bubble Sort](#bubble-sort)
+- [Merge Sort](#merge-sort)
+- [Insertion Sort](#insertion-sort)
+- [Quartile Sort](#quartile-sort)
+  - [Values Into Header](#values-into-header)
+  - [Quartile, Min, Max, and Mean](#quartile-min-max-and-mean)
+  - [Sorter Nodes](#sorter-nodes)
+  - [Bucketing into Quartiles](#bucketing-into-quartiles)
 
 “An algorithm is,” Domingos writes, “a sequence of instructions telling a computer what to do.” As Domingos goes on to explain, algorithms are reducible to three logical operations: AND, OR, and NOT. While these operations can chain together in extraordinarily complex ways, at core algorithms are built out of simple rational associations.
 
@@ -28,7 +31,7 @@ In other words, an algorithm is just a function that has repeatable steps.
   - This will record the specific times of functions as they run.
 - This can be helpful for comparing the amount of time each different sorting algorithm takes, and indetify places in the code that take the longest.
 - In the folder `js-tests`, there are snippets that can be compared to one another on the following websites:
-  - https://jsbench.me/ or https://jsben.ch/ or https://measurethat.net or https://plnkr.co/edit/pJg5LsiSNqlc6immmGsW?preview
+  - <https://jsbench.me/> or <https://jsben.ch/> or <https://measurethat.net> or <https://plnkr.co/edit/pJg5LsiSNqlc6immmGsW?preview>
   - You should always check what devices and browsers your audience uses so that you can optimize for your specific site.
 
 ## Using `arr.sort` Function
@@ -259,7 +262,7 @@ function insertionSort(arr, sorterIndex) {
 - To start our quartile, we need to get the min, max, and mean of each of the column values.
 - Loop through the data, `items.forEach` will get a fat arrow function.
   - And you'll use `item` as your iterated parameter.
-- You'll first check to see that our item at the header index is not equal to null. - Inside of that, you'll take ` tempArr``, and push  `item`at the header index. - This will collect all the values for each column, and then assign that collection to`values`.
+- You'll first check to see that our item at the header index is not equal to null. - Inside of that, you'll take ` tempArr``, and push `item`at the header index. - This will collect all the values for each column, and then assign that collection to`values`.
 
 ```javascript
 items.forEach((item) => {

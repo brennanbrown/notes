@@ -1,25 +1,28 @@
-# Unit Testing and Test Driven Development in Python
+---
+layout: default
+title: Python Test-driven Development
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Unit Testing and Test Driven Development in Python](#unit-testing-and-test-driven-development-in-python)
-	- [Introduction](#introduction)
-	- [Overview of Test-Driven Development](#overview-of-test-driven-development)
-		- [What is a Unit Test?](#what-is-a-unit-test)
-		- [What is Test-driven Development?](#what-is-test-driven-development)
-	- [Pytest Overview](#pytest-overview)
-		- [Test Discovery](#test-discovery)
-		- [Xunit-Style Setup and Teardown](#xunit-style-setup-and-teardown)
-		- [Test Fixtures](#test-fixtures)
-		- [Assert Statements and Exceptions](#assert-statements-and-exceptions)
-		- [Pytest Command Line Arguments](#pytest-command-line-arguments)
-	- [Test Doubles](#test-doubles)
-		- [Types of Test Doubles](#types-of-test-doubles)
-		- [Unittest.mock](#unittestmock)
-		- [Mock Verification](#mock-verification)
-		- [MagicMock and MonkeyPatch](#magicmock-and-monkeypatch)
-	- [Best Practices of TDD](#best-practices-of-tdd)
-	- [Further Reading](#further-reading)
+- [Introduction](#introduction)
+- [Overview of Test-Driven Development](#overview-of-test-driven-development)
+	- [What is a Unit Test?](#what-is-a-unit-test)
+	- [What is Test-driven Development?](#what-is-test-driven-development)
+- [Pytest Overview](#pytest-overview)
+	- [Test Discovery](#test-discovery)
+	- [Xunit-Style Setup and Teardown](#xunit-style-setup-and-teardown)
+	- [Test Fixtures](#test-fixtures)
+	- [Assert Statements and Exceptions](#assert-statements-and-exceptions)
+	- [Pytest Command Line Arguments](#pytest-command-line-arguments)
+- [Test Doubles](#test-doubles)
+	- [Types of Test Doubles](#types-of-test-doubles)
+	- [Unittest.mock](#unittestmock)
+	- [Mock Verification](#mock-verification)
+	- [MagicMock and MonkeyPatch](#magicmock-and-monkeypatch)
+- [Best Practices of TDD](#best-practices-of-tdd)
+- [Further Reading](#further-reading)
 
 ## Introduction
 
@@ -71,16 +74,16 @@ import pytest
 
 # Product Code
 def string_length( theString ):
-	return len(theString)
+ return len(theString)
 
 # A Unit Test
 def test_string_length():
-	# 1. The Setup
-	testString = "1"
-	# 2. The Action
-	result = string_length(testString)
-	# 3. The Assertion
-	assert result == 1
+ # 1. The Setup
+ testString = "1"
+ # 2. The Action
+ result = string_length(testString)
+ # 3. The Assertion
+ assert result == 1
 ```
 
 ### What is Test-driven Development?
@@ -124,14 +127,15 @@ def test_string_length():
 ## Pytest Overview
 
 - What is PyTest?
+
   - **PyTest** is a Python unit testing framework. It provides the ability to create tests, test modules, test classes, and test fixtures.
   - It uses the built-in Python `assert` statement which makes implementing unit tests much simpler than other Python unit testing frameworks.
   - It also adds many useful command line arguments to help specify what tests should be run and in what order.
 
-* In PyTest, individual tests are Python functions with `test_` at the beginning of the function name.
+- In PyTest, individual tests are Python functions with `test_` at the beginning of the function name.
   - The unit tests then execute production code and use the standard Python assert statement to perform verifications on results.
   - Similar tests can be grouped together by including them in the same module or class.
-* Eg. run `pytest -v` from the command line. The -v tells PyTest to run in verbose mode, and it will tell me which unit test it's running and if they pass or not.
+- Eg. run `pytest -v` from the command line. The -v tells PyTest to run in verbose mode, and it will tell me which unit test it's running and if they pass or not.
 
 ### Test Discovery
 
@@ -145,20 +149,20 @@ def test_string_length():
 
 
 class TestClass:
-	def test_me(self):
-		assert True
+ def test_me(self):
+  assert True
 
-	def testme2(self):
-		assert True
+ def testme2(self):
+  assert True
 
 # Will not run with Pytest, as it
 # does not follow naming convention.
 class MyTestClass():
-	def test_it(self):
-		assert True
+ def test_it(self):
+  assert True
 
-	def test_it2(self):
-		assert True
+ def test_it2(self):
+  assert True
 
 ```
 
@@ -183,72 +187,72 @@ class MyTestClass():
 # rather than a unique instance of the class.
 
 class TestClass:
-	@classmethod
-	def setup_class(cls):
-		print("Setup TestClass!")
+ @classmethod
+ def setup_class(cls):
+  print("Setup TestClass!")
 
-	@classmethod
-	def teardown_class(cls):
-		print("Teardown TestClass!")
+ @classmethod
+ def teardown_class(cls):
+  print("Teardown TestClass!")
 
-	def setup_method(self, method):
-		if method == self.test1:
-			print("\nSetting up test1!")
-		elif method == self.test2:
-			print("\nSetting up test2!")
-		else:
-			print("\nSetting up unknown test!")
+ def setup_method(self, method):
+  if method == self.test1:
+   print("\nSetting up test1!")
+  elif method == self.test2:
+   print("\nSetting up test2!")
+  else:
+   print("\nSetting up unknown test!")
 
-	def teardown_method(self, method):
-		if method == self.test1:
-			print("\nTearing down test1!")
-		elif method == self.test2:
-			print("\nTearing down test2!")
-		else:
-			print("\nTearing down unknown test!")
+ def teardown_method(self, method):
+  if method == self.test1:
+   print("\nTearing down test1!")
+  elif method == self.test2:
+   print("\nTearing down test2!")
+  else:
+   print("\nTearing down unknown test!")
 
-	def test1(self):
-		print("Executing test1!")
-		assert True
+ def test1(self):
+  print("Executing test1!")
+  assert True
 
-	def test2(self):
-		print("Executing test2!")
-		assert True
+ def test2(self):
+  print("Executing test2!")
+  assert True
 
 
 # Module Example #
 
 def setup_module(module):
-	print("Setup Module!")
-	return module
+ print("Setup Module!")
+ return module
 
 def teardown_module(module):
-	print("Teardown Module!")
-	return module
+ print("Teardown Module!")
+ return module
 
 def setup_function(function):
-	if function == test1:
-		print("\nSetting up test1!")
-	elif function == test2:
-		print("\nSetting up test2!")
-	else:
-		print("\nSetting up unknown test!")
+ if function == test1:
+  print("\nSetting up test1!")
+ elif function == test2:
+  print("\nSetting up test2!")
+ else:
+  print("\nSetting up unknown test!")
 
 def teardown_function(function):
-	if function == test1:
-		print("\nTearing down test1!")
-	elif function == test2:
-		print("\nTearing down test2!")
-	else:
-		print("\nTearing down unknown test!")
+ if function == test1:
+  print("\nTearing down test1!")
+ elif function == test2:
+  print("\nTearing down test2!")
+ else:
+  print("\nTearing down unknown test!")
 
 def test1():
-	print("Executing test1!")
-	assert True
+ print("Executing test1!")
+ assert True
 
 def test2():
-	print("Executing test2!")
-	assert True
+ print("Executing test2!")
+ assert True
 ```
 
 ### Test Fixtures
@@ -266,33 +270,33 @@ import pytest
 
 @pytest.fixture()
 def setup():
-	print("\nSetup!")
+ print("\nSetup!")
 
 # Argument Example
 def test1(setup):
-	print("Executing test1!")
-	assert True
+ print("Executing test1!")
+ assert True
 
 # Decorator Example
 @pytest.mark.usefixtures("setup")
 def test2():
-	print("Executing test2!")
-	assert True
+ print("Executing test2!")
+ assert True
 
 ###
 
 # autouse Example
 @pytest.fixture(autouse=True)
 def setup():
-	print("\nSetup!")
+ print("\nSetup!")
 
 def test1():
-	print("Executing test1!")
-	assert True
+ print("Executing test1!")
+ assert True
 
 def test2():
-	print("Executing test2!")
-	assert True
+ print("Executing test2!")
+ assert True
 ```
 
 - Often, there is some type of teardown or cleanup that a test, class or module needs to perform after testing has been completed.
@@ -309,31 +313,31 @@ import pytest
 # Yield Example
 @pytest.fixture()
 def setup3():
-	print("\nSetup 3!")
-	yield
-	print("\nTeardown 3!")
+ print("\nSetup 3!")
+ yield
+ print("\nTeardown 3!")
 
 # Addfinalizer Example
 @pytest.fixture()
 def setup4(request):
-	print("\nSetup 4!")
+ print("\nSetup 4!")
 
-	def teardown_a():
-		print("\nTeardown A!")
+ def teardown_a():
+  print("\nTeardown A!")
 
-	def teardown_b():
-		print("\nTeardown B!")
+ def teardown_b():
+  print("\nTeardown B!")
 
-	request.addfinalizer(teardown_a)
-	request.addfinalizer(teardown_b)
+ request.addfinalizer(teardown_a)
+ request.addfinalizer(teardown_b)
 
 def test3(setup3):
-	print("Executing test3!")
-	assert True
+ print("Executing test3!")
+ assert True
 
 def test4(setup4)
-	print("Execute test4!")
-	assert True
+ print("Execute test4!")
+ assert True
 ```
 
 - Which test a fixture applies to, and how often it is run, depends on the fixture scope.
@@ -349,24 +353,24 @@ import pytest
 # Scope Example #
 @pytest.fixture(scope="session", autouse=True)
 def setupSession():
-	print("\nSetup Session!")
+ print("\nSetup Session!")
 
 @pytest.fixture(scope="module", autouse=True)
 def setupModule():
-	print("\nSetup Module!")
+ print("\nSetup Module!")
 
 @pytest.fixture(scope="function", autouse=True)
 def setupFunction():
-	print("\nSetup Function!")
+ print("\nSetup Function!")
 
 class TestClass:
-	def test5(self):
-		print("Executing test5!")
-		assert True
+ def test5(self):
+  print("Executing test5!")
+  assert True
 
-	def test6(self)
-		print("Execute test6!")
-		assert True
+ def test6(self)
+  print("Execute test6!")
+  assert True
 ```
 
 ### Assert Statements and Exceptions
@@ -378,19 +382,19 @@ class TestClass:
 
 ```python
 def test_IntAssert():
-	assert 1 == 1
+ assert 1 == 1
 
 def test_StrAssert():
-	assert "str" == "str"
+ assert "str" == "str"
 
 def test_floatAssert():
-	assert 1.0 == 1.0
+ assert 1.0 == 1.0
 
 def test_arrayAssert():
-	assert [1,2,3] == [1,2,3]
+ assert [1,2,3] == [1,2,3]
 
 def test_dictAssert():
-	assert {"1":1} == {"1":1}
+ assert {"1":1} == {"1":1}
 ```
 
 - Validating floating point values can sometimes be difficult, as internally the value is stored as a series of binary fractions. (Eg. 1/3 internally is 0.33333...)
@@ -402,12 +406,12 @@ from pytest import approx
 
 # Failing Floating Point Test
 def test_BadFloatCompare():
-	assert (0.1 + 0.2) == 0.3
+ assert (0.1 + 0.2) == 0.3
 
 # Passing Floating Point Test
 def test_GoodFloatCompare():
-	val = 0.1 + 0.2
-	assert val == approx(0.3)
+ val = 0.1 + 0.2
+ assert val == approx(0.3)
 ```
 
 - In some test cases, we need to verify that a function raises an exception under certain conditions.
@@ -418,14 +422,14 @@ def test_GoodFloatCompare():
 from pytest import raises
 
 def raisesValueException():
-	raise ValueError
-	# Will cause test failure:
-	# pass
+ raise ValueError
+ # Will cause test failure:
+ # pass
 
 
 def test_Exception():
-	with raises(ValueError)
-		raisesValueException()
+ with raises(ValueError)
+  raisesValueException()
 ```
 
 ### Pytest Command Line Arguments
@@ -476,17 +480,17 @@ def test_Exception():
 # Example of unittest.mock
 
 def test_Foo():
-	bar = Mock()
-	bar_func(bar)
-	bar.assert_called_once()
+ bar = Mock()
+ bar_func(bar)
+ bar.assert_called_once()
 
 def test_Foo2():
-	# Specifies the interface that the Mock object is implementing.
-	bar = Mock(spec = spec_class)
-	# Specifies a function that should be called when the Mock is called.
-	bar2 = Mock(side_effect = bar_func)
-	# Specifies the value that should be returned when the Mock object is called.
-	bar3 = Mock(return_value = 1)
+ # Specifies the interface that the Mock object is implementing.
+ bar = Mock(spec = spec_class)
+ # Specifies a function that should be called when the Mock is called.
+ bar2 = Mock(side_effect = bar_func)
+ # Specifies the value that should be returned when the Mock object is called.
+ bar3 = Mock(return_value = 1)
 ```
 
 - Mock provides many initialization parameters which can be used to control the Mock objects behavior.
@@ -526,12 +530,12 @@ def test_Foo2():
 ```python
 # MonkeyPatch Example
 def call_it():
-	print("Hello, world!")
+ print("Hello, world!")
 
 def test_patch(monkeypatch):
-	monkeypatch(call_it, Mock())
-	call_it()
-	call_it.assert_called_once()
+ monkeypatch(call_it, Mock())
+ call_it()
+ call_it.assert_called_once()
 ```
 
 - Below is an example of using TDD to implement a function called `read_from_file`, which will read and return the first line from a file.
@@ -548,11 +552,11 @@ import os
 # an argument to the function, and the function will open
 # that file, read in the first line, and return it.
 def read_from_file(filename):
-	if not os.path.exists(filename):
-		raise Exception("Error: File Not Found.")
-	infile = open(filename, "r")
-	line = infile.readline()
-	return line
+ if not os.path.exists(filename):
+  raise Exception("Error: File Not Found.")
+ infile = open(filename, "r")
+ line = infile.readline()
+ return line
 ```
 
 ```python
@@ -571,37 +575,37 @@ from line_reader import read_from_file
 
 # Note: Not utilized, as no real file is being read.
 # def test_canCallReadFromFile():
-# 	read_from_file("mock_file.txt")
-# 	assert True
+#  read_from_file("mock_file.txt")
+#  assert True
 
 @pytest.fixture()
 def mock_open(monkeypatch):
-	mock_file = MagicMock()
-	mock_file.readline = MagicMock(return_value = "Mock Title")
-	mock_open = MagicMock(return_value = mock_file)
-	monkeypatch.setattr("builtins.open", mock_open)
-	return mock_open
+ mock_file = MagicMock()
+ mock_file.readline = MagicMock(return_value = "Mock Title")
+ mock_open = MagicMock(return_value = mock_file)
+ monkeypatch.setattr("builtins.open", mock_open)
+ return mock_open
 
 # Note: You don't actually want to have to open a file for this test,
 # as that puts an external dependency on the test,
 # and potentially slows the test down. Hence using mocks.
 def test_returnsCorrectString(mock_open, monkeypatch):
-	# Update the test case to mock out the os.path.exist,
-	# and have it return true for that particular test case:
-	mock_exists = MagicMock(return_value = True)
-	monkeypatch.setattr("os.path.exists", mock_exists)
-	result = read_from_file("mock_file.txt")
-	mock_open.assert_called_once_with("mock_file.txt", "r")
-	assert result == "Mock Title"
+ # Update the test case to mock out the os.path.exist,
+ # and have it return true for that particular test case:
+ mock_exists = MagicMock(return_value = True)
+ monkeypatch.setattr("os.path.exists", mock_exists)
+ result = read_from_file("mock_file.txt")
+ mock_open.assert_called_once_with("mock_file.txt", "r")
+ assert result == "Mock Title"
 
 # Note: Mocking the os.path.exist functions to allow control when
 # it returns true or false depending on the test case,
 # without actually having to make modifications in the file system.
 def test_throwsExceptionWithBadFile(mock_open, monkeypatch):
-	mock_exists = MagicMock(return_value = False)
-	monkeypatch.setattr("os.path.exists", mock_exists)
-	with raises(Exception):
-		result = read_from_file("mock_file.txt")
+ mock_exists = MagicMock(return_value = False)
+ monkeypatch.setattr("os.path.exists", mock_exists)
+ with raises(Exception):
+  result = read_from_file("mock_file.txt")
 
 ```
 

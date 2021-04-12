@@ -1,12 +1,15 @@
-# Hosting React on Amazon Web Services
+---
+layout: default
+title: React on Amazon Web Services
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Hosting React on Amazon Web Services](#hosting-react-on-amazon-web-services)
-  - [Hosting on AWS](#hosting-on-aws)
-  - [User Authentication](#user-authentication)
-  - [DynamoDB API with APISync](#dynamodb-api-with-apisync)
-  - [AppSync GraphQL Calls with React](#appsync-graphql-calls-with-react)
+- [Hosting on AWS](#hosting-on-aws)
+- [User Authentication](#user-authentication)
+- [DynamoDB API with APISync](#dynamodb-api-with-apisync)
+- [AppSync GraphQL Calls with React](#appsync-graphql-calls-with-react)
 
 ## Hosting on AWS
 

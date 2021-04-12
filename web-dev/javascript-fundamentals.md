@@ -1,23 +1,26 @@
-# JavaScript Fundamentals
+---
+layout: default
+title: Javascript Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [JavaScript Fundamentals](#javascript-fundamentals)
-  - [Three Layers of Web Page Content](#three-layers-of-web-page-content)
-  - [JavaScript vs. Java](#javascript-vs-java)
-  - [ECMAScript](#ecmascript)
-  - [Frameworks and Libraries](#frameworks-and-libraries)
-    - [Example Code](#example-code)
-  - [Variables](#variables)
-  - [Data Types, Logic, Arrays](#data-types-logic-arrays)
-    - [Methods and Properties in Arrays](#methods-and-properties-in-arrays)
-  - [Functions and Objects](#functions-and-objects)
-    - [Named Function Example](#named-function-example)
-    - [Anonymous Function Example](#anonymous-function-example)
-    - [Immediately Invoked Functional Expression Example](#immediately-invoked-functional-expression-example)
-  - [Variable Scope](#variable-scope)
-    - [ES2015: let and const](#es2015-let-and-const)
-  - [Object-oriented Design](#object-oriented-design)
+- [Three Layers of Web Page Content](#three-layers-of-web-page-content)
+- [JavaScript vs. Java](#javascript-vs-java)
+- [ECMAScript](#ecmascript)
+- [Frameworks and Libraries](#frameworks-and-libraries)
+  - [Example Code](#example-code)
+- [Variables](#variables)
+- [Data Types, Logic, Arrays](#data-types-logic-arrays)
+  - [Methods and Properties in Arrays](#methods-and-properties-in-arrays)
+- [Functions and Objects](#functions-and-objects)
+  - [Named Function Example](#named-function-example)
+  - [Anonymous Function Example](#anonymous-function-example)
+  - [Immediately Invoked Functional Expression Example](#immediately-invoked-functional-expression-example)
+- [Variable Scope](#variable-scope)
+  - [ES2015: let and const](#es2015-let-and-const)
+- [Object-oriented Design](#object-oriented-design)
 
 > What is JavaScript?
 

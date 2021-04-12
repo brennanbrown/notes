@@ -1,18 +1,21 @@
-# Algorithm Fundamentals
+---
+layout: default
+title: Algorithm Fundamentals
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Algorithm Fundamentals](#algorithm-fundamentals)
-  - [Introduction](#introduction)
-  - [Measuring Algorithm Performance](#measuring-algorithm-performance)
-  - [Intro to Data Structures](#intro-to-data-structures)
-  - [Stacks and Queues](#stacks-and-queues)
-  - [Unordered List Search](#unordered-list-search)
-  - [Searching an Ordered List](#searching-an-ordered-list)
-  - [Determining if a List is Sorted](#determining-if-a-list-is-sorted)
-  - [Unique Filtering with Hash Table](#unique-filtering-with-hash-table)
-  - [Value Counting with Hash Table](#value-counting-with-hash-table)
-  - [Finding Maximum Value with Recursion](#finding-maximum-value-with-recursion)
+- [Introduction](#introduction)
+- [Measuring Algorithm Performance](#measuring-algorithm-performance)
+- [Intro to Data Structures](#intro-to-data-structures)
+- [Stacks and Queues](#stacks-and-queues)
+- [Unordered List Search](#unordered-list-search)
+- [Searching an Ordered List](#searching-an-ordered-list)
+- [Determining if a List is Sorted](#determining-if-a-list-is-sorted)
+- [Unique Filtering with Hash Table](#unique-filtering-with-hash-table)
+- [Value Counting with Hash Table](#value-counting-with-hash-table)
+- [Finding Maximum Value with Recursion](#finding-maximum-value-with-recursion)
 
 ## Introduction
 
@@ -118,8 +121,8 @@ def bogosort(data) -> List:
 - **Linked Lists** are a collection of elements, called nodes, and contain reference to the next node in the list. They can hold whatever data the applications needs.
   - Elements can be more easily inserted or removed than in arrays. Underlying memory doesn't need to be reorganized
   - The main drawback, though, is that you can't do constant-time random item access, meaning that looking up an arbitary item is linear in time scale `O(n))` instead of `O(1)` constant time in the array.
-  * A linked list operation, such as adding a new element, requires setting the new node's next pointer to be the current head, and then set the head to be the new node.
-  * A node can be removed from a list by changing the next field of the node that points to it.
+  - A linked list operation, such as adding a new element, requires setting the new node's next pointer to be the current head, and then set the head to be the new node.
+  - A node can be removed from a list by changing the next field of the node that points to it.
     - To remove the node, simply have the previous node point directly to the node that came after.
   - Just by manipulating the various _pointers_, you can achieve operations with linked lists.
 

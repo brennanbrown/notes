@@ -1,17 +1,20 @@
-# React Ecosystems
+---
+layout: default
+title: React Ecosystems
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [React Ecosystems](#react-ecosystems)
-  - [Introduction](#introduction)
-  - [Electrons](#electrons)
-  - [Routing and Navigation](#routing-and-navigation)
-  - [Server-side Rendering](#server-side-rendering)
-  - [State Management (Redux)](#state-management-redux)
-  - [Mobile (React Native)](#mobile-react-native)
-  - [Animations (React Motion)](#animations-react-motion)
-  - [Testing and Debugging (React Developer Tools and Jest)](#testing-and-debugging-react-developer-tools-and-jest)
-  - [Types (Flow)](#types-flow)
+- [Introduction](#introduction)
+- [Electrons](#electrons)
+- [Routing and Navigation](#routing-and-navigation)
+- [Server-side Rendering](#server-side-rendering)
+- [State Management (Redux)](#state-management-redux)
+- [Mobile (React Native)](#mobile-react-native)
+- [Animations (React Motion)](#animations-react-motion)
+- [Testing and Debugging (React Developer Tools and Jest)](#testing-and-debugging-react-developer-tools-and-jest)
+- [Types (Flow)](#types-flow)
 
 ## Introduction
 
@@ -32,15 +35,16 @@
 ## Routing and Navigation
 
 - Let's start with routing and navigation. You use them everyday when you surf the web or navigate through an application's menu.
+
   - Behind the scenes, routing basically happens as a function of navigating to different pages or sections of a website or app.
   - For example, when you browse a webpage and you click on a navigation link you are _routed_ to a new page.
   - Although it may seem complex initially, routing is really quite simple. Let's say when you click on a link labeled news on the webpage navigation when you do this, the link calls a route named news.
 
-* For example: This route has a component news attached to it. And the component will render that page in the browser.
+- For example: This route has a component news attached to it. And the component will render that page in the browser.
   - If you click on other links, the same process happens over and over and over.
   - On a mobile or web application it's the same when you tap or click any items that require a render for a new section or page.
-* In React, the best way to get started with routing is by using a great library called **React Router**. It has a simple syntax and you can get up and running quickly.
-  - More information: https://reacttraining.com/react-router/
+- In React, the best way to get started with routing is by using a great library called **React Router**. It has a simple syntax and you can get up and running quickly.
+  - More information: <https://reacttraining.com/react-router/>
 
 ## Server-side Rendering
 
@@ -52,7 +56,7 @@
 - How is this done in React?
   - There are multiple ways to do this. But the simplest way to get started is to use `ReactDomServer` APIs provided with React's core library.
   - Eg. You can use the `renderToString()` method in the server code, or if you want the static HTML without the extra attributes you can use `renderToStaticMarkup()`.
-  - More information: https://facebook.github.io/react
+  - More information: <https://facebook.github.io/react>
 
 ## State Management (Redux)
 
@@ -66,7 +70,7 @@
 - **Redux**, one of the leading libraries, provides us with great syntax and structure to manage our state.
   - Redux has actions that call reducers, which are functions that create a new state based on the previous one with the new action added to it.
   - For example: If you click an action, such as "get me the latest news", the reducer will copy the old list of news, add the new ones, and create a new state object with updated news.
-  - More information: https://redux.js.org
+  - More information: <https://redux.js.org>
 
 ## Mobile (React Native)
 
@@ -76,7 +80,7 @@
 - With **React Native** you can use the approach of building components once, and deploy your application to these environments.
   - Because of the nature of mobile operating systems and the differences between them, the community was driven to build more libraries to support all kinds of scenarios.
   - Some of these include mobile routing, UI elements, starting kits, IDEs, and testing libraries specific to React Native.
-  - More information: https://facebook.github.io/react-native.
+  - More information: <https://facebook.github.io/react-native>.
 
 ## Animations (React Motion)
 
@@ -86,7 +90,7 @@
   - It's quite simple and doesn't provide too many options. If you want to get started quickly you can always use it.
   - But if you really want to push the animation possibilities or even do a full feature show using some of the 12 principles of animation then you're better off using a library like React Motion.
 - **React Motion** offers spring, motion, and transitions and many other ways to get your components on, and off screen, or interact with user events.
-  - More information: https://github.com/chenglou/react-motion
+  - More information: <https://github.com/chenglou/react-motion>
 
 ## Testing and Debugging (React Developer Tools and Jest)
 
@@ -98,7 +102,7 @@
 - You use **Jest** to test whether a component properly renders with snapshots, which are great for UI tests.
   - When you need to know which files are being tested, Jest provides great coverage reports. You can also use its library when you need to validate that the proper values are returned with matchers.
   - Even though Jest is built by Facebook and is aimed at React applications, you can also use it with many other frameworks, so all the time you invest in learning it is well spent.
-  - More information: https://facebook.github.io/jest, and https://github.com/facebook/react-devtools
+  - More information: <https://facebook.github.io/jest>, and <https://github.com/facebook/react-devtools>
 
 ## Types (Flow)
 
@@ -110,4 +114,4 @@
   - Along with the previous tools mentioned you've got everything you need to prevent alarms from going off.
 - With React, there are two ways to do type checking. You can use a simple library called `propTypes` to get started. Or, if you want a more robust API to do type checking you can use **Flow**.
   - Both libraries were written by Facebook so you can be assured they have great tools built specifically for React.
-  - More information: https:://github.com/reactjs/prop-types and https://flow.org
+  - More information: https:://github.com/reactjs/prop-types and <https://flow.org>

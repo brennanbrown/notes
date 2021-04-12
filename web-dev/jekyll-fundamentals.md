@@ -1,8 +1,13 @@
-# Jekyll Fundamentals
+---
+layout: default
+title: Jekyll Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
 - [Jekyll Fundamentals](#jekyll-fundamentals)
+
   - [Static vs. Dynamic Websites](#static-vs-dynamic-websites)
     - [Advantages of Static Sites](#advantages-of-static-sites)
     - [Use Cases for Static Sites](#use-cases-for-static-sites)
@@ -21,7 +26,7 @@
     - [Site Generation](#site-generation)
   - [Publishing Options](#publishing-options)
 
-* The web is a fundamental part of how we communicate and do business today. And having a professional website immediately adds legitimacy to anything you're saying or selling.
+- The web is a fundamental part of how we communicate and do business today. And having a professional website immediately adds legitimacy to anything you're saying or selling.
   - Unfortunately, building and hosting a website can be an expensive and sometimes time consuming task.
   - That's where **Jekyll** comes in, a free tool to build websites that can then be published and deployed for free or for cheap.
 
@@ -60,7 +65,7 @@
 - To create a static site, you could write all of the HTML files by hand, but that would be a lot of work.
   - The easiest way to build a static site is with a tool called a static site generator.
   - A static site generator lets you write your posts or you pages in a simpler language like Markdown and then automatically generates HTML for you using a template.
-- Tools like **Jekyll**, **Hexo**, and **Hugo** are some of the most popular static site generators. The website https://staticgen.com has a comprehensive list of static site generator projects.
+- Tools like **Jekyll**, **Hexo**, and **Hugo** are some of the most popular static site generators. The website <https://staticgen.com> has a comprehensive list of static site generator projects.
 - When it comes to picking a static site generator, you should investigate a few things before you decide on the tool you want to use:
   - First, what language or markup will you need to write your content in? Most static site generators use Markdown. And if you're starting from scratch, Markdown is definitely the simplest way to go.
     - However, if you're bringing existing content in another format like AsciiDoc, you'll need to investigate which generators will support your content.
@@ -80,7 +85,7 @@
 
 ### Installation
 
-- The first step is installing Jekyll on your machine. Follow the official instructions on the Jekyll website, at https://jekyllrb.com. There are detailed instructions here for Mac, Linux and Windows.
+- The first step is installing Jekyll on your machine. Follow the official instructions on the Jekyll website, at <https://jekyllrb.com>. There are detailed instructions here for Mac, Linux and Windows.
 - Because Jekyll is built on top of Ruby, you'll need to make sure that Ruby is installed first.
   - You can do this by opening your terminal, or your shell, and typing `ruby -v` and also `gem -v`. If you get an error message when you run either of these commands, you'll need to install Ruby first, before continuing with Jekyll.
 - Once you've installed Jekyll, double-check that it's working as well, by doing `jekyll -v`. If you see a version number here too, you've installed Jekyll correctly, and you're ready to go.
@@ -110,7 +115,7 @@
 ### Theme Installation
 
 - Jekyll uses packages called themes to let you easily change the look and feel of your site.
-  - There are tons of Jekyll themes available, some free and some paid. Sites like https://jekyllthemes.org and https://jekyllthemes.io let you browse and discover new themes.
+  - There are tons of Jekyll themes available, some free and some paid. Sites like <https://jekyllthemes.org> and <https://jekyllthemes.io> let you browse and discover new themes.
   - Most themes come with instructions that will tell you how to install the theme in your project. There are two common ways to install Jekyll themes that you'll come across. Some themes will tell you to fork the theme repository on GitHub and use that as a starting point for your project.
 - If you pick a theme that uses this method, you won't start your site using the above guide.
   - Instead after forking the theme repository, you'll clone your fork using `git clone`. And then you'll build your site using the theme as the starting point.
@@ -173,7 +178,7 @@ Hi there, this is an example of how a post layout looks on a Jekyll Site!
 
 - The section at the top of each post file is called the front matter.
   - This section stores metadata or properties about the post. You can change or add to these properties to change things about the post.
-  - The Jekyll documentation at https://jekyllrb.com includes a list of all the front matter properties you can add and what they do. For blogs it can useful to add categories and tags to posts.
+  - The Jekyll documentation at <https://jekyllrb.com> includes a list of all the front matter properties you can add and what they do. For blogs it can useful to add categories and tags to posts.
 - The tags and categories you use on your own site would just depend on your content. This means that categories can be used to organize the posts on your site into different sections.
   - At first, tags won't show up anywhere, but many themes include a way to list all the posts in a particular tag.
 

@@ -1,20 +1,23 @@
-# Zsh Fundamentals
+---
+layout: default
+title: ZSH Fundamentals
+parent: Programming
+---
 
-- [Zsh Fundamentals](#zsh-fundamentals)
-  - [Zsh Foundations](#zsh-foundations)
-    - [Installation](#installation)
-    - [Zsh as primary shell](#zsh-as-primary-shell)
-    - [Environment and Options](#environment-and-options)
-    - [Aliases and Reserved Words](#aliases-and-reserved-words)
-    - [Functions](#functions)
-    - [Builtins and Commands](#builtins-and-commands)
-  - [Using Zsh](#using-zsh)
-    - [Autocd and cd Shorthand](#autocd-and-cd-shorthand)
-    - [Directory Stacks](#directory-stacks)
-    - [Finding Files and Commands](#finding-files-and-commands)
-    - [Auto Complete](#auto-complete)
-    - [Redirection, Pipes, and Multios](#redirection-pipes-and-multios)
-  - [Customizing Zsh](#customizing-zsh)
+- [Zsh Foundations](#zsh-foundations)
+  - [Installation](#installation)
+  - [Zsh as primary shell](#zsh-as-primary-shell)
+  - [Environment and Options](#environment-and-options)
+  - [Aliases and Reserved Words](#aliases-and-reserved-words)
+  - [Functions](#functions)
+  - [Builtins and Commands](#builtins-and-commands)
+- [Using Zsh](#using-zsh)
+  - [Autocd and cd Shorthand](#autocd-and-cd-shorthand)
+  - [Directory Stacks](#directory-stacks)
+  - [Finding Files and Commands](#finding-files-and-commands)
+  - [Auto Complete](#auto-complete)
+  - [Redirection, Pipes, and Multios](#redirection-pipes-and-multios)
+- [Customizing Zsh](#customizing-zsh)
 
 ## Zsh Foundations
 

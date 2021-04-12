@@ -1,19 +1,22 @@
-# Git and GitHub Fundamentals
+---
+layout: default
+title: GitHub Fundamentals
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Git and GitHub Fundamentals](#git-and-github-fundamentals)
-  - [Introduction](#introduction)
-  - [Branches and Commits](#branches-and-commits)
-  - [Pull Requests](#pull-requests)
-  - [CLI](#cli)
-    - [CLI Commands](#cli-commands)
-  - [Git Configurations](#git-configurations)
-    - [Language for Commit Messages](#language-for-commit-messages)
-  - [Creating a Pull Request](#creating-a-pull-request)
-  - [Local vs. Remote](#local-vs-remote)
-  - [Moving Project to GitHub](#moving-project-to-github)
-  - [Importance of an open-source and public repository.](#importance-of-an-open-source-and-public-repository)
+- [Introduction](#introduction)
+- [Branches and Commits](#branches-and-commits)
+- [Pull Requests](#pull-requests)
+- [CLI](#cli)
+  - [CLI Commands](#cli-commands)
+- [Git Configurations](#git-configurations)
+  - [Language for Commit Messages](#language-for-commit-messages)
+- [Creating a Pull Request](#creating-a-pull-request)
+- [Local vs. Remote](#local-vs-remote)
+- [Moving Project to GitHub](#moving-project-to-github)
+- [Importance of an open-source and public repository](#importance-of-an-open-source-and-public-repository)
 
 ## Introduction
 
@@ -216,7 +219,7 @@ git commit -m "Initalize repository"
 git push -u origin master t
 ```
 
-## Importance of an open-source and public repository.
+## Importance of an open-source and public repository
 
 - When a project is open-source, it means that anybody can view, modify, and distribute the project for any purpose.
   - This lowers the barries to adoption.

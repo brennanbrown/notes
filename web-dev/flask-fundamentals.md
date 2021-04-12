@@ -1,19 +1,22 @@
-# Flask Fundamentals
+---
+layout: default
+title: Flask Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Flask Fundamentals](#flask-fundamentals)
-  - [Configuration](#configuration)
-  - [Creating a Flask Project](#creating-a-flask-project)
-    - [Jinja Templates](#jinja-templates)
-  - [Data and Objects](#data-and-objects)
-  - [Database Configuration](#database-configuration)
-  - [Web Forms and Security](#web-forms-and-security)
-  - [Database Connection](#database-connection)
-  - [Data Aggregation](#data-aggregation)
-  - [State Management](#state-management)
-  - [Deployment on Heroku](#deployment-on-heroku)
-    - [Deployment Security](#deployment-security)
+- [Configuration](#configuration)
+- [Creating a Flask Project](#creating-a-flask-project)
+  - [Jinja Templates](#jinja-templates)
+- [Data and Objects](#data-and-objects)
+- [Database Configuration](#database-configuration)
+- [Web Forms and Security](#web-forms-and-security)
+- [Database Connection](#database-connection)
+- [Data Aggregation](#data-aggregation)
+- [State Management](#state-management)
+- [Deployment on Heroku](#deployment-on-heroku)
+  - [Deployment Security](#deployment-security)
 
 ## Configuration
 
@@ -124,7 +127,7 @@ class flask.Response(
 
 ## Database Configuration
 
-> See: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ and https://www.mongodb.com/try/download/compass
+> See: <https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/> and <https://www.mongodb.com/try/download/compass>
 
 - Utilize the MongoDB database system with Flask
   - `sudo systemctl start mongod`
@@ -217,7 +220,7 @@ class LoginForm(FlaskForm):
     - `$match`: Filters documents.
     - `$unwind`: Deconstructs an array field
 - **Important note:** When using an online database, whitelist your IP address.
-  - https://docs.atlas.mongodb.com/security-whitelist/
+  - <https://docs.atlas.mongodb.com/security-whitelist/>
 
 ## Data Aggregation
 
@@ -317,7 +320,7 @@ class LoginForm(FlaskForm):
   - Implementing the "remember me" feature
   - Restricting access to protected pages with`@login_required`
   - Logging out users using the `logout_user()` function
-  - See more: https://flask-login.readthedocs.io/en/latest/
+  - See more: <https://flask-login.readthedocs.io/en/latest/>
 - Generate secure secret key from command-line:
   - `python3 -c "import os; print(os.urandom(16))"`
 

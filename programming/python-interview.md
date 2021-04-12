@@ -1,8 +1,11 @@
-# Python Technical Interview
+---
+layout: default
+title: Python Technical Interview
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Python Technical Interview](#python-technical-interview)
 - [Soft Skills](#soft-skills)
   - [Personal Skills](#personal-skills)
   - [Non-technical Skills](#non-technical-skills)

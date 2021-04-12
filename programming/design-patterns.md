@@ -1,4 +1,8 @@
-# Programming Foundations: Design Patterns
+---
+layout: default
+title: Design Patterns
+parent: Programming
+---
 
 **Table of Contents:**
 
@@ -63,10 +67,11 @@ The Strategy Patterns defines a family of algorithms, encapsulates each one, and
 ### Limitations of Interfaces
 
 - An **interface** defines the methods an object must have in order to be considered a particular type.
+
   - This means interfaces allow similar classes to share similarities. Not all classes need the same behavior, however.
   - They are an abstract type that specifies a behavior that classes must implement.
 
-* Unfortunately, using interfaces to solve inheritance problems causes the inability of code reuse by having each subclass implement its own methods.
+- Unfortunately, using interfaces to solve inheritance problems causes the inability of code reuse by having each subclass implement its own methods.
   - This also doesn't allow for runtime changes in behavior.
 
 ### Programming to an Interface
@@ -108,72 +113,72 @@ The Strategy Patterns defines a family of algorithms, encapsulates each one, and
 
 // The Duck Superclass //
 public abstract class Duck {
-	// Using the interface types so any flying/quacking
-	// behavior can be stored and used.
-	FlyBehavior flyBehavior;
-	QuackBehavior quackBehavior;
-	abstract void display();
-	public Duck() { }
-	public void performFly() {
-		flyBehavior.fly();
-	}
-	public void performQuack() {
-		quackBehavior.quack();
-	}
-	// All ducks are capable of swimming.
-	public void swim() {
-		System.out.println("All ducks can float, even decoys.")
-	}
+ // Using the interface types so any flying/quacking
+ // behavior can be stored and used.
+ FlyBehavior flyBehavior;
+ QuackBehavior quackBehavior;
+ abstract void display();
+ public Duck() { }
+ public void performFly() {
+  flyBehavior.fly();
+ }
+ public void performQuack() {
+  quackBehavior.quack();
+ }
+ // All ducks are capable of swimming.
+ public void swim() {
+  System.out.println("All ducks can float, even decoys.")
+ }
 }
 
 // The Mallard Subclass //
 public class MallardDuck extends Duck {
 
-	public MallardDuck() {
-		flyBehavior = new Fly();
-		quackBehavior = new Quack();
-	}
+ public MallardDuck() {
+  flyBehavior = new Fly();
+  quackBehavior = new Quack();
+ }
 
-	public void display() {
-		System.out.println("I'm a Mallard duck!")
-	}
+ public void display() {
+  System.out.println("I'm a Mallard duck!")
+ }
 }
 
 // The Concrete Fuck
 public class MiniDuckSimulator {
-	public static void main(String[] args) {
-		Duck mallard = new MallardDuck();
-		mallard.perform()Fly;
-		mallard.performQuack();
-	}
+ public static void main(String[] args) {
+  Duck mallard = new MallardDuck();
+  mallard.perform()Fly;
+  mallard.performQuack();
+ }
 }
 
 // Fly Behavior implementation (regular flying)
 public class FlyWithWings implements FlyBehavior {
-	public void fly() {
-		System.out.println("I'm flying!");
-	}
+ public void fly() {
+  System.out.println("I'm flying!");
+ }
 }
 
 // Fly Behavior implementation (unable to fly)
 public class FlyNoWay implements FlyBehavior {
-	public void fly() {
-		System.out.println("I can't fly!");
-	}
+ public void fly() {
+  System.out.println("I can't fly!");
+ }
 }
 
 // Quack Behavior implementation (regular quacking)
 public class Quack implements QuackBehavior {
-	public void quack() {
-		System.out.println("Quack!");
-	}
+ public void quack() {
+  System.out.println("Quack!");
+ }
 }
 
 // Quack Behavior implementation (unable to quack)
 public class Squeak implements QuackBehavior {
-	public void quack() {
-		System.out.println("Squeak!");
-	}
+ public void quack() {
+  System.out.println("Squeak!");
+ }
 }
 
 ```

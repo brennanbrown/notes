@@ -1,30 +1,33 @@
-# Gatsby Fundamentals
+---
+layout: default
+title: Gatsby Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Gatsby Fundamentals](#gatsby-fundamentals)
-  - [Introduction](#introduction)
-  - [Purpose and History](#purpose-and-history)
-  - [Setup](#setup)
-    - [Prerequisites:](#prerequisites)
-    - [Installation](#installation)
-  - [Breaking down a Gatsby Site](#breaking-down-a-gatsby-site)
-    - [Exploring Default Files](#exploring-default-files)
-  - [Architecture in Gatsby](#architecture-in-gatsby)
-  - [Pages, Components, and Styles](#pages-components-and-styles)
-    - [Static Pages](#static-pages)
-    - [Static Assets](#static-assets)
-    - [Components](#components)
-    - [Layout Component](#layout-component)
-    - [CSS in Gatsby](#css-in-gatsby)
-  - [Plugins and Transformations](#plugins-and-transformations)
-    - [Plugin Options](#plugin-options)
-    - [Transformation Plugins](#transformation-plugins)
-  - [Data and GraphQL](#data-and-graphql)
-    - [Queries in GraphQL](#queries-in-graphql)
-  - [Appendix](#appendix)
-    - [Navigation Component](#navigation-component)
-    - [Adding Multiple Images](#adding-multiple-images)
+- [Introduction](#introduction)
+- [Purpose and History](#purpose-and-history)
+- [Setup](#setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Breaking down a Gatsby Site](#breaking-down-a-gatsby-site)
+  - [Exploring Default Files](#exploring-default-files)
+- [Architecture in Gatsby](#architecture-in-gatsby)
+- [Pages, Components, and Styles](#pages-components-and-styles)
+  - [Static Pages](#static-pages)
+  - [Static Assets](#static-assets)
+  - [Components](#components)
+  - [Layout Component](#layout-component)
+  - [CSS in Gatsby](#css-in-gatsby)
+- [Plugins and Transformations](#plugins-and-transformations)
+  - [Plugin Options](#plugin-options)
+  - [Transformation Plugins](#transformation-plugins)
+- [Data and GraphQL](#data-and-graphql)
+  - [Queries in GraphQL](#queries-in-graphql)
+- [Appendix](#appendix)
+  - [Navigation Component](#navigation-component)
+  - [Adding Multiple Images](#adding-multiple-images)
 
 ## Introduction
 
@@ -68,14 +71,14 @@
 
 ## Setup
 
-### Prerequisites:
+### Prerequisites
 
 - A source-code editor, such as [Visual Studio Code](https://code.visualstudio.com/)
   - The [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) extensions for clean code and proper formatting.
 - [Node.js](https://nodejs.org/en/) JavaScript Runtime
   - The [Node Package Manager](https://www.npmjs.com/)
 - [Git](https://git-scm.com/) and [GitHub](https://github.com/)
-- Finally, the (Gatsby CLI)[https://www.gatsbyjs.com/docs/gatsby-cli/]
+- Finally, the [Gatsby CLI](https://www.gatsbyjs.com/docs/gatsby-cli/)
   - To install: `npm install -g gatsby-cli`
 
 For a full breakdown of how to setup your development environment for Gatsby, check out [the official documentation](https://www.gatsbyjs.com/tutorial/part-zero/) on the Gatsby website which includes detailed instructions for macOS, Windows and various flavors of Linux.

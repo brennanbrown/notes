@@ -1,4 +1,8 @@
-# SASS Essential Training
+---
+layout: default
+title: SASS Essential Training
+parent: Web Development
+---
 
 - Sass is an extension that adds functionality to the cascading style sheets language, or CSS, that's used to design the look of modern websites.
   - Browsers do not understand and can't really read Sass, so it's what we call a pre-processed language.

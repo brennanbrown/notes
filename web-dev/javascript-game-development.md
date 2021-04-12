@@ -1,18 +1,21 @@
-# JavaScript Game Development
+---
+layout: default
+title: Javascript Game Development
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [JavaScript Game Development](#javascript-game-development)
-  - [Introduction](#introduction)
-  - [Part 1: Button Chaser](#part-1-button-chaser)
-  - [Animation in JS](#animation-in-js)
-    - [Replacement Animation](#replacement-animation)
-    - [Point-to-Point Animation](#point-to-point-animation)
-    - [JavaScript Coordinate System](#javascript-coordinate-system)
-    - [Boundary Collision Detection](#boundary-collision-detection)
-  - [Part 2: Rebound](#part-2-rebound)
-    - [Optimizing `keyListener` Function](#optimizing-keylistener-function)
-    - [`setTimeout()` vs. `requestAnimationFrame`](#settimeout-vs-requestanimationframe)
+- [Introduction](#introduction)
+- [Part 1: Button Chaser](#part-1-button-chaser)
+- [Animation in JS](#animation-in-js)
+  - [Replacement Animation](#replacement-animation)
+  - [Point-to-Point Animation](#point-to-point-animation)
+  - [JavaScript Coordinate System](#javascript-coordinate-system)
+  - [Boundary Collision Detection](#boundary-collision-detection)
+- [Part 2: Rebound](#part-2-rebound)
+  - [Optimizing `keyListener` Function](#optimizing-keylistener-function)
+  - [`setTimeout()` vs. `requestAnimationFrame`](#settimeout-vs-requestanimationframe)
 
 ## Introduction
 

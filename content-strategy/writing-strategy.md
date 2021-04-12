@@ -1,19 +1,22 @@
-# Writing Strategy
+---
+layout: default
+title: Writing Strategy
+parent: Content Strategy
+---
 
 **Table of Contents:**
 
-- [Writing Strategy](#writing-strategy)
-  - [Foundation](#foundation)
-    - [Mindset](#mindset)
-  - [Idea Generation](#idea-generation)
-  - [Improving Your Writing](#improving-your-writing)
-  - [Effective Types](#effective-types)
-  - [Content Formats](#content-formats)
-  - [Search Enging Optimization](#search-enging-optimization)
-  - [Promotion Strategies](#promotion-strategies)
-  - [E-mail Lists](#e-mail-lists)
-  - [Monetization Strategy](#monetization-strategy)
-  - [Conclusion](#conclusion)
+- [Foundation](#foundation)
+  - [Mindset](#mindset)
+- [Idea Generation](#idea-generation)
+- [Improving Your Writing](#improving-your-writing)
+- [Effective Types](#effective-types)
+- [Content Formats](#content-formats)
+- [Search Enging Optimization](#search-enging-optimization)
+- [Promotion Strategies](#promotion-strategies)
+- [E-mail Lists](#e-mail-lists)
+- [Monetization Strategy](#monetization-strategy)
+- [Conclusion](#conclusion)
 
 ## Foundation
 
@@ -43,7 +46,7 @@
 
 ## Idea Generation
 
-- The more valuable content that you publish, the more opportunites you have to connect with people. 
+- The more valuable content that you publish, the more opportunites you have to connect with people.
   - The process for coming up with good content consistently is to be able to come up with good ideas consistently.
   - You need a reliable **Ideation System**.
 - Creation begins with consumption

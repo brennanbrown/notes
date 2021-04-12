@@ -1,30 +1,33 @@
-# Node.js and Express Fundamentals
+---
+layout: default
+title: Node.js and Express Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Node.js and Express Fundamentals](#nodejs-and-express-fundamentals)
-  - [Introduction](#introduction)
-    - [Good Packages to Have](#good-packages-to-have)
-  - [Template Engines within Express](#template-engines-within-express)
-  - [Express Routes and Middleware](#express-routes-and-middleware)
-    - [Example Middleware](#example-middleware)
-    - [Example Routing Middleware](#example-routing-middleware)
-    - [Parameter Routes](#parameter-routes)
-    - [Business Logic](#business-logic)
-  - [Professional Templating](#professional-templating)
-    - [Creating a Site-wide Layout](#creating-a-site-wide-layout)
-    - [Using Paritals with EJS](#using-paritals-with-ejs)
-    - [Template Variables in More Detail](#template-variables-in-more-detail)
-    - [Looping Through Lists in Templates](#looping-through-lists-in-templates)
-  - [Error Handling](#error-handling)
-  - [Handling Form Data](#handling-form-data)
-    - [Handling POST Requests](#handling-post-requests)
-    - [Validating and Sanitizing User Input](#validating-and-sanitizing-user-input)
-  - [Creating APIs](#creating-apis)
-    - [Introduction to RESTful APIs](#introduction-to-restful-apis)
-    - [CRUD](#crud)
-    - [Creating and Testing an API Endpoint](#creating-and-testing-an-api-endpoint)
-    - [Add Client-side JavaScript](#add-client-side-javascript)
+- [Introduction](#introduction)
+  - [Good Packages to Have](#good-packages-to-have)
+- [Template Engines within Express](#template-engines-within-express)
+- [Express Routes and Middleware](#express-routes-and-middleware)
+  - [Example Middleware](#example-middleware)
+  - [Example Routing Middleware](#example-routing-middleware)
+  - [Parameter Routes](#parameter-routes)
+  - [Business Logic](#business-logic)
+- [Professional Templating](#professional-templating)
+  - [Creating a Site-wide Layout](#creating-a-site-wide-layout)
+  - [Using Paritals with EJS](#using-paritals-with-ejs)
+  - [Template Variables in More Detail](#template-variables-in-more-detail)
+  - [Looping Through Lists in Templates](#looping-through-lists-in-templates)
+- [Error Handling](#error-handling)
+- [Handling Form Data](#handling-form-data)
+  - [Handling POST Requests](#handling-post-requests)
+  - [Validating and Sanitizing User Input](#validating-and-sanitizing-user-input)
+- [Creating APIs](#creating-apis)
+  - [Introduction to RESTful APIs](#introduction-to-restful-apis)
+  - [CRUD](#crud)
+  - [Creating and Testing an API Endpoint](#creating-and-testing-an-api-endpoint)
+  - [Add Client-side JavaScript](#add-client-side-javascript)
 
 > NOTE: All "%" symbols have been replaced with "％" to prevent errors on Jekyll's rendering.
 
@@ -65,9 +68,9 @@
   - Using templates, we can split our layout into reusable parts and store them in separate template files and just include them into our page.
   - By doing so, there is no redundancy. And, if we want to change the navigation, we do it at exactly one place.
 - Express is agnostic when it comes to template engines. Any engine that provides a specific interface can be plucked into the framework.
-- **Embedded JavaScript templating** (https://ejs.co/) is a good engine to use, as it lets you use regular JavaScript as template language as you see here.
+- **Embedded JavaScript templating** (<https://ejs.co/>) is a good engine to use, as it lets you use regular JavaScript as template language as you see here.
 
-> Full list of Template Engines that work with Express: https://expressjs.com/en/resources/template-engines.html
+> Full list of Template Engines that work with Express: <https://expressjs.com/en/resources/template-engines.html>
 
 ## Express Routes and Middleware
 
@@ -129,9 +132,10 @@ app.get("/feedback", (req, res, next) => {
 ### Parameter Routes
 
 - Express routes can contain parameters.
+
   - This means that parts of the URL can be dynamic, and this dynamic parameters can then be used by the application.
 
-* Using a column it identifies a parameter and the route will then match any string after speakers and store it in a variable called speaker name, and we can then use it, of course, inside of our handler function.
+- Using a column it identifies a parameter and the route will then match any string after speakers and store it in a variable called speaker name, and we can then use it, of course, inside of our handler function.
 
 ```javascript
 app.get(,/speakers/:speakername', handler);
@@ -205,14 +209,14 @@ app.use(async (request, response, next) => {
 
 - Things get easier once the layout has been split into logical parts.
 
-* First add the template tag `<％`, without an equal sign or a minus, because there is no direct output.
-* For control structure, use bracket percent `{ %<`, (without space) and add the appropiate elements.
-* Like in Javascript, call a `forEach` on it.
+- First add the template tag `<％`, without an equal sign or a minus, because there is no direct output.
+- For control structure, use bracket percent `{ %<`, (without space) and add the appropiate elements.
+- Like in Javascript, call a `forEach` on it.
   - And as it is with a `forEach` function, this takes a callback that gets, for each iteration, the current array item.
   - And then I continue as if this would be regular Javascript, by adding curly brackets.
-* The loop will run over the variable, which will, for each iteration, contain another element.
-* Patterns within list and detail pages is very common.
-* There needs to be a way to let Express know which element it should show on the list/detail page, and this is where parameter routes come into place.
+- The loop will run over the variable, which will, for each iteration, contain another element.
+- Patterns within list and detail pages is very common.
+- There needs to be a way to let Express know which element it should show on the list/detail page, and this is where parameter routes come into place.
 
 Example of using looping in `/views`:
 

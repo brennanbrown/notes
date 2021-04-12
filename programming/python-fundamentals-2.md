@@ -1,17 +1,20 @@
-# Python Fundamentals Extended
+---
+layout: default
+title: Python Fundamentals 2
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Python Fundamentals Extended](#python-fundamentals-extended)
-  - [Introduction](#introduction)
-  - [Python Anatomy](#python-anatomy)
-    - [Expressions and Statements](#expressions-and-statements)
-  - [Blocks and Scopes](#blocks-and-scopes)
-    - [Loops](#loops)
-    - [Bitwise Operators](#bitwise-operators)
-    - [Operator Precedence](#operator-precedence)
-  - [Python Loops](#python-loops)
-  - [Functions](#functions)
+- [Introduction](#introduction)
+- [Python Anatomy](#python-anatomy)
+  - [Expressions and Statements](#expressions-and-statements)
+- [Blocks and Scopes](#blocks-and-scopes)
+  - [Loops](#loops)
+  - [Bitwise Operators](#bitwise-operators)
+  - [Operator Precedence](#operator-precedence)
+- [Python Loops](#python-loops)
+- [Functions](#functions)
 
 ## Introduction
 
@@ -161,11 +164,11 @@ while d < 1000:
 # Method to create space between
 # various testing outputs.
 def new():
-	print("\n")
+ print("\n")
 
 def function(n = 2):
-	print(n)
-	return n * 2
+ print(n)
+ return n * 2
 
 # Will print 42
 x = function(42)
@@ -177,29 +180,29 @@ function(x)
 ### Primes ###
 
 def isPrime(n):
-	if n <= 1:
-		return False
-	for x in range(2, n):
-		if n % x == 0:
-			return False
-	else:
-		return True
+ if n <= 1:
+  return False
+ for x in range(2, n):
+  if n % x == 0:
+   return False
+ else:
+  return True
 
 n = 5
 # print("Hello, world! {}".format(x))
 if isPrime(n):
-	print("{} is prime!".format(x))
+ print("{} is prime!".format(x))
 else:
-	print("{} is not prime!".format(x))
+ print("{} is not prime!".format(x))
 
 isPrime(n)
 
 def listPrimes():
-	print("\n Here is a list of prime numbers:")
-	for n in range(100):
-		if isPrime(n):
-			# print(n, end=" ", flush=True)
-			print(n)
+ print("\n Here is a list of prime numbers:")
+ for n in range(100):
+  if isPrime(n):
+   # print(n, end=" ", flush=True)
+   print(n)
 
 
 listPrimes()
@@ -208,24 +211,24 @@ new()
 ### Objects ###
 
 class Duck:
-	sound = "Quack!"
-	walking = "It walks like a duck!"
+ sound = "Quack!"
+ walking = "It walks like a duck!"
 
-	# Self is reference to the object when
-	# the class is used to create an object.
-	def quack(self):
-		print(self.sound)
+ # Self is reference to the object when
+ # the class is used to create an object.
+ def quack(self):
+  print(self.sound)
 
-	def walk(self):
-		print(self.walking)
+ def walk(self):
+  print(self.walking)
 
 def main():
-	donald = Duck()
-	donald.quack()
-	donald.walk()
+ donald = Duck()
+ donald.quack()
+ donald.walk()
 
 if __name__ == "__main__":
-	main()
+ main()
 
 ### Types ###
 

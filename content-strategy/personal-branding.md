@@ -1,17 +1,20 @@
-# Personal Branding
+---
+layout: default
+title: Personal Branding
+parent: Content Strategy
+---
 
 **Table of Contents:**
 
-- [Personal Branding](#personal-branding)
-  - [What is Personal Branding?](#what-is-personal-branding)
-    - [Creating Career Opportunities](#creating-career-opportunities)
-    - [Building Influence](#building-influence)
-  - [Defining Your Current Brand](#defining-your-current-brand)
-    - [Begin With the End in Mind](#begin-with-the-end-in-mind)
-    - [Identify Your Target Audience](#identify-your-target-audience)
-  - [Position and Market Strategy](#position-and-market-strategy)
-    - [Networking Your Brand](#networking-your-brand)
-  - [Summary](#summary)
+- [What is Personal Branding?](#what-is-personal-branding)
+  - [Creating Career Opportunities](#creating-career-opportunities)
+  - [Building Influence](#building-influence)
+- [Defining Your Current Brand](#defining-your-current-brand)
+  - [Begin With the End in Mind](#begin-with-the-end-in-mind)
+  - [Identify Your Target Audience](#identify-your-target-audience)
+- [Position and Market Strategy](#position-and-market-strategy)
+  - [Networking Your Brand](#networking-your-brand)
+- [Summary](#summary)
 
 ## What is Personal Branding?
 
@@ -90,7 +93,7 @@
 - You can start by thinking of the people you have the easiest time working with.
   - Who do you kind of click with? Who do you sort of feel in sync when you're working with them?
   - And if you're looking for a job or you're looking to change jobs, that target audience is also going to include people in other companies or outside of your immediate circle of influence.
-- But you have to take the universe of potential audiences from everyone down to these specific people: _the people who are looking for someone just like you, who are looking for someone with your skills and your traits and your values. _
+- But you have to take the universe of potential audiences from everyone down to these specific people: _the people who are looking for someone just like you, who are looking for someone with your skills and your traits and your values._
 - Once you identify who that audience is, then it even gets more tricky because people have two sets of needs.
   - We have **functional** and we have **emotional** needs.
 - Example" Let's say I'm looking for a cup of coffee or a tasty treat. Starbucks has coffee, so the functional needs are met.

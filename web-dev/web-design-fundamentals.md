@@ -1,14 +1,17 @@
-# Web Design Fundamentals
+---
+layout: default
+title: Web Design Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Web Design Fundamentals](#web-design-fundamentals)
-  - [Web Design Portfolio](#web-design-portfolio)
-    - [Understand Your Audience](#understand-your-audience)
-    - [Convey Personality](#convey-personality)
-    - [Express Design Thinking](#express-design-thinking)
-    - [Demonstrate Range](#demonstrate-range)
-    - [Convey Depth of Experience](#convey-depth-of-experience)
+- [Web Design Portfolio](#web-design-portfolio)
+  - [Understand Your Audience](#understand-your-audience)
+  - [Convey Personality](#convey-personality)
+  - [Express Design Thinking](#express-design-thinking)
+  - [Demonstrate Range](#demonstrate-range)
+  - [Convey Depth of Experience](#convey-depth-of-experience)
 
 ## Web Design Portfolio
 

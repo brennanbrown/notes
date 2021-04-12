@@ -1,4 +1,8 @@
-# React Fundamentals
+---
+layout: default
+title: React Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
@@ -547,7 +551,7 @@ render(<Library books={bookList} />, document.getElementById("root"));
 
 - When working with a React application, it's a good rule of thumb to keep state in the root of the tree.
   - In other words, your root component should hold all of the state variables and pass down that information to the children.
-  - You can read more about the idea of lifting state up or having state at the root in the React documentation: https://reactjs.org/docs/lifting-state-up.html
+  - You can read more about the idea of lifting state up or having state at the root in the React documentation: <https://reactjs.org/docs/lifting-state-up.html>
 - The reason for this is if you have local state in all of your components, it's really easy to lose track of that state, and for some of these variables to be incorrect.
 - Sometimes the state at the root is called the _source of truth_, and you want that source of truth to always be in the same place where you know where to find it.
 - In the example below, whatever is the state value for `freeBookmark`, make that available in the child.
@@ -713,7 +717,7 @@ render(<Library books={bookList} />, document.getElementById("root"));
 ### Component Life Cycle
 
 - The React component lifecycle provides functions that are invoked at specific times during the rendering lifecycle
-  - See here: https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+  - See here: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
   - For example, terms like mounting and unmounting just means whenever it's added to the dom, and whenever it's taken away.
   - Component lifecycle methods are only available when using class syntax, so you can't use them with function components.
 - The only required method of the component lifecycle is render.
@@ -852,7 +856,7 @@ render (
   - `<img alt={product.name src={product.image} height={100}/>
 - In addition, each child in an array or iterator should have a unique key prompt.
   - Eg. Add to the parent div: `<div key={product.id}>
-  - More information: https://reactjs.org/docs/accessibility.html
+  - More information: <https://reactjs.org/docs/accessibility.html>
 
 ### Forms
 

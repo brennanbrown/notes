@@ -1,18 +1,21 @@
-# Writing on LinkedIn
+---
+layout: default
+title: Writing on LinkedIn
+parent: Content Strategy
+---
 
 **Table of Contents:**
 
-- [Writing on LinkedIn](#writing-on-linkedin)
-  - [Introduction](#introduction)
-  - [What To Write](#what-to-write)
-  - [When to Write](#when-to-write)
-  - [Considering Audience](#considering-audience)
-  - [Writing Headlines](#writing-headlines)
-  - [Timely Writing](#timely-writing)
-  - [Attribute Your Sources](#attribute-your-sources)
-  - [Handling Feedback](#handling-feedback)
-  - [Sharing Your Work](#sharing-your-work)
-  - [Analytics](#analytics)
+- [Introduction](#introduction)
+- [What To Write](#what-to-write)
+- [When to Write](#when-to-write)
+- [Considering Audience](#considering-audience)
+- [Writing Headlines](#writing-headlines)
+- [Timely Writing](#timely-writing)
+- [Attribute Your Sources](#attribute-your-sources)
+- [Handling Feedback](#handling-feedback)
+- [Sharing Your Work](#sharing-your-work)
+- [Analytics](#analytics)
 
 ## Introduction
 

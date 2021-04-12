@@ -1,24 +1,27 @@
-# CSS Essential Training
+---
+layout: default
+title: CSS3 Essential Training
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [CSS Essential Training](#css-essential-training)
-	- [Introduction](#introduction)
-	- [Images and Pathways](#images-and-pathways)
-	- [Extended Colour Values](#extended-colour-values)
-	- [Classes and IDs](#classes-and-ids)
-		- [Selectors](#selectors)
-		- [Inheritance and Specificity](#inheritance-and-specificity)
-		- [Cascade and Importance](#cascade-and-importance)
-	- [CSS Box Model](#css-box-model)
-	- [Typography](#typography)
-	- [Float and Position](#float-and-position)
-	- [Flexbox and Grid Layout](#flexbox-and-grid-layout)
-		- [Flexible Box Layout](#flexible-box-layout)
-		- [Grid Layout](#grid-layout)
-	- [Advanced Selectors](#advanced-selectors)
-	- [Fluid and Responsive Layouts](#fluid-and-responsive-layouts)
-	- [Helpful Links](#helpful-links)
+- [Introduction](#introduction)
+- [Images and Pathways](#images-and-pathways)
+- [Extended Colour Values](#extended-colour-values)
+- [Classes and IDs](#classes-and-ids)
+  - [Selectors](#selectors)
+  - [Inheritance and Specificity](#inheritance-and-specificity)
+  - [Cascade and Importance](#cascade-and-importance)
+- [CSS Box Model](#css-box-model)
+- [Typography](#typography)
+- [Float and Position](#float-and-position)
+- [Flexbox and Grid Layout](#flexbox-and-grid-layout)
+  - [Flexible Box Layout](#flexible-box-layout)
+  - [Grid Layout](#grid-layout)
+- [Advanced Selectors](#advanced-selectors)
+- [Fluid and Responsive Layouts](#fluid-and-responsive-layouts)
+- [Helpful Links](#helpful-links)
 
 ## Introduction
 
@@ -75,7 +78,7 @@ li a {
   - Absolute units are a fixed unit and always the same size, whereas relative units are relational settings. Values declared in a parent or ancestor element will have an effect on the relative units used in the child or descendant element.
 - There are also keywords and unitless values.
   - These include color keywords, such as basic colors, such as `white` and `black`
-  - As well as _extended colors_, such as `oldlace`, `blanchedalmond` aliceblue`, `mediumseagreen`.
+  - As well as _extended colors_, such as `oldlace`, `blanchedalmond` aliceblue`,`mediumseagreen`.
   - RGB values presented with hexadecimal can also be used, such as `#ffc0cb`.
   - There is also the `rgb(105, 165, 195)` value, or `rgba(50%, 25%, 25%, 0.5;)` which allows for the forth value of opacity between 1-0.
   - Similarly, there is the `hsl(280, 50%, 80%)` value, which is instead hue, saturation, and lightness. The hue is specified as an angle dependent on the color wheel, with 0 or 360 being red.
@@ -230,12 +233,12 @@ padding: 2px 10px 5px; /* Top, Right & Left, Bottom */
 
 .child {
   /* Will be 16px due to inherting the root element,
-	 * which in this case, is just the body default. */
+  * which in this case, is just the body default. */
   font-size: 1rem;
 
   /* Will be 30px, as it is going to be 50% of
-	 * the parent element's size. 
-	 * Good for mobile screen sizes. */
+  * the parent element's size. 
+  * Good for mobile screen sizes. */
   font-size: 0.5em;
 }
 ```
@@ -332,21 +335,23 @@ Both flexbox and grid modules are new ways to design layouts that are more advan
 ### Flexible Box Layout
 
 - With `flexbox`, items are aligned on a single axis.
+
   - It is often described as being one-dimensional.
   - Great for space distrubution of items on a single axis.
   - Allows more ways for alinging and sizing elements, and creating more flexible elements overall.
 
-* `flex-container` refers to the parent element, with 'flex items' being the children elements.
-* The default direction of the main axis is horizontal, however this can be changed using the `flex-direction: vertical;` property.
-* The cross-axis will always run perpendicular to the direction of the flex items.
+- `flex-container` refers to the parent element, with 'flex items' being the children elements.
+- The default direction of the main axis is horizontal, however this can be changed using the `flex-direction: vertical;` property.
+- The cross-axis will always run perpendicular to the direction of the flex items.
   Both axis also have a start and ending point. - `main-start` and `main-end` for the main axis, and `cross-start` and `cross-end` for the cross axis.
-* Setting the container to `inline-flex` will flex-container will span the width of its contents, the items, and display inline to other flex-containers.
-* The `flex-direction` property determines the direction of the main axis.
+- Setting the container to `inline-flex` will flex-container will span the width of its contents, the items, and display inline to other flex-containers.
+- The `flex-direction` property determines the direction of the main axis.
   - There are four values: `row`, `row-reverse`, `column`, and `colomn-reverse`. This ordering is only visual.
-* By default, `no-wrap` flexbox only aligns items on a single axis, if there is not enough flex items to fit, there will be space left.
+- By default, `no-wrap` flexbox only aligns items on a single axis, if there is not enough flex items to fit, there will be space left.
   - If there is not enough space, the items will shrink to fit the space.
   - `wrap` will wrap items to the next line, which also has the property `wrap-reverse`.
-* There are three properties used together to set the sizing of the flex items.
+- There are three properties used together to set the sizing of the flex items.
+
   - `flex-basis` sets the initial size of flex-items. Ie. If there's enough room, set all items to this value.
   - `flex-grow` determines how items will expand if there is extra space in the container. Defaults to 0, if set to 1, all items will expand the same amount to fill up the entire space.
   - `flex-shrink` determines how items will shrink if there isn't enough space. Defaults to 1, shrinks all items by the same amount to fit in the container, if set to 1, the items will not shrink at all.
@@ -363,32 +368,32 @@ Both flexbox and grid modules are new ways to design layouts that are more advan
 
 ```css
 .flex-container {
-	background: grey;
-	margin-bottom: 10px;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
+ background: grey;
+ margin-bottom: 10px;
+ display: flex;
+ flex-wrap: wrap;
+ flex-direction: column;
 }
 
 .flex-item {
-	box-sizing: border-box;
-	border: 1px solid blue;
+ box-sizing: border-box;
+ border: 1px solid blue;
 }
 
 /* Will display first item on first row, followed by
  * the three items after displayed evenly on the second. */
 .flex-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+ display: flex;
+ align-items: center;
+ justify-content: center;
 }
 
 .flex-item-first {
-	flex: 0 0 100%;
+ flex: 0 0 100%;
 }
 
 .flex-item {
-	flex: 1 1 auto;
+ flex: 1 1 auto;
 }
 
 {
@@ -491,7 +496,7 @@ h1 ~ p {
 ```css
 selector {
   /* Background-size may only be included after position, 
-	 * separated by the "/" character. */
+  * separated by the "/" character. */
 
   /* Image, repeat-style, position, background-size */
   background: url(../image.png) no-repeat center/cover;

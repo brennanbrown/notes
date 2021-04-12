@@ -1,16 +1,13 @@
 ---
 layout: default
-title: CSS Bootstrap 4 Fundamentals
-nav_order: 4
+title: Bootstrap 4 Fundamentals
+parent: Web Development
 ---
-
-# Bootstrap 4 Fundamentals
 
 **Table of Contents:**
 
-- [Bootstrap 4 Fundamentals](#bootstrap-4-fundamentals)
-  - [Getting Started](#getting-started)
-  - [Using Basic Styles](#using-basic-styles)
+- [Getting Started](#getting-started)
+- [Using Basic Styles](#using-basic-styles)
 
 ## Getting Started
 

@@ -1,33 +1,36 @@
-# Product Strategy
+---
+layout: default
+title: Product Strategy
+parent: Product Management
+---
 
 > Product management is the practice of strategically driving the development, market launch, and continual support and improvement of a company’s products.
 
 **Table of Contents:**
 
-- [Product Strategy](#product-strategy)
-  - [Introduction](#introduction)
-    - [Questions for PMs](#questions-for-pms)
-    - [Skills of a PM](#skills-of-a-pm)
-    - [Purpose of Product Management](#purpose-of-product-management)
-    - [History of Project Management](#history-of-project-management)
-  - [Role of Product Management](#role-of-product-management)
-    - [Differences in Roles](#differences-in-roles)
-    - [Type of User](#type-of-user)
-    - [Types of Products](#types-of-products)
-    - [What Project Managers Do](#what-project-managers-do)
-    - [Other Roles](#other-roles)
-    - [Exercise: New Project Manager](#exercise-new-project-manager)
-    - [Identifying Requirements](#identifying-requirements)
-    - [Product Roadmap](#product-roadmap)
-    - [Product Requirements Document](#product-requirements-document)
-  - [Problem Identification](#problem-identification)
-    - [Identifying Opportunties](#identifying-opportunties)
-    - [Understanding the Market](#understanding-the-market)
-    - [Target User](#target-user)
-    - [Total Addressable Market](#total-addressable-market)
-  - [Vision & Strategy](#vision--strategy)
-  - [Communication Skills](#communication-skills)
-  - [Glossary](#glossary)
+- [Introduction](#introduction)
+  - [Questions for PMs](#questions-for-pms)
+  - [Skills of a PM](#skills-of-a-pm)
+  - [Purpose of Product Management](#purpose-of-product-management)
+  - [History of Project Management](#history-of-project-management)
+- [Role of Product Management](#role-of-product-management)
+  - [Differences in Roles](#differences-in-roles)
+  - [Type of User](#type-of-user)
+  - [Types of Products](#types-of-products)
+  - [What Project Managers Do](#what-project-managers-do)
+  - [Other Roles](#other-roles)
+  - [Exercise: New Project Manager](#exercise-new-project-manager)
+  - [Identifying Requirements](#identifying-requirements)
+  - [Product Roadmap](#product-roadmap)
+  - [Product Requirements Document](#product-requirements-document)
+- [Problem Identification](#problem-identification)
+  - [Identifying Opportunties](#identifying-opportunties)
+  - [Understanding the Market](#understanding-the-market)
+  - [Target User](#target-user)
+  - [Total Addressable Market](#total-addressable-market)
+- [Vision & Strategy](#vision--strategy)
+- [Communication Skills](#communication-skills)
+- [Glossary](#glossary)
 
 ## Introduction
 
@@ -120,10 +123,10 @@ When looking at the **4 P's of Marketing**, Place, Price, and Promotion are unde
   - **Technology** is to understand how the product is built, as well as understanding complexity, risks, and tradeoffs.
 - PMs need to be able to _influence without authority_, as they don't usually have actual control over any particular team.
   - - Solving problems might make the product more appealing to users.
-    - It has the potential to increase sales.
-    - It reduces user churn, and keeps the company competitive.
-    - It also can increase the team's efficiency.
-    - Or, it might be legally required if you want to continue selling the product.
+  - It has the potential to increase sales.
+  - It reduces user churn, and keeps the company competitive.
+  - It also can increase the team's efficiency.
+  - Or, it might be legally required if you want to continue selling the product.
 - Regarding prioritization, **stack ranked lists** can help numerate different features more precisely.
 
 ### Differences in Roles

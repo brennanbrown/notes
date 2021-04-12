@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Success as a Web Developer
-nav_order: 4
+title: Web Development
+has_children: true
 ---
 
 # Success as a Web Developer

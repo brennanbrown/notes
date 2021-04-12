@@ -1,21 +1,24 @@
-# Python Fundamentals
+---
+layout: default
+title: Python Fundamentals
+parent: Programming
+---
 
 **Table of Contents:**
 
-- [Python Fundamentals](#python-fundamentals)
-  - [Variables](#variables)
-  - [Arguments / Functions](#arguments--functions)
-  - [Conditional Structures](#conditional-structures)
-  - [Loops](#loops)
-  - [Classes](#classes)
-  - [Date, Time, and Datetime Classes](#date-time-and-datetime-classes)
-  - [Reading and Writing Files](#reading-and-writing-files)
-    - [Working with OS Path Utilities](#working-with-os-path-utilities)
-    - [Using File System Shell Methods](#using-file-system-shell-methods)
-  - [Fetching Internet Data](#fetching-internet-data)
-    - [Working with JSON data](#working-with-json-data)
-    - [Parsing and Processing HTML](#parsing-and-processing-html)
-    - [Manipulating XML](#manipulating-xml)
+- [Variables](#variables)
+- [Arguments / Functions](#arguments--functions)
+- [Conditional Structures](#conditional-structures)
+- [Loops](#loops)
+- [Classes](#classes)
+- [Date, Time, and Datetime Classes](#date-time-and-datetime-classes)
+- [Reading and Writing Files](#reading-and-writing-files)
+  - [Working with OS Path Utilities](#working-with-os-path-utilities)
+  - [Using File System Shell Methods](#using-file-system-shell-methods)
+- [Fetching Internet Data](#fetching-internet-data)
+  - [Working with JSON data](#working-with-json-data)
+  - [Parsing and Processing HTML](#parsing-and-processing-html)
+  - [Manipulating XML](#manipulating-xml)
 
 ```python
 #             #

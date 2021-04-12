@@ -1,11 +1,14 @@
-# Webpack 4
+---
+layout: default
+title: Webpack 4 Fundamentals
+parent: Web Development
+---
 
 **Table of Contents:**
 
-- [Webpack 4](#webpack-4)
-  - [What is Webpack?](#what-is-webpack)
-  - [Commands](#commands)
-  - [Files](#files)
+- [What is Webpack?](#what-is-webpack)
+- [Commands](#commands)
+- [Files](#files)
 
 ## What is Webpack?
 
