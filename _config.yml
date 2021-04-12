@@ -38,6 +38,8 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
+  "Brennan's Portfolio":
+    - "//brennanbrown.ca/"
   "Just the Docs on GitHub":
     - "//github.com/pmarsceill/just-the-docs"
 
@@ -61,8 +63,6 @@ footer_content: "Public Domain 2021 by Brennan K. Brown"
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
 last_edit_time_format: "%b %e %Y at %I:%M %p" # uses ruby's time format: https://ruby-doc.org/stdlib-2.7.0/libdoc/time/rdoc/Time.html
 
-
-
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true # show or hide edit this page link
 gh_edit_link_text: "Edit this page on GitHub"
@@ -70,3 +70,49 @@ gh_edit_repository: "https://github.com/pmarsceill/just-the-docs" # the github U
 gh_edit_branch: "master" # the branch that your docs is served from
 # gh_edit_source: docs # the source that your files originate from
 gh_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump into the editor immediately
+
+# Define Jekyll collections
+collections:
+  # Define a collection named "docs", its documents reside in the "_docs" directory
+  content-strategy:
+    permalink: "/:collection/:path/"
+    output: true
+  product-management:
+    permalink: "/:collection/:path/"
+    output: true
+  programming:
+    permalink: "/:collection/:path/"
+    output: true
+  web-dev:
+    permalink: "/:collection/:path/"
+    output: true
+
+
+just_the_docs:
+  # Define which collections are used in just-the-docs
+  collections:
+    content-strategy:
+      name: Content Strategy
+      nav_exclude: false
+      search_exclude: false
+    product-management:
+      name: Product Management
+      nav_exclude: false
+      search_exclude: false
+    programming:
+      name: Programming
+      nav_exclude: false
+      search_exclude: false
+    web-dev:
+      name: Web Development
+      nav_exclude: false
+      search_exclude: false
+
+compress_html:
+  ignore:
+    envs: all
+
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
