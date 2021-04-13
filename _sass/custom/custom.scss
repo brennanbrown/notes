@@ -1,0 +1,20 @@
+// Increase code size:
+@media (min-width: 31.25rem) {
+  .highlight .table-wrapper td,
+  .highlight .table-wrapper pre {
+    font-size: 14px !important;
+  }
+}
+
+// Narrow sidebar:
+@media (min-width: 66.5rem) {
+  .side-bar {
+    width: calc((100% - 1064px) / 3 + 264px);
+    min-width: 264px;
+  }
+}
+
+// Change links color:
+a {
+  color: #235891;
+}
